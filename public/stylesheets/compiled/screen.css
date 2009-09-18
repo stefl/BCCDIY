@@ -436,17 +436,38 @@ select:focus { border: 1px solid #666; }
 
 textarea { width: 390px; height: 250px; padding: 5px; }
 
+a { color: #06f; }
+
+a:hover { color: red; }
+
+%body .container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
+%body .container { display: block; }
+
+.quiet { color: #666; }
+
+#skip a { color: #666; }
+
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }
+#header h1#logo a { color: black; text-decoration: none; }
+#header h1#logo a:hover, #header h1#logo a:focus { color: red; }
 
 #breadcrumb { display: inline; float: left; margin-right: 0; width: 950px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
 * html #breadcrumb { overflow-x: hidden; }
 
 #navigation { display: inline; float: left; margin-right: 10px; width: 230px; padding-right: 80px; }
 * html #navigation { overflow-x: hidden; }
+#navigation ul { text-indent: 0; margin: 0; padding: 0; }
+#navigation ul li { list-style-type: none; line-height: 1.5em; }
+#navigation ul li a { text-decoration: none; }
+#navigation ul li.active { background-color: #ffd; }
+#navigation ul li.active a { color: black; font-weight: bold; }
 
-#content { display: inline; float: left; margin-right: 0; width: 630px; }
+#content { display: inline; float: left; margin-right: 0; width: 630px; font-size: 125% !important; }
 * html #content { overflow-x: hidden; }
+#content h1 { padding-bottom: 0.5em; border-bottom: 4px solid #eee; font-size: 200%; }
+#content #quickly_find_something { margin-top: 4.5em; }
+#content #quickly_find_something #page_title { padding: 0.25em; font-size: 150%; }
 
 #footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }

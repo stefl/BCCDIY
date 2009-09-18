@@ -7,10 +7,31 @@
 // Or leave it in if you're happy with how blueprint looks out-of-the-box
 
 
+a
+  :color #06f
+  
+a:hover
+  :color red
+%body
+  .container
+    +container
+    
+
+.quiet
+  :color #666
+
+#skip
+  a
+    :color #666
 #header
   +column(24,true)
   :padding-top 1.5em
-  
+  h1#logo
+    a
+      :color black
+      :text-decoration none
+    a:hover, a:focus
+      :color red
   
 #breadcrumb
   +column(24,true)
@@ -20,9 +41,34 @@
 #navigation
   +column(6)
   +append(2)
+  ul
+    :text-indent 0
+    :margin 0
+    :padding 0
+    li
+      :list-style-type none
+      :line-height 1.5em
+      a
+        :text-decoration none
+    li.active
+      :background-color #ffd
+      a
+        :color black
+        :font-weight bold
 
 #content
   +column(16,true)
+  :font-size 125% !important
+  h1
+    :padding-bottom 0.5em
+    :border-bottom 4px solid #eee
+    :font-size 200%
+  
+  #quickly_find_something
+    :margin-top  4.5em
+    #page_title
+      :padding 0.25em
+      :font-size 150%
   
 #footer
   +column(24,true)

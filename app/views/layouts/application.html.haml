@@ -24,6 +24,11 @@
     
     .container
     
+      #skip
+        = link_to "Jump to page contents", "#page_content", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
+        = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
+        
+      
       #header
         = render :partial => "shared/header"
       
@@ -32,16 +37,30 @@
       
               
       #navigation
+        %a{:name=>"main_navigation"}
         = render :partial => "shared/navigation"
         
       #content
+        %a{:name=>"page_contents"}
         = @content_for_layout
 
 
       #footer
+        %p.quiet
+          This is an unofficial website, aimed at providing a useful service to people in Birmingham based on the contents of the
+          = link_to "Birmingham City Council", "http://birmingham.gov.uk"
+          website, combined with other tools and services.
+          
         %ul#footer_navigation
+          
+           
           %li
-            Creative Commons
+            Email: 
+            = link_to "contact@birmingham.gov.uk", "mailto:contact@birmingham.gov.uk"
+          %li
+            Telephone: 0121 303 1111
+          %li
+            Textphone: 0121 303 1119
               
           %li
             %a{:href=>"http://steflewandowski.com", :title=>"Built by Stef"}

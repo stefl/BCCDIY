@@ -30,12 +30,12 @@ module AutoCompleteJquery
   # plugin used in conjunction with this plugin:
   # * http://www.dyve.net/jquery/?autocomplete
   module ClassMethods
-    def auto_complete_for(object, method, options = {})
+    def auto_complete_for(object, method, scope, options = {})
       define_method("auto_complete_for_#{object}_#{method}") do
         object_constant = object.to_s.camelize.constantize
         
         find_options = { 
-          :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[:q].downcase + '%' ], 
+          :conditions => [ "pages.alias is not true AND (LOWER(#{method}) LIKE ?)", '%' + params[:q].downcase + '%' ], 
           :order => "#{method} ASC",
           :select => "#{object_constant.table_name}.#{method}",
           :limit => 10 }.merge!(options)

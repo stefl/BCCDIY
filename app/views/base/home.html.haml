@@ -1,14 +1,18 @@
 %h2
-  A community-generated version of the Birmingham City Council website
+  A community-generated version of the 
+  %br
+  Birmingham City Council website
   
-%h3
-  Quickly find something:
+
 #quickly_find_something
+  %h3
+    Quickly find something:
   - form_for :page, :url=>{:controller=>'pages', :action=>'go_to_title'} do |page|
     = page.text_field :title, :autocomplete =>"off"
     = submit_tag 'Go'
+    %p.quiet
+      (Just start typing)
 - content_for :scripts do
   
   - javascript_tag do
     $(document).ready(function() { $("input#page_title").autocomplete("auto_complete_for_page_title") });
-(Just start typing)

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090918113809) do
+ActiveRecord::Schema.define(:version => 20090918203556) do
 
   create_table "pages", :force => true do |t|
     t.string   "url"
@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(:version => 20090918113809) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "alias_id"
-    t.boolean  "alias"
+    t.boolean  "alias",       :default => false
+    t.string   "slug"
   end
 
   add_index "pages", ["title"], :name => "index_pages_on_title"

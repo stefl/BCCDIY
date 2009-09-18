@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :pages, :member=> {:hide => :post}
 
+  map.connect '/:slug', :controller=>'page', :action=>'show'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

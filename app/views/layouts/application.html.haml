@@ -1,0 +1,54 @@
+!!!
+%html{:xmlns=>"http://www.w3.org/1999/xhtml"}
+  %head
+    %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
+
+    %title= page_title
+    -if @meta
+      -@meta.each do |key|
+        %meta{:name=>key[0], :content=>key[1]}
+  
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    = stylesheet_link_tag 'jquery.autocomplete'
+    
+    /[if IE]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+    
+    
+    - if @rss_title && @rss_url
+      = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+    
+  %body.blueprint{:style=>body_styles}
+    
+    .container
+    
+      #header
+        = render :partial => "shared/header"
+      
+      #breadcrumb
+        = render :partial => "shared/breadcrumb"
+      
+              
+      #navigation
+        = render :partial => "shared/navigation"
+        
+      #content
+        = @content_for_layout
+
+
+      #footer
+        %ul#footer_navigation
+          %li
+            Creative Commons
+              
+          %li
+            %a{:href=>"http://steflewandowski.com", :title=>"Built by Stef"}
+              ="Built by Stef and friends"
+              
+          - if @rss_title && @rss_url
+            %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
+      
+    = render :partial=>"shared/scripts"
+    = yield :scripts

@@ -1,0 +1,43 @@
+@import blueprint.sass
+@import blueprint/modules/scaffolding.sass
+@import compass/reset.sass
+
++blueprint
+// Remove the scaffolding when you're ready to start doing visual design.
+// Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+
+#header
+  +column(24,true)
+  :padding-top 1.5em
+  
+  
+#breadcrumb
+  +column(24,true)
+  :padding-bottom 1.5em
+  :margin-bottom 1.5em
+  
+#navigation
+  +column(6)
+  +append(2)
+
+#content
+  +column(16,true)
+  
+#footer
+  +column(24,true)
+  :margin-top 4.5em
+  :margin-bottom 1.5em
+  ul
+    :list-style-type none
+    :text-indent 0
+    :margin 0
+    :margin-right 1.5em
+    :padding 0
+    :text-indent 0
+    li
+      :display inline
+      :margin 0
+      :margin-right 1.5em
+      :padding 0
+      :text-indent 0

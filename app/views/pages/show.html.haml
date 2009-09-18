@@ -1,0 +1,15 @@
+- @page_title = @page.title
+
+%h1
+  = @page_title
+  
+#page_content
+  = @page.parsed_content
+    
+#original_url
+  %h2
+    =link_to 'Original', @page.url  
+
+#hide_this_page
+  %h2
+    = button_to 'This page is a duplicate - hide it', hide_page_path(@page)

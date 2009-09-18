@@ -1,0 +1,16 @@
+- if @page
+
+  -unless @page.parent.blank?
+    -unless @page.parent.children.empty?
+      %ul#siblingmenu
+        - for page in @page.parent.children
+          - unless page.alias
+            %li
+              = link_to h(page.title), page
+
+  -unless @page.children.empty?
+    %ul#submenu
+      - for page in @page.children
+        - unless page.alias
+          %li
+            = link_to h(page.title), page

@@ -139,7 +139,8 @@ class Page < ActiveRecord::Base
     end
   end
   
-  def self.crawl_bcc start_url
+  def self.crawl_bcc(start_url)
+    start_url = "http://birmingham.gov.uk" if start_url.blank?
     counter = 0
     Anemone.crawl(start_url) do |anemone|
       

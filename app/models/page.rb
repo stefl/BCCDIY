@@ -1,11 +1,14 @@
 require 'anemone'
 require 'nokogiri'
+#require 'tidy'
+
 
 
 class Page < ActiveRecord::Base
   
   acts_as_tree :order => "title"
-      
+
+
   def set_parent_page_from_last_breadcrumb_item
     #puts breadcrumb
     bread = Nokogiri::HTML(breadcrumb)
@@ -57,7 +60,7 @@ class Page < ActiveRecord::Base
         html = page.doc.at('html')
         unless html.blank?
           found_page = Page.find_by_url(page.url.to_s)
-          if found_page
+          unless found_page.blank?
             puts('Already indexed. Ignoring: ' + page.url.to_s)
           else
         
@@ -113,14 +116,31 @@ class Page < ActiveRecord::Base
   end
   
   def parsed_content
-    content = self.content
-    content = content.gsub(/<h1>(.*?)<\/h1>/m, '') #lose titles
-    content = content.gsub(/<img(.*?)>/, '') #lose images
-    content = content.gsub(/<!--(.*?)-->/, '') #lose images
-    content = content.gsub(/<p><strong>This page may be referred to as(.*?)<\/p>/m, '') #lose 'referred to as'
-    #content = content.gsub(/<br>(.*?)<\/p>/m, '</p>') #lose poor formatting
-    #content = content.gsub(/<br>(.*?)<\/li>/m, '</li>') #lose poor formatting
-    content
+    
+    content = Page.cleanup(self.content)
+
+    
+  end
+  
+  def self.cleanup content
+    unless content.blank?
+      content = content.gsub(/<h1>(.*?)<\/h1>/m, '') #lose titles
+      content = content.gsub(/<img(.*?)>/, '') #lose images
+      content = content.gsub(/<!--(.*?)-->/, '') #lose images
+      content = content.gsub(/<p><strong>This page may be referred to as(.*?)<\/p>/m, '') #lose 'referred to as'
+      content = content.gsub(/([\t\n\r]*)/m, '') #lose all the tabs
+      content = content.gsub('  ', ' ') #remove extra spaces
+      #content = content.gsub(/<br>(.*?)<\/p>/m, '</p>') #lose poor formatting
+      #content = content.gsub(/<br>(.*?)<\/li>/m, '</li>') #lose poor formatting
+    end
+  end
+  
+  def clean
+    self.content = self.parsed_content
+
+    self.page_source = Page.cleanup(self.page_source)
+        
+    self.save
   end
   
   def self.cut_text(buffer,start_pattern, end_pattern)
@@ -139,6 +159,31 @@ class Page < ActiveRecord::Base
     end
   end
   
+  def self.remove_duplicates
+    pages = Page.find(:all)
+    
+    pages.each do |page|
+      duplicates = Page.find(:all, :conditions=>['title = ?', page.title])
+      
+      if duplicates.size > 1
+        
+        best = duplicates[0]
+        duplicates.each do |dup|
+          best = dup if dup.url.length < best.url.length
+        end
+        
+        duplicates.each do |dup|
+          dup.alias_to(best) unless dup == best
+        end
+        
+        
+        
+      end
+      
+    end
+  end
+  
+
   def self.crawl_bcc(start_url)
     start_url = "http://birmingham.gov.uk" if start_url.blank?
     counter = 0
@@ -158,5 +203,33 @@ class Page < ActiveRecord::Base
     end # do Anemone
     puts(counter.to_s + ' pages saved')
   end #self.crawl
+  
+  def alias_to(the_alias_id)
+    self.alias = true
+    self.alias_id = the_alias_id
+    self.save
+  end
+  
+  def self.clean_all
+    pages = Page.find(:all)
+    
+    pages.each do |page|
+      page.clean
+    end
+  end
+  
+  def self.import_the_site do_crawl
+    
+    Page.crawl_bcc "htt://birmingham.gov.uk" if do_crawl
+    Page.setup_hierarchy
+    Page.setup_hierarchy
+    Page.setup_hierarchy
+    # Do it three times for voodoo
+    
+    Page.retitle_all
+    
+    
+  end
+  
   
 end #class

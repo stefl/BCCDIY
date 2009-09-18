@@ -17,4 +17,6 @@ class PagesController < ResourceController::Base
     page.save
     redirect_to page_path(page.parent)
   end
+  
+  show.wants.xml {render :xml=>@page}
 end

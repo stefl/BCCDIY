@@ -153,7 +153,7 @@ class Page < ActiveRecord::Base
       end  
       
       anemone.on_every_page do |page|
-        counter = counter + 1 if Page.create_from_anemone_page
+        counter = counter + 1 if Page.create_from_anemone_page page
       end #on_every_page
     end # do Anemone
     puts(counter.to_s + ' pages saved')

@@ -1,3 +1,2 @@
 giraffesoft-resource_controller --version '~> 0.6.1' --source http://gems.github.com
-haml
-chriseppstein-compass
+chriseppstein-compass --source http://gems.github.com/ 

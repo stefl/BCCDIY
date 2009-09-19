@@ -1,7 +1,161 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+#wards.yml
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+BartleyGreen:
+  name: Bartley Green
+  constituency: Edgbaston
+  
+Edgbaston:
+  name: Edgbaston
+  constituency: Edgbaston
+
+Harborne:
+  name: Harborne
+  constituency: Edgbaston
+  
+Quinton:
+  name: Quinton
+  constituency: Edgbaston
+  
+Erdington:
+  name: Erdington
+  constituency: Erdington
+
+Kingstanding:
+  name: Kingstanding
+  constituency: Erdington
+
+StocklandGreen:
+  name: Stockland Green
+  constituency: Erdington
+  
+Tyburn:
+  name: Tyburn
+  constituency: Erdington
+
+HallGreen:
+  name: Hall Green
+  constituency: HallGreen
+
+MoseleyAndKingsHeath:
+  name: Moseley and Kings Heath
+  constituency: HallGreen
+  
+Sparkbrook:
+  name: Sparkbrook
+  constituency: HallGreen
+  
+Springfield:
+  name: Springfield
+  constituency: HallGreen 
+  
+BordesleyGreen:
+  name: Bordesley Green
+  constituency: HodgeHill
+  
+HodgeHill:
+  name: Hodge Hill
+  constituency: HodgeHill
+  
+ShardEnd:
+  name: Shard End
+  constituency: HodgeHill
+  
+WashwoodHeath:
+  name: Washwood Heath
+  constituency: HodgeHill
+  
+Aston:
+  name: Aston
+  constituency: Ladywood
+  
+Ladywood:
+  name: Ladywood
+  constituency: Ladywood
+
+Nechells:
+  name: Nechells
+  constituency: Ladywood
+  
+Soho:
+  name: Soho
+  constituency: Ladywood 
+  
+KingsNorton:
+  name: Kings Norton
+  constituency: Northfield
+  
+Longbridge:
+  name: Longbridge
+  constituency: Northfield
+
+Northfield:
+  name: Northfield
+  constituency: Northfield
+
+Weoley:
+  name: Weoley
+  constituency: Northfield
+
+HandsworthWood:
+  name: Handsworth Wood
+  constituency: PerryBarr
+    
+LozellsandEastHandsworth:
+  name: Lozells and East Handsworth
+  constituency: PerryBarr
+  
+Oscott:
+  name: Oscott
+  constituency: PerryBarr
+    
+PerryBarr:
+  name: Perry Barr
+  constituency: PerryBarr
+
+Billesley:
+  name: Billesley
+  constituency: SellyOak
+Bournville:
+  name: Bournville
+  constituency: SellyOak
+  
+Brandwood:
+  name: Brandwood
+  constituency: SellyOak
+  
+SellyOak:
+  name: Selly Oak 
+  constituency: SellyOak
+     
+SuttonFourOaks:
+  name: Sutton Four Oaks
+  constituency: Sutton Coldfield
+  
+SuttonNewHall:
+  name: Sutton New Hall
+  constituency: Sutton Coldfield
+  
+SuttonTrinity:
+  name: Sutton Trinity
+  constituency: Sutton Coldfield
+  
+SuttonVesey:
+  name: Sutton Vesey
+  constituency: Sutton Coldfield
+  
+AcocksGreen:
+  name: Acocks Green
+  constituency: Yardley
+  
+Sheldon:
+  name: Sheldon
+  constituency: Yardley
+
+SouthYardley:
+  name: South Yardley
+  constituency: Yardley
+
+StechfordAndYardleyNorth:
+  name: Stechfor and Yardley North
+  constituency: Yardley

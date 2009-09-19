@@ -1,0 +1,2 @@
+class ConstituenciesController < ApplicationController
+end

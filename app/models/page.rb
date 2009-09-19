@@ -50,7 +50,7 @@ class Page < ActiveRecord::Base
   
   # returns the content, cleaned and ready for display
   def parsed_content
-    
+    #content
     content = self.relink_content
     #content = Page.cleanup(content) #unless it's already been done locally that is...
       
@@ -387,6 +387,11 @@ class Page < ActiveRecord::Base
     # Do it three times for voodoo
     
     Page.retitle_all
+    
+  end
+  
+  # Go through every page on the site and where there are inline links, replace them with (possibly) correct inline links
+  def self.relink_all_content
     
   end
   

@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090918203556) do
+ActiveRecord::Schema.define(:version => 20090919192339) do
+
+  create_table "constituencies", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "url"
@@ -29,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20090918203556) do
     t.string   "slug"
   end
 
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
   add_index "pages", ["title"], :name => "index_pages_on_title"
+
+  create_table "wards", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "constituency_id"
+  end
 
 end

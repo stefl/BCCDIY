@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :constituencies
+
   map.resources :wards
 
   map.home '/', :controller=>'base', :action=>'home'

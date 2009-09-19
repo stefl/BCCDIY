@@ -4,15 +4,8 @@
   Birmingham City Council website
   
 
-#quickly_find_something
-  %h3
-    Quickly find something:
-  - form_for :page, :url=>{:controller=>'pages', :action=>'go_to_title'} do |page|
-    = page.text_field :title, :autocomplete =>"off"
-    = submit_tag 'Go'
-    %p.quiet
-      (Just start typing)
-- content_for :scripts do
-  
-  - javascript_tag do
-    $(document).ready(function() { $("input#page_title").autocomplete("auto_complete_for_page_title") });
+= render :partial=>"base/quick_find"
+
+
+#tweets
+  // At some point add in the BCCnewsroom Twitter feed here?

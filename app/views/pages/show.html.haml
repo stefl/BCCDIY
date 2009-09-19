@@ -1,15 +1,24 @@
-- @page_title = @page.title
+- if @page.blank?
 
-%h1
-  = @page_title
+  - @page_title = "This is a dead link from the original site"
   
-#page_content
-  = @page.parsed_content
-    
-#original_url
-  %h2
-    =link_to 'Original', @page.url  
+  %p
+    Lots of pages on the site are referenced, but don't actually go anywhere. We'll be removing these over time (with your help!)
+- else
 
-#hide_this_page
-  %h2
-    = button_to 'This page is a duplicate - hide it', hide_page_path(@page)
+  - @page_title = @page.title
+
+  %h1
+    = @page_title
+  
+  #page_content
+    = @page.parsed_content
+    
+  #original_url
+    %h2
+      =link_to 'Original', @page.url  
+
+  - if 1 == 0
+    #hide_this_page
+      %h2
+        = button_to 'This page is a duplicate - hide it', hide_page_path(@page)

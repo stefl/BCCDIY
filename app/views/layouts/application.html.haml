@@ -30,10 +30,20 @@
         
       
       #header
-        = render :partial => "shared/header"
+        #logo_and_breadcrumb
+          %h1#logo
+            %a.logolink{:href=>"/", :title=>"BCC DIY"}
+              %span.logotype
+                BCC DIY
+        
+          #breadcrumb
+            = render :partial => "shared/breadcrumb"
+            
+        - if @page
+          = render :partial=>"base/quick_find"
+          
       
-      #breadcrumb
-        = render :partial => "shared/breadcrumb"
+
       
               
       #navigation

@@ -449,11 +449,16 @@ a:hover { color: red; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }
-#header h1#logo a { color: black; text-decoration: none; }
-#header h1#logo a:hover, #header h1#logo a:focus { color: red; }
-
-#breadcrumb { display: inline; float: left; margin-right: 0; width: 950px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
-* html #breadcrumb { overflow-x: hidden; }
+#header #logo_and_breadcrumb { display: inline; float: left; margin-right: 10px; width: 670px; }
+* html #header #logo_and_breadcrumb { overflow-x: hidden; }
+#header #logo_and_breadcrumb h1#logo { display: inline; float: left; margin-right: 0; width: 670px; }
+* html #header #logo_and_breadcrumb h1#logo { overflow-x: hidden; }
+#header #logo_and_breadcrumb h1#logo a { color: black; text-decoration: none; }
+#header #logo_and_breadcrumb h1#logo a:hover, #header #logo_and_breadcrumb h1#logo a:focus { color: red; }
+#header #logo_and_breadcrumb #breadcrumb { display: inline; float: left; margin-right: 0; width: 670px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
+* html #header #logo_and_breadcrumb #breadcrumb { overflow-x: hidden; }
+#header #quickly_find_something { display: inline; float: left; margin-right: 0; width: 270px; }
+* html #header #quickly_find_something { overflow-x: hidden; }
 
 #navigation { display: inline; float: left; margin-right: 10px; width: 230px; padding-right: 80px; }
 * html #navigation { overflow-x: hidden; }

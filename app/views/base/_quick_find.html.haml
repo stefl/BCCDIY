@@ -1,0 +1,12 @@
+#quickly_find_something
+  %h3
+    Quickly find something:
+  - form_for Page.new, :url=>{:controller=>'pages', :action=>'go_to_title'} do |page|
+    = page.text_field :title, :autocomplete =>"off"
+    = submit_tag 'Go'
+    %p.quiet
+      (Just start typing)
+- content_for :scripts do
+  
+  - javascript_tag do
+    $(document).ready(function() { $("input#page_title").autocomplete("auto_complete_for_page_title") });

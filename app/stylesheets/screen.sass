@@ -26,17 +26,23 @@ a:hover
 #header
   +column(24,true)
   :padding-top 1.5em
-  h1#logo
-    a
-      :color black
-      :text-decoration none
-    a:hover, a:focus
-      :color red
-  
-#breadcrumb
-  +column(24,true)
-  :padding-bottom 1.5em
-  :margin-bottom 1.5em
+  #logo_and_breadcrumb
+    +column(17)
+    h1#logo
+      +column(17,true)
+    
+      a
+        :color black
+        :text-decoration none
+      a:hover, a:focus
+        :color red
+    #breadcrumb
+      +column(17,true)
+      :padding-bottom 1.5em
+      :margin-bottom 1.5em
+  #quickly_find_something
+    +column(7, true)
+
   
 #navigation
   +column(6)

@@ -3,5 +3,6 @@ class BaseController < ApplicationController
   
   def home
     @page_title = "BCC DIY"
+  
   end
 end

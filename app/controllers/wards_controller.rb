@@ -1,0 +1,2 @@
+class WardsController < ApplicationController
+end

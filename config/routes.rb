@@ -1,8 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :wards
+
   map.home '/', :controller=>'base', :action=>'home'
   map.connect '/auto_complete_for_page_title', :controller=>'base', :action=>'auto_complete_for_page_title'
   
-  map.resources :pages, :member=> {:hide => :post}
+  map.resources :pages, :member=> {:hide => :post}, :collection => {:auto_complete_for_page_title => :any}
 
   map.connect '/:slug', :controller=>'page', :action=>'show'
   # The priority is based upon order of creation: first created -> highest priority.

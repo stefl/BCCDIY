@@ -1,0 +1,160 @@
+#wards.yml
+
+BartleyGreen:
+  name: Bartley Green
+  constituency: Edgbaston
+  
+Edgbaston:
+  name: Edgbaston
+  constituency: Edgbaston
+
+Harborne:
+  name: Harborne
+  constituency: Edgbaston
+  
+Quinton:
+  name: Quinton
+  constituency: Edgbaston
+  
+Erdington:
+  name: Erdington
+  consituency: Erdington
+
+Kingstanding:
+  name: Kingstanding
+  consituency: Erdington
+
+StocklandGreen:
+  name: Stockland Green
+  consituency: Erdington
+  
+Tyburn:
+  name: Tyburn
+  consituency: Erdington
+
+HallGreen:
+  name: Hall Green
+  consituency: HallGreen
+
+MoseleyAndKingsHeath:
+  name: Moseley and Kings Heath
+  consituency: HallGreen
+  
+Sparkbrook:
+  name: Sparkbrook
+  consituency: HallGreen
+  
+Springfield:
+  name: Springfield
+  consituency: HallGreen 
+  
+BordesleyGreen:
+  name: Bordesley Green
+  consituency: HodgeHill
+  
+HodgeHill:
+  name: Hodge Hill
+  consituency: HodgeHill
+  
+ShardEnd:
+  name: Shard End
+  consituency: HodgeHill
+  
+WashwoodHeath:
+  name: Washwood Heath
+  consituency: HodgeHill
+  
+Aston:
+  name: Aston
+  consituency: Ladywood
+  
+Ladywood:
+  name: Ladywood
+  consituency: Ladywood
+
+Nechells:
+  name: Nechells
+  consituency: Ladywood
+  
+Soho:
+  name: Soho
+  consituency: Ladywood 
+  
+KingsNorton:
+  name: Kings Norton
+  consituency: Northfield
+  
+Longbridge:
+  name: Longbridge
+  consituency: Northfield
+
+Northfield:
+  name: Northfield
+  consituency: Northfield
+
+Weoley:
+  name: Weoley
+  consituency: Northfield
+
+HandsworthWood:
+  name: Handsworth Wood
+  consituency: PerryBarr
+    
+LozellsandEastHandsworth:
+  name: Lozells and East Handsworth
+  consituency: PerryBarr
+  
+Oscott:
+  name: Oscott
+  consituency: PerryBarr
+    
+PerryBarr:
+  name: Perry Barr
+  consituency: PerryBarr
+
+Billesley:
+  name: Billesley
+  constituency: SellyOak
+Bournville:
+  name: Bournville
+  constituency: SellyOak
+  
+Brandwood:
+  name: Brandwood
+  constituency: SellyOak
+  
+SellyOak:
+  name: Selly Oak 
+  constituency: SellyOak
+     
+SuttonFourOaks:
+  name: Sutton Four Oaks
+  constituency: Sutton Coldfield
+  
+SuttonNewHall:
+  name: Sutton New Hall
+  constituency: Sutton Coldfield
+  
+SuttonTrinity:
+  name: Sutton Trinity
+  constituency: Sutton Coldfield
+  
+SuttonVesey:
+  name: Sutton Vesey
+  constituency: Sutton Coldfield
+  
+AcocksGreen:
+  name: Acocks Green
+  constituency: Yardley
+  
+Sheldon:
+  name: Sheldon
+  constituency: Yardley
+
+SouthYardley:
+  name: South Yardley
+  constituency: Yardley
+
+StechfordAndYardleyNorth:
+  name: Stechfor and Yardley North
+  constituency: Yardley

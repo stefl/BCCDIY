@@ -1,0 +1,31 @@
+#constituencies.yml
+Edgbaston:
+	name: Edgbaston
+
+Erdington:
+  name: Erdington
+	
+HallGreen:
+  name: Hall Green
+	
+HodgeHill:
+	name: Hodge Hill
+
+Ladywood:
+	name: Ladywood
+
+Northfield:
+  name: Northfield
+	
+PerryBarr:
+  name: Perry Barr
+	
+SellyOak:
+  name: Selly Oak
+	
+SuttonColdfield:
+	name: Sutton Coldfield
+
+Yardley:
+  name: Yardley
+	

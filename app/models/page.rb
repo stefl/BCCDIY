@@ -27,21 +27,32 @@ class Page < ActiveRecord::Base
   end
   
   # find a Page object based on a plain url
-  def self.get_alias_from_link alias_url
-    possible = Page.find_by_url(alias_url)
-    
+  def self.get_alias_from_link_or_slug alias_url, slug_text
+    sql = "select * from pages where pages.url like '%" + alias_url + "%' limit 1"
+    puts sql
+    possibles = Page.find_by_sql(sql)
+    possible = possibles[0]
+    puts 'found ' + possible.to_s
+    if possible.blank?
+      sql = "select * from pages where pages.slug like '%" + slug_text + "%' limit 1"
+      possibles = Page.find_by_sql(sql)
+      possible = possibles[0]
+      puts 'found ' + possible.to_s
+    end
     unless possible.blank?
       if possible.alias
         possible = Page.find_by_id(possible.alias_id)
       end
     end
+    puts 'Success: ' + possible.title.to_s unless possible.blank?
     possible
   end
   
   # returns the content, cleaned and ready for display
   def parsed_content
     
-    content = Page.cleanup(self.content) #unless it's already been done locally that is...
+    content = self.relink_content
+    #content = Page.cleanup(content) #unless it's already been done locally that is...
       
   end
   
@@ -60,6 +71,66 @@ class Page < ActiveRecord::Base
     self.page_source = Page.cleanup(self.page_source)
         
     self.save
+  end
+  
+  
+  # extracts all the link urls from the page content and returns as an array
+  def extract_links
+    unless self.content.blank?
+      links = []
+      results = self.content.scan(/href="(.*?)"/)
+      results.each do |result|
+        puts "Extract result: " + result[0]
+        links << result[0].to_s
+      end
+      links.flatten
+      
+    end    
+  end
+  
+  # relink any local links in the content
+  
+  def relink_content
+    the_content = self.content
+    unless the_content.blank?
+      links = self.extract_links
+      puts links
+      relinks = {}
+      
+      if links.size > 0
+        links.delete_if {|x| x.match(/^http:\/\//) }
+        links.delete_if {|x| x.match(/^mailto:/) }
+        
+        links.each do |link|
+          link = link.sub('/','')
+          puts "link: " + link
+          extracted_cid = Page.extract_cid(link) 
+          link_url = link
+          link_url = extracted_cid unless extracted_cid.blank?
+          page = Page.get_alias_from_link_or_slug(link_url,link)
+          
+          unless page.blank?
+          
+            relinks['/' + link] = "/pages/" + page.slug 
+          
+          else
+            relinks['/' + link] = "http://birmingham.gov.uk/" + link
+          end
+          
+          
+        end
+        puts relinks.to_s
+        relinks.each_key do |link_key|
+          puts 'relink from: ' + link_key
+          puts 'relink to: ' + relinks[link_key]
+          the_content.gsub!(link_key.to_s, relinks[link_key].to_s)
+        end
+        
+      end
+      puts the_content
+      the_content
+    end
+    #self.content
   end
   
   
@@ -195,6 +266,7 @@ class Page < ActiveRecord::Base
       #content = content.gsub(/<div(.*?)>([\t\n\r ]*?)<\/div>/m, '') # lose empty divs
       content = content.gsub(/<[^\/>]*>([\s]?)*<\/[^>]*>/m,'') #lose empty tags
       content = content.gsub(/([\t\n\r]*)/m, '') #lose all the tabs
+      content = content.gsub('<br>', '<br />') #lose all the tabs
       content = content.gsub('  ', ' ') #remove extra spaces
       #content = content.gsub(/<br>(.*?)<\/p>/m, '</p>') #lose poor formatting
       #content = content.gsub(/<br>(.*?)<\/li>/m, '</li>') #lose poor formatting
@@ -271,31 +343,44 @@ class Page < ActiveRecord::Base
     pages = Page.find(:all)
     
     pages.each do |page|
-      duplicates = Page.find(:all, :conditions=>['title = ?', page.title])
-      
-      if duplicates.size > 1
+      unless page.alias
+        #don't realias if it's already been set 
+        duplicates = Page.find(:all, :conditions=>['title = ? AND parent_id = ?', page.title, page.parent_id])
+        puts 'found ' + duplicates.size.to_s+ ' duplicates for ' + page.title
+        if duplicates.size > 1
         
-        best = duplicates[0]
-        duplicates.each do |dup|
-          best = dup if dup.url.length < best.url.length
-        end
+          best = duplicates[0]
+          duplicates.each do |dup|
+            best = dup if dup.url.length < best.url.length
+          end
+          
+          puts 'the best alternative by url shortness is: ' + best.title
         
-        duplicates.each do |dup|
-          dup.alias_to(best) unless dup == best
-        end
+          duplicates.each do |dup|
+            dup.alias_to(best) unless dup == best
+          end
       
+        end
       end
-      
     end
   end
   
-  
+  def self.extract_cid source_url
+    the_result = nil
+    the_cid = source_url.match(/cid=([0-9]*)?/)
+    the_result = the_cid[1] unless the_cid.blank?
+    if the_result.blank?
+      the_cid = source_url.match(/cid_=([0-9]*)?/)
+      the_result = the_cid[1] unless the_cid.blank?
+    end
+    the_result
+  end
   
   # Runs each important sequence on the site
   # It calls Setup Hierarchy three times because the original site has multiple nested orphan pages.
   def self.import_the_site do_crawl
     
-    Page.crawl_bcc "htt://birmingham.gov.uk" if do_crawl
+    Page.crawl_bcc "http://birmingham.gov.uk" if do_crawl
     Page.setup_hierarchy
     Page.setup_hierarchy
     Page.setup_hierarchy

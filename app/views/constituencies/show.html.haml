@@ -1,0 +1,8 @@
+- @page_title = @constituency.name
+
+%h3
+  Wards in 
+  = @constituency.name
+  
+#wards
+  = render :partial=>'wards/ward', :collection=>@constituency.wards

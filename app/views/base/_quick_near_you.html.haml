@@ -1,0 +1,12 @@
+#quickly_find_near_you
+  %h3
+    Everything near you:
+  - form_for Ward.new, :url=>{:controller=>'wards', :action=>'go'} do |page|
+    = page.text_field :name, :autocomplete =>"off"
+    = submit_tag 'Go'
+    %p.quiet
+      (Postcode or name of your area)
+- content_for :scripts do
+  
+  - javascript_tag do
+    $(document).ready(function() { $("input#ward_name").autocomplete("auto_complete_for_ward_name") });

@@ -1,6 +1,9 @@
+
+
 class PagesController < ResourceController::Base
   auto_complete_for :page, :title, :extra_conditions=> "pages.alias IS NOT true"
   before_filter :send_cache_headers, :only=>[:show]
+  
   def go_to_title
     page = Page.find_by_title(params[:page][:title])
     
@@ -19,7 +22,7 @@ class PagesController < ResourceController::Base
     page.save
     redirect_to page_path(page.parent)
   end
-  
+
   show.wants.xml {render :xml=>@page}
   show.wants.json {render :json=>@page}
   

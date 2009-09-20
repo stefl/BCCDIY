@@ -1,0 +1,6 @@
+.constituency{:id=>"constituency_" + constituency.name.parameterize}
+  %h3
+    = link_to constituency.name, constituency_path(constituency)
+  
+  .wards
+    = render :partial=>'wards/ward', :collection=>constituency.wards

@@ -2,3 +2,16 @@
   - for page in @page.ancestors.reverse
     = link_to h(page.title), page 
     &raquo;
+
+- if @constituency
+  = link_to 'Constituencies', constituencies_path
+  &raquo;
+  
+- if @ward
+  = link_to 'Constituencies', constituencies_path 
+  &raquo;
+  = link_to @ward.constituency.name, constituency_path(@ward.constituency)
+  &raquo;
+  = link_to 'Wards', constituency_wards_path(@ward.constituency)
+  
+  

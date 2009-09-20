@@ -1,10 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :constituencies
+  map.resources :constituencies do |c|
+    c.resources :wards
+  end
 
-  map.resources :wards
+  #also provide direct link to wards
+  map.resources :wards, :collection => {:auto_complete_for_ward_name => :any}
 
   map.home '/', :controller=>'base', :action=>'home'
   map.connect '/auto_complete_for_page_title', :controller=>'base', :action=>'auto_complete_for_page_title'
+  map.connect '/auto_complete_for_ward_name', :controller=>'base', :action=>'auto_complete_for_ward_name'
   
   map.resources :pages, :member=> {:hide => :post}, :collection => {:auto_complete_for_page_title => :any}
 

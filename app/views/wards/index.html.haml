@@ -1,0 +1,6 @@
+%h3
+  Wards in 
+  = @constituency.name
+  
+#wards
+  = render :partial=>'wards/ward', :collection=>@wards

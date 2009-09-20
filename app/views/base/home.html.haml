@@ -1,11 +1,17 @@
-%h2
-  A community-generated version of the 
-  %br
-  Birmingham City Council website
+- @ignore_page_title = true
+
+#intro
+  %h2
+    A community-generated version of the 
+    %br
+    Birmingham City Council website
   
 
 = render :partial=>"base/quick_find"
 
+  
+= render :partial=>"base/quick_near_you"
+  
 
 #tweets
   // At some point add in the BCCnewsroom Twitter feed here?

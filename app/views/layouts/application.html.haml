@@ -52,6 +52,9 @@
         
       #content
         %a{:name=>"page_contents"}
+        - if @ignore_page_title.blank?
+          %h1
+            = @page_title
         = @content_for_layout
 
 

@@ -1,0 +1,20 @@
+- @page_title = @ward.name
+
+#fix_my_street
+  %h2
+    Street problems 
+  
+  %p.quiet
+    (via 
+    = link_to 'Fix My Street', 'http://fixmystreet.com'
+    )
+    
+  %h3
+    = link_to 'Report a problem', 'http://fixmystreet.com'
+  
+  %h3
+    Recent problems
+    
+  #recent_problems
+    %ul
+      = render :partial=> 'shared/rss_item', :collection=>@fix_my_street

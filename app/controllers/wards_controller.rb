@@ -3,6 +3,7 @@ require 'rss/1.0'
 require 'rss/2.0'
 require 'open-uri'
 
+
 class WardsController < ResourceController::Base
   belongs_to :constituency
   
@@ -12,10 +13,21 @@ class WardsController < ResourceController::Base
     if(ward)
       redirect_to constituency_ward_path(ward.constituency,ward)
     else
-      redirect_to home_path
+      
+      # try to get it via a postcode lookup
+      
+      ward = Ward.get_by_postcode(params[:ward][:name])
+        
+      unless ward.blank?
+        redirect_to constituency_ward_path(ward.constituency,ward)
+        
+      else
+        redirect_to home_path
+      end
     end  
     
   end
+  
   
   show.wants.html { 
     

@@ -48,7 +48,9 @@ module AutoCompleteJquery
         response.headers['Cache-Control'] = 'public, max-age=3600'
         
         logger.info @items.to_s
-        #render :text => @items.join("\n"), :layout => false
+        
+        @text = @items.join("\n")
+        render :layout => false
       end
     end
   end

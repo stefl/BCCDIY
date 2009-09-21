@@ -15,9 +15,3 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
-
-require 'compass'
-# If you have any compass plugins, require them here.
-Compass.configuration.parse(File.join(RAILS_ROOT, "config", "compass.config"))
-Compass.configuration.environment = RAILS_ENV.to_sym
-Compass.configure_sass_plugin!

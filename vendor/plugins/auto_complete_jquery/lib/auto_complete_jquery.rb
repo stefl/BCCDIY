@@ -39,7 +39,8 @@ module AutoCompleteJquery
           :select => "#{object_constant.table_name}.#{method}",
           :limit => 10 }
         
-        #options.delete(:extra_conditions)
+        options.delete(:extra_conditions)
+        
         
         find_options.merge!(options)
         

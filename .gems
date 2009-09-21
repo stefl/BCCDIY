@@ -1,5 +1,4 @@
 giraffesoft-resource_controller --version '~> 0.6.1' --source http://gems.github.com
-chriseppstein-compass --source http://gems.github.com/ 
 anemone
 twitter
-haml --version '= 2.1.0'
+haml --version '= 2.1.0' --source http://gems.github.com/ 

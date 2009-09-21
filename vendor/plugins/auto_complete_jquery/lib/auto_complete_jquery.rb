@@ -45,7 +45,7 @@ module AutoCompleteJquery
         
         @items = object_constant.find(:all, find_options).collect(&method)
 
-        response.headers['Cache-Control'] = 'public, max-age=3600'
+        #response.headers['Cache-Control'] = 'public, max-age=3600'
         
         logger.info @items.to_s
         

@@ -14,6 +14,8 @@ class Page < ActiveRecord::Base
   #instance methods  
   #before_save :set_slug
   
+  #TODO sort out the aliasing properly has_one :alias_page, :class_name => "Page", :source=> :page
+  
   has_permalink :title, :slug
   
   def to_param

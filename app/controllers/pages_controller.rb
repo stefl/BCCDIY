@@ -2,6 +2,9 @@
 
 class PagesController < ResourceController::Base
   auto_complete_for :page, :title, :extra_conditions=> "pages.alias IS NOT true"
+  
+  #before_filter :redirect_to_alias, :only=>[:show]
+  
   before_filter :send_cache_headers, :only=>[:show]
   
   def go_to_title
@@ -34,11 +37,22 @@ class PagesController < ResourceController::Base
     redirect_to page_path(page.parent)
   end
 
+  show.wants.html { 
+    redirect_to_alias
+    render
+  } 
   show.wants.xml {render :xml=>@page}
   show.wants.json {render :json=>@page}
   
   def send_cache_headers
     response.headers['Cache-Control'] = 'public, max-age=3600'
+  end
+  
+  def redirect_to_alias
+
+    if @object.alias
+      redirect_to page_path(Page.find(@object.alias_id))
+    end
   end
   
   private

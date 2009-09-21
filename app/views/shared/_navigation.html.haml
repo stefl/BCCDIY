@@ -23,15 +23,4 @@
 
 
 - else
-  - @root_page = Page.root_page
-  - debugger
-  %ul#mainmenu
-    - for page in @page.children
-      - unless page.alias
-        - item_class = ''
-        - item_class = 'active' if page==@page
-        %li{:class=>item_class}
-          %span{:id=>'menu_item_' + page.id.to_s}
-            - begin
-              = link_to h(page.title), page_path(page)
-            - rescue
+  # TODO push out a main menu instead

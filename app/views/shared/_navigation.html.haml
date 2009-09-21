@@ -1,4 +1,9 @@
+- if @ignore_main_menu
+  = link_to 'Browse all pages', '/pages/home'
+  
 - if @page && @page != Page.root_page
+  %p.quiet
+    We're going to reorganise this menu to be more sensible:
   -unless @page.parent.blank?
     -unless @page.parent.children.empty?
       %ul#siblingmenu
@@ -23,4 +28,12 @@
 
 
 - else
+  - unless @ignore_main_menu
+    %ul#mainmenu
+      - for page in Page.root_page.children
+        - unless page.alias
+          %li
+            - begin
+              = link_to h(page.title), page_path(page)
+            - rescue
   

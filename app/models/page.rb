@@ -5,7 +5,7 @@ require 'nokogiri'
 
 
 class Page < ActiveRecord::Base
-  acts_as_solr
+  #acts_as_solr
   acts_as_tree :order => "title"
   #default_scope :conditions => 'pages.alias = false'
 
@@ -195,7 +195,7 @@ class Page < ActiveRecord::Base
   
   # Work out the main home page
   def self.root_page
-    Page.find_by_url('http://birmingham.gov.uk/')
+    Page.find_by_slug('home')
   end
   
   # Create a new page by sending this function an instance of an Anemone::Page object

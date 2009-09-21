@@ -20,14 +20,14 @@ class Ward < ActiveRecord::Base
       result = ''
       doc = Nokogiri::HTML(open(lookup_url))
 
-      puts doc
+      logger.info doc
 
       title = doc.at('title').inner_html
 
       if title == "Check Browser Settings"
         follow_link = doc.css('a').first[:href]
         doc = Nokogiri::HTML(open(follow_link))
-        puts doc        
+        logger.info doc        
       end
     
       result_title = doc.css('h1').first.inner_html

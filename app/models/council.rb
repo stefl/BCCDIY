@@ -5,10 +5,10 @@ class Council < ActiveRecord::Base
     c = OpenlyLocal::Council.find(167)
     
     c.wards.each do |open_ward|
-      puts open_ward.to_xml
+      logger.info open_ward.to_xml
       
       ward = OpenlyLocal::Ward.find(open_ward.id)
-      puts ward.to_xml
+      logger.info ward.to_xml
       
       w = Ward.find_by_permalink(ward.name.parameterize)
       unless(w.blank?)
@@ -20,7 +20,7 @@ class Council < ActiveRecord::Base
         end
         
       else
-        puts "ERROR: ward missing from database: " + ward.name
+        logger.info "ERROR: ward missing from database: " + ward.name
       end
     end
   end

@@ -29,22 +29,22 @@ class Page < ActiveRecord::Base
   # find a Page object based on a plain url
   def self.get_alias_from_link_or_slug alias_url, slug_text
     sql = "select * from pages where pages.url like '%" + alias_url + "%' limit 1"
-    puts sql
+    logger.info sql
     possibles = Page.find_by_sql(sql)
     possible = possibles[0]
-    puts 'found ' + possible.to_s
+    logger.info 'found ' + possible.to_s
     if possible.blank?
       sql = "select * from pages where pages.slug like '%" + slug_text + "%' limit 1"
       possibles = Page.find_by_sql(sql)
       possible = possibles[0]
-      puts 'found ' + possible.to_s
+      logger.info 'found ' + possible.to_s
     end
     unless possible.blank?
       if possible.alias
         possible = Page.find_by_id(possible.alias_id)
       end
     end
-    puts 'Success: ' + possible.title.to_s unless possible.blank?
+    logger.info 'Success: ' + possible.title.to_s unless possible.blank?
     possible
   end
   
@@ -80,7 +80,7 @@ class Page < ActiveRecord::Base
       links = []
       results = self.content.scan(/href="(.*?)"/)
       results.each do |result|
-        puts "Extract result: " + result[0]
+        logger.info "Extract result: " + result[0]
         links << result[0].to_s
       end
       links.flatten
@@ -94,7 +94,7 @@ class Page < ActiveRecord::Base
     the_content = self.content
     unless the_content.blank?
       links = self.extract_links
-      puts links
+      logger.info links
       relinks = {}
       
       if links.size > 0
@@ -103,7 +103,7 @@ class Page < ActiveRecord::Base
         
         links.each do |link|
           link = link.sub('/','')
-          puts "link: " + link
+          logger.info "link: " + link
           extracted_cid = Page.extract_cid(link) 
           link_url = link
           link_url = extracted_cid unless extracted_cid.blank?
@@ -119,15 +119,15 @@ class Page < ActiveRecord::Base
           
           
         end
-        puts relinks.to_s
+        logger.info relinks.to_s
         relinks.each_key do |link_key|
-          puts 'relink from: ' + link_key
-          puts 'relink to: ' + relinks[link_key]
+          logger.info 'relink from: ' + link_key
+          logger.info 'relink to: ' + relinks[link_key]
           the_content.gsub!(link_key.to_s, relinks[link_key].to_s)
         end
         
       end
-      puts the_content
+      logger.info the_content
       the_content
     end
     #self.content
@@ -138,25 +138,25 @@ class Page < ActiveRecord::Base
   
   # We get a bunch of links in a #breadcrumb object, let's use that to work out the structure of the site
   def set_parent_page_from_last_breadcrumb_item
-    #puts breadcrumb
+    #logger.info breadcrumb
     bread = Nokogiri::HTML(breadcrumb)
     the_link = nil
     bread.search('a').each do |link|
-       puts link.content
-       puts link['href']
+       logger.info link.content
+       logger.info link['href']
        the_link = 'http://birmingham.gov.uk' + link['href']
     end
-    puts 'Result of link finding: ' + the_link.to_s
+    logger.info 'Result of link finding: ' + the_link.to_s
     unless the_link.blank?
       possible_parent = Page.find_by_url(the_link)
       if possible_parent
-        puts 'Found parent by url: ' + possible_parent.title
+        logger.info 'Found parent by url: ' + possible_parent.title
         
         self.parent_id = possible_parent.id
         self.save
-        puts 'Saved new parent id'
+        logger.info 'Saved new parent id'
       else
-        puts 'No page found by url: ' + the_link
+        logger.info 'No page found by url: ' + the_link
         
         new_page = Page.create_from_anemone_page Anemone::Page.fetch(the_link)
         if new_page
@@ -198,23 +198,23 @@ class Page < ActiveRecord::Base
   
   # Create a new page by sending this function an instance of an Anemone::Page object
   def self.create_from_anemone_page page
-    puts 'Create from anemone page'
+    logger.info 'Create from anemone page'
     #begin
       unless page.blank? || page.doc.blank?  
         html = page.doc.at('html')
         unless html.blank?
           found_page = Page.find_by_url(page.url.to_s)
           unless found_page.blank?
-            puts('Already indexed. Ignoring: ' + page.url.to_s)
+            logger.info('Already indexed. Ignoring: ' + page.url.to_s)
           else
         
             title = page.doc.at('title')
             if title.blank?
-              puts('Blank title. Ignoring: ' + page.url.to_s)
+              logger.info('Blank title. Ignoring: ' + page.url.to_s)
             else
         
               if(title.inner_html.include?('404') || title.inner_html.downcase.include?('error') || title.inner_html.downcase.include?('temporarily unavailable') )
-                puts('404 found. Ignoring: ' + page.url.to_s)
+                logger.info('404 found. Ignoring: ' + page.url.to_s)
               else
                 p = Page.new()
 
@@ -236,10 +236,10 @@ class Page < ActiveRecord::Base
                   p.content = page_content.first.inner_html
                 end
                 if p.save
-                  puts('Saved: ' + p.title + ' : ' + p.url.to_s)
+                  logger.info('Saved: ' + p.title + ' : ' + p.url.to_s)
                   return p
                 else
-                  puts("Save failed: " + p.url.to_s)
+                  logger.info("Save failed: " + p.url.to_s)
                   
                 end
                 
@@ -249,7 +249,7 @@ class Page < ActiveRecord::Base
         end # unless html blank
       end # unless page/doc blank
     #rescue
-    #  puts('An error occurred. Continuing... ')
+    #  logger.info('An error occurred. Continuing... ')
     #end #begin/rescue
     return false
   end
@@ -306,7 +306,7 @@ class Page < ActiveRecord::Base
         counter = counter + 1 if Page.create_from_anemone_page page
       end #on_every_page
     end # do Anemone
-    puts(counter.to_s + ' pages saved')
+    logger.info(counter.to_s + ' pages saved')
   end #self.crawl
   
   
@@ -346,7 +346,7 @@ class Page < ActiveRecord::Base
       unless page.alias
         #don't realias if it's already been set 
         duplicates = Page.find(:all, :conditions=>['title = ? AND parent_id = ?', page.title, page.parent_id])
-        puts 'found ' + duplicates.size.to_s+ ' duplicates for ' + page.title
+        logger.info 'found ' + duplicates.size.to_s+ ' duplicates for ' + page.title
         if duplicates.size > 1
         
           best = duplicates[0]
@@ -354,7 +354,7 @@ class Page < ActiveRecord::Base
             best = dup if dup.url.length < best.url.length
           end
           
-          puts 'the best alternative by url shortness is: ' + best.title
+          logger.info 'the best alternative by url shortness is: ' + best.title
         
           duplicates.each do |dup|
             dup.alias_to(best) unless dup == best

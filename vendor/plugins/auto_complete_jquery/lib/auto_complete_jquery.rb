@@ -46,7 +46,7 @@ module AutoCompleteJquery
         @items = object_constant.find(:all, find_options).collect(&method)
 
         response.headers['Cache-Control'] = 'public, max-age=3600'
-        #render :text => @items.join("\n")
+        render :text => @items.join("\n"), :layout => false
       end
     end
   end

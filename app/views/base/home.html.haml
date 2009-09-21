@@ -15,19 +15,33 @@
   
 = render :partial=>"base/quick_near_you"
   
-  
-#events
-  %h3
-    Events today
+#news_and_events  
+  #events
+    %h3
+      Events today
     
-  %p.quiet
-    (via
-    = link_to 'Allbrum.co.uk', "http://allbrum.co.uk"
-    )
+    %p.quiet
+      (via
+      = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
+      )
     
-  %ul
-    = render :partial=> 'shared/rss_item_event', :collection=>@events_today
+    %ul
+      = render :partial=> 'shared/rss_item_event', :collection=>@events_today
     
+  #news
+    %h3
+      News today
+
+    %p.quiet
+      (via
+      = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
+      )
+
+    %ul
+      = render :partial=> 'shared/rss_item_event', :collection=>@news_today
+
+
+
 
 #tweets
   // At some point add in the BCCnewsroom Twitter feed here?

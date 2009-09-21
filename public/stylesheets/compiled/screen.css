@@ -445,6 +445,9 @@ a:hover { color: red; }
 
 .quiet { color: #666; }
 
+.vcard .fn { font-weight: bold; }
+.vcard .country-name { display: none; }
+
 #skip a { color: #666; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }

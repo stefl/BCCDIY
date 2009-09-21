@@ -34,21 +34,31 @@ class WardsController < ResourceController::Base
   show.wants.html { 
     
     source = "http://www.fixmystreet.com/rss/reports/Birmingham/" + @ward.name.gsub(' ', '+') # url or local file
-    content = "" # raw content of rss feed will be loaded here
-    open(source) do |s| content = s.read end
-    rss = RSS::Parser.parse(content, false)
-
-    @fix_my_street = rss.items unless rss.blank?
         
     @openly_local_ward = OpenlyLocal::Ward.find(@ward.openly_local_ward_id)        
     
+        
+    fix_my_street_feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
+    if fix_my_street_feed.blank?
+      Delayed::Job.enqueue DailyFeed.create(:url=>source)
+      @fix_my_street = ''
+    else
+      @fix_my_street = fix_my_street_feed.items
+    end
+        
+    
     unless cookies[:postcode].blank?
+      
       source = "http://www.planningalerts.com/api.php?postcode=#{cookies[:postcode]}&area_size=m"
-      content = "" # raw content of rss feed will be loaded here
-      open(source) do |s| content = s.read end
-      rss = RSS::Parser.parse(content, false)
+      
+      planning_alerts_feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
+      if planning_alerts_feed.blank?
+        Delayed::Job.enqueue DailyFeed.create(:url=>source)
+        @planning_alerts = ''
+      else
+        @planning_alerts = planning_alerts_feed.items
+      end
 
-      @planning_alerts = rss.items unless rss.blank?
     end
     render
     }

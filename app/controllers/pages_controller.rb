@@ -10,7 +10,18 @@ class PagesController < ResourceController::Base
     if(page)
       redirect_to page_path(page)
     else
-      redirect_to home_path
+      pages = Page.find_by_sql(["select * from pages where alias = false and (LOWER(title) LIKE ?)", '%' + params[:page][:title].downcase + '%' ])
+      
+      unless pages.blank?
+        page = pages[0]
+        redirect_to page_path(page)
+        
+      else
+        flash[:notice] = "Sorry - We couldn't find anything for #{params[:page][:title]}"
+        
+        redirect_to home_path
+      
+      end
     end  
     
   end

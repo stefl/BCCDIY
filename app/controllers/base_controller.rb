@@ -5,8 +5,16 @@ class BaseController < ApplicationController
 
   
   def home
+    response.headers['Cache-Control'] = 'public, max-age=300'
+    
     @page_title = "Birmingham City Council - DIY Community Version"
-  
+    
+    source = "http://allbrum.co.uk/today.rss"
+    content = "" # raw content of rss feed will be loaded here
+    open(source) do |s| content = s.read end
+    rss = RSS::Parser.parse(content, false)
+
+    @events_today = rss.items unless rss.blank?
   end
   
 end

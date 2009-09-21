@@ -14,6 +14,11 @@ class Council < ActiveRecord::Base
       unless(w.blank?)
         w.openly_local_ward_id = open_ward.id
         w.save
+        
+        open_ward.members.each do |member|
+          
+        end
+        
       else
         puts "ERROR: ward missing from database: " + ward.name
       end

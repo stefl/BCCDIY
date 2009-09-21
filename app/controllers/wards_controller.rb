@@ -19,6 +19,7 @@ class WardsController < ResourceController::Base
       ward = Ward.get_by_postcode(params[:ward][:name])
         
       unless ward.blank?
+        cookies[:postcode] = params[:ward][:name].gsub(' ', '')
         redirect_to constituency_ward_path(ward.constituency,ward)
         
       else
@@ -41,6 +42,14 @@ class WardsController < ResourceController::Base
         
     @openly_local_ward = OpenlyLocal::Ward.find(@ward.openly_local_ward_id)        
     
+    unless cookies[:postcode].blank?
+      source = "http://www.planningalerts.com/api.php?postcode=#{cookies[:postcode]}&area_size=m"
+      content = "" # raw content of rss feed will be loaded here
+      open(source) do |s| content = s.read end
+      rss = RSS::Parser.parse(content, false)
+
+      @planning_alerts = rss.items unless rss.blank?
+    end
     render
     }
     

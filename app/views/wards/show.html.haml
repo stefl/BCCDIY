@@ -37,7 +37,7 @@
 
 #fix_my_street
   %h2
-    Street problems 
+    Recent street problems 
   
   %p.quiet
     (via 
@@ -46,11 +46,18 @@
     
   %h3
     = link_to 'Report a problem', 'http://fixmystreet.com'
-  
-  %h3
-    Recent problems
     
   #recent_problems
     %ul
       = render :partial=> 'shared/rss_item', :collection=>@fix_my_street
-
+      
+#planning_alerts
+  %h2
+    Planning alerts
+  %p.quiet
+    (via 
+    = link_to 'Fix My Street', 'http://planningalerts.com'
+    )
+  #recent_alerts
+    %ul
+      = render :partial=> 'shared/rss_item_long', :collection=>@planning_alerts

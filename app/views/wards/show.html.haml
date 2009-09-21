@@ -63,3 +63,30 @@
   #recent_alerts
     %ul
       = render :partial=> 'shared/rss_item_long', :collection=>@planning_alerts
+
+
+- content_for :scripts do
+
+  - if @fix_my_street.blank?
+
+    :javascript
+    
+      var fix_my_street = false;
+  
+      function stop_loading_fix_my_street()
+      {
+        fix_my_street = true;
+      }
+    = periodically_call_remote(:url=>fix_my_street_constituency_ward_path(@ward.constituency, @ward), :frequency => 0.5, :condition => "fix_my_street == false")
+  
+  - if @planning_alerts.blank?
+    
+    :javascript
+      var planning_alerts = false;
+
+  
+      function stop_loading_planning_alerts()
+      {
+        planning_alerts = true;
+      }
+    = periodically_call_remote(:url=>planning_alerts_constituency_ward_path(@ward.constituency, @ward), :frequency => 0.5, :condition => "planning_alerts == false")

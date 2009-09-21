@@ -22,6 +22,7 @@ class WardsController < ResourceController::Base
         redirect_to constituency_ward_path(ward.constituency,ward)
         
       else
+        flash[:notice] = "Sorry - We couldn't find anything for #{params[:ward][:name]}"
         redirect_to home_path
       end
     end  
@@ -37,10 +38,17 @@ class WardsController < ResourceController::Base
     rss = RSS::Parser.parse(content, false)
 
     @fix_my_street = rss.items unless rss.blank?
+        
+    @openly_local_ward = OpenlyLocal::Ward.find(@ward.openly_local_ward_id)        
     
     render
     }
     
+  show.wants.xml { render :xml=>@ward}
+  show.wants.json { render :json=>@ward}
+  index.wants.xml { render :xml=>@wards}
+  index.wants.json { render :json=>@wards}
+  
   
   private
     def object

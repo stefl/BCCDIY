@@ -41,10 +41,6 @@
             
         - if @page
           = render :partial=>"base/quick_find"
-          
-      
-
-      
               
       #navigation
         %a{:name=>"main_navigation"}
@@ -52,6 +48,15 @@
         
       #content
         %a{:name=>"page_contents"}
+        
+        #messages
+          - %w(info notice error).each do |type|
+            - if flash[type.to_sym]
+              .warning.flash_message{:class => "#{type.to_s}"}
+                %span= h(flash[type.to_sym])
+
+
+
         - if @ignore_page_title.blank?
           %h1
             = @page_title
@@ -59,11 +64,13 @@
 
 
       #footer
-        %p.quiet
-          This is an unofficial website, aimed at providing a useful service to people in Birmingham based on the contents of the
-          = link_to "Birmingham City Council", "http://birmingham.gov.uk"
-          website, combined with other tools and services.
-          
+        #about_this_site
+          %p.quiet
+            This is an unofficial website, aimed at providing a useful service to people in Birmingham based on the contents of the
+            = link_to "Birmingham City Council", "http://birmingham.gov.uk"
+            website, combined with other tools and services.
+
+        
         %ul#footer_navigation
           
            
@@ -82,5 +89,14 @@
           - if @rss_title && @rss_url
             %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
       
+      
+        - unless @ignore_extra_formats
+          #other_formats
+            Get this page as:
+            %ul
+              %li
+                = link_to 'XML', request.request_uri + '.xml'
+              %li
+                = link_to 'JSON', request.request_uri + '.json'
     = render :partial=>"shared/scripts"
     = yield :scripts

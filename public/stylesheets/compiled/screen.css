@@ -470,6 +470,8 @@ a:hover { color: red; }
 
 #content { display: inline; float: left; margin-right: 0; width: 630px; font-size: 125% !important; }
 * html #content { overflow-x: hidden; }
+#content #messages { display: inline; float: left; margin-right: 0; width: 630px; }
+* html #content #messages { overflow-x: hidden; }
 #content h1 { padding-bottom: 0.5em; border-bottom: 4px solid #eee; font-size: 200%; }
 #content #quickly_find_something { margin-top: 4.5em; }
 #content #quickly_find_something #page_title { padding: 0.25em; font-size: 150%; }

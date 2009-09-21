@@ -1,3 +1,4 @@
+
 - if @page.blank?
 
   - @page_title = "This is a dead link from the original site"
@@ -19,3 +20,4 @@
     #hide_this_page
       %h2
         = button_to 'This page is a duplicate - hide it', hide_page_path(@page)
+        

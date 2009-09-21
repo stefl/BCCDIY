@@ -9,13 +9,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090920083242) do
+ActiveRecord::Schema.define(:version => 20090921072244) do
+
+  create_table "committees", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "openly_local_committee_id"
+  end
 
   create_table "constituencies", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "permalink"
+    t.integer  "openly_local_constituency_id"
+  end
+
+  create_table "councils", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "members", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "openly_local_member_id"
   end
 
   create_table "pages", :force => true do |t|
@@ -45,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20090920083242) do
     t.string   "name"
     t.integer  "constituency_id"
     t.string   "permalink"
+    t.integer  "openly_local_ward_id"
   end
 
 end

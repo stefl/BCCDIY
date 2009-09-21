@@ -8,4 +8,5 @@ class BaseController < ApplicationController
     @page_title = "Birmingham City Council - DIY Community Version"
   
   end
+  
 end

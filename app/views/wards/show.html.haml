@@ -18,3 +18,30 @@
   #recent_problems
     %ul
       = render :partial=> 'shared/rss_item', :collection=>@fix_my_street
+
+  %h2
+    Councillors
+    
+  #councillors.openly_local
+    %ul
+      - @openly_local_ward.members.each do |member|        
+        %li
+
+          .councillor.vcard
+            .fn
+              = member.first_name
+              = member.last_name
+            .org
+              = member.party
+            .adr
+              .street_address
+                = member.address
+              .locality
+                Birmingham
+              .country-name
+                UK
+            .tel
+              = member.telephone
+            .email
+              = link_to member.email, "mailto:#{member.email}"
+            

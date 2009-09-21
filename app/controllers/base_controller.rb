@@ -14,19 +14,25 @@ class BaseController < ApplicationController
     
     @page_title = "Birmingham City Council - DIY Community Version"
     
-    source = "http://allbrum.co.uk/today.rss"
-    content = "" # raw content of rss feed will be loaded here
-    open(source) do |s| content = s.read end
-    rss = RSS::Parser.parse(content, false)
-
-    @events_today = rss.items unless rss.blank?
+    events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :conditions=>["created_at > ?", Date.yesterday])
+    if events_feed.blank?
+      Delayed::Job.enqueue DailyFeed.create(:url=>"http://allbrum.co.uk/today.rss")
+      @events_today = ''
+    else
+      @events_today = events_feed.items
+    end
     
-    source = "http://birminghamnewsroom.com/?feed=rss2"
-    content = "" # raw content of rss feed will be loaded here
-    open(source) do |s| content = s.read end
-    rss = RSS::Parser.parse(content, false)
-
-    @news_today = rss.items unless rss.blank?
+    #TODO this means once per day at about midnight someone won't see an events feed
+    
+    
+    news_feed = DailyFeed.find_by_url("http://birminghamnewsroom.com/?feed=rss2", :conditions=>["created_at > ?", Date.yesterday])
+    if news_feed.blank?
+      Delayed::Job.enqueue DailyFeed.create(:url=>"http://birminghamnewsroom.com/?feed=rss2")
+      @news_today = ''
+    else
+      @news_today = news_feed.items
+    end
+    
   end
   
 end

@@ -1,0 +1,2 @@
+class DailyFeedsController < ApplicationController
+end

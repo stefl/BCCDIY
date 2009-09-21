@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090921072244) do
+ActiveRecord::Schema.define(:version => 20090921142748) do
 
   create_table "committees", :force => true do |t|
     t.datetime "created_at"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(:version => 20090921072244) do
   end
 
   create_table "councils", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "daily_feeds", :force => true do |t|
+    t.string   "url"
+    t.text     "items"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

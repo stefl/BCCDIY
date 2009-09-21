@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :daily_feeds
+
   map.resources :councils
 
   map.resources :committees

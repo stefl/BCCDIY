@@ -22,6 +22,11 @@
   %h2
     Councillors
     
+  %p.quiet
+    (via 
+    = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+    )
+
   #councillors.openly_local
     %ul
       - @openly_local_ward.members.each do |member|        

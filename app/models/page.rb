@@ -5,7 +5,7 @@ require 'nokogiri'
 
 
 class Page < ActiveRecord::Base
-  
+  acts_as_solr
   acts_as_tree :order => "title"
   #default_scope :conditions => 'pages.alias = false'
 

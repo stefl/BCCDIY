@@ -9,6 +9,7 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
+require 'websolr_rails/tasks'
 
 desc "Load fixtures data into the development database"
 task :load_fixtures_data_to_development do

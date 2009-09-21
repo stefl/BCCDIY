@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Ward < ActiveRecord::Base
+  acts_as_solr
   belongs_to :constituency
 
   has_permalink :name

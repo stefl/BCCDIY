@@ -447,6 +447,8 @@ a:hover { color: red; }
 .vcard .fn { font-weight: bold; }
 .vcard .country-name { display: none; }
 
+#the_event { background-color: #dfd; padding: 1em; font-weight: bold; }
+
 #skip { margin-bottom: 1.5em; background-color: #ddd; display: inline; float: left; margin-right: 0; width: 950px; }
 * html #skip { overflow-x: hidden; }
 #skip a { color: #666; }

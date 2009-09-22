@@ -462,6 +462,7 @@ a:hover { color: red; }
 #header #logo_and_breadcrumb h1#logo { display: inline; float: left; margin-right: 0; width: 310px; }
 * html #header #logo_and_breadcrumb h1#logo { overflow-x: hidden; }
 #header #logo_and_breadcrumb h1#logo a { color: black; text-decoration: none; }
+#header #logo_and_breadcrumb h1#logo a img { vertical-align: middle; margin-top: -0.5em; }
 #header #logo_and_breadcrumb h1#logo a:hover, #header #logo_and_breadcrumb h1#logo a:focus { color: red; }
 #header #logo_and_breadcrumb #breadcrumb { display: inline; float: left; margin-right: 0; width: 670px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
 * html #header #logo_and_breadcrumb #breadcrumb { overflow-x: hidden; }
@@ -470,11 +471,12 @@ a:hover { color: red; }
 #header #intro_header h1#logo { display: inline; float: left; margin-right: 0; width: 350px; }
 * html #header #intro_header h1#logo { overflow-x: hidden; }
 #header #intro_header h1#logo a { color: black; text-decoration: none; }
+#header #intro_header h1#logo a img { vertical-align: middle; margin-top: -0.5em; }
 #header #intro_header h1#logo a:hover, #header #intro_header h1#logo a:focus { color: red; }
 #header #intro_header #intro { display: inline; float: left; margin-right: 0; width: 590px; }
 * html #header #intro_header #intro { overflow-x: hidden; }
 #header #intro_header #intro h2 { color: #999; }
-#header #quickly_find_something { display: inline; float: left; margin-right: 0; width: 270px; }
+#header #quickly_find_something { margin-top: -1.5em; display: inline; float: left; margin-right: 0; width: 270px; }
 * html #header #quickly_find_something { overflow-x: hidden; }
 
 #navigation { display: inline; float: left; margin-right: 10px; width: 230px; padding-right: 80px; }

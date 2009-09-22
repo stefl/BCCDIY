@@ -8,25 +8,30 @@ class PagesController < ResourceController::Base
   before_filter :send_cache_headers, :only=>[:show]
   
   def go_to_title
-    page = Page.find_by_title(params[:page][:title])
+    unless params[:page].blank?
+      unless params[:page][:title].blank?
+        page = Page.find_by_title(params[:page][:title])
     
-    if(page)
-      redirect_to page_path(page)
-    else
-      pages = Page.find_by_sql(["select * from pages where alias = false and (LOWER(title) LIKE ?)", '%' + params[:page][:title].downcase + '%' ])
-      
-      unless pages.blank?
-        page = pages[0]
-        redirect_to page_path(page)
+        if(page)
+          redirect_to page_path(page)
+        else
+          #pages = Page.find_by_sql(["select * from pages where alias = false and (LOWER(title) LIKE ?)", '%' + params[:page][:title].downcase + '%' ])
+          pages = Page.find_by_solr(params[:page][:title])
+          unless pages.blank?
+            #page = pages[0]
+            #redirect_to pages_path(page)
         
-      else
-        flash[:notice] = "Sorry - We couldn't find anything for #{params[:page][:title]}"
+            @pages = pages.docs
+            render "pages/search"
+          else
+            flash[:notice] = "Sorry - We couldn't find anything for #{params[:page][:title]}"
         
-        redirect_to home_path
+            redirect_to home_path
       
+          end
+        end  
       end
-    end  
-    
+    end
   end
   
   def hide

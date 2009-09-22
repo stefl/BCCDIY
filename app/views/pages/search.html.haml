@@ -1,0 +1,7 @@
+%h2
+  Pages found for "
+  = params[:page][:title]
+  "
+  
+#results
+  = render :partial=>"page", :collection=>@pages

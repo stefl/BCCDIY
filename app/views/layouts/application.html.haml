@@ -8,6 +8,15 @@
     -if @meta
       -@meta.each do |key|
         %meta{:name=>key[0], :content=>key[1]}
+        
+    / GeoURL
+    %meta{:name=>"ICBM", :content=>"52.47500,-1.88500"}
+    %meta{:name=>"geo.position", :content=>"52.47500;-1.88500"}
+    %meta{:name=>"DC.title", :content=>"Birmingham City Council"}
+    
+    / Shortcut
+    %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+    
   
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
@@ -33,10 +42,11 @@
         #jump
           = link_to "Jump to page contents", "#page_contents", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
           = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
-        #resize
-          = link_to_function "[.]", "textResize(1);"
-          = link_to_function "[a]", "textResize(2);"
-          = link_to_function "[A]", "textResize(3);"
+        - if 1 == 0
+          #resize
+            = link_to_function "[.]", "textResize(1);"
+            = link_to_function "[a]", "textResize(2);"
+            = link_to_function "[A]", "textResize(3);"
       
       #header
         - if @show_intro
@@ -64,7 +74,7 @@
             #breadcrumb
               = render :partial => "shared/breadcrumb"
             
-        - if @page
+        
           = render :partial=>"base/quick_find"
               
       #navigation

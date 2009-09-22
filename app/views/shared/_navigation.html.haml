@@ -29,6 +29,8 @@
 
 - else
   - unless @ignore_main_menu
+    %p.quiet
+      We're going to reorganise this menu to be more sensible:
     %ul#mainmenu
       - for page in Page.root_page.children
         - unless page.alias

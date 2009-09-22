@@ -20,20 +20,25 @@
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
     
-  %body.blueprint{:style=>body_styles}
+  %body.blueprint{:style=>"bigText"}
     
     .container
     
       #skip
-        = link_to "Jump to page contents", "#page_content", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
-        = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
-        
+        #jump
+          = link_to "Jump to page contents", "#page_content", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
+          = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
+        #resize
+          = link_to_function "[.]", "textResize(1);"
+          = link_to_function "[a]", "textResize(2);"
+          = link_to_function "[A]", "textResize(3);"
       
       #header
         #logo_and_breadcrumb
           %h1#logo
             %a.logolink{:href=>"/", :title=>"BCC DIY"}
               %span.logotype
+                = image_tag "bccdiy-logo.png"
                 BCC DIY
         
           #breadcrumb

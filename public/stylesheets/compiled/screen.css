@@ -434,15 +434,26 @@ a { color: #06f; }
 
 a:hover { color: red; }
 
+%body { font-size: 150% !important; }
 %body .container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
 %body .container { display: block; }
+
+%body.bigText { line-height: 1.5; font-family: Helvetica Neue, Arial, Helvetica, sans-serif; color: #333333; font-size: 100%; }
+
+%body.biggerText { line-height: 1.5; font-family: Helvetica Neue, Arial, Helvetica, sans-serif; color: #333333; font-size: 150%; }
 
 .quiet { color: #666; }
 
 .vcard .fn { font-weight: bold; }
 .vcard .country-name { display: none; }
 
+#skip { margin-bottom: 1.5em; background-color: #ddd; display: inline; float: left; margin-right: 0; width: 950px; }
+* html #skip { overflow-x: hidden; }
 #skip a { color: #666; }
+#skip #jump { background-color: #ddd; display: inline; float: left; margin-right: 10px; width: 470px; padding: 0.5em; }
+* html #skip #jump { overflow-x: hidden; }
+#skip #resize { background-color: #ddd; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; padding: 0.5em; }
+* html #skip #resize { overflow-x: hidden; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }

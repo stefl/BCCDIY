@@ -13,9 +13,15 @@ a
 a:hover
   :color red
 %body
+  :font-size 150% !important
   .container
     +container
     
+%body.bigText
+  +blueprint-typography-body(16px)
+  
+%body.biggerText
+  +blueprint-typography-body(24px)
 
 .quiet
   :color #666
@@ -28,8 +34,22 @@ a:hover
     :display none
 
 #skip
+  :margin-bottom 1.5em
+  :background-color #ddd
+  +column(24,true)
   a
     :color #666
+  #jump
+    :background-color #ddd
+  
+    +column(12)
+    :padding 0.5em
+  #resize
+    :background-color #ddd
+    
+    +column(11,true)
+    :text-align right
+    :padding 0.5em
 #header
   +column(24,true)
   :padding-top 1.5em

@@ -34,15 +34,30 @@
           = link_to_function "[A]", "textResize(3);"
       
       #header
-        #logo_and_breadcrumb
-          %h1#logo
-            %a.logolink{:href=>"/", :title=>"BCC DIY"}
-              %span.logotype
-                = image_tag "bccdiy-logo.png"
-                BCC DIY
+        - if @show_intro
+          #intro_header
+          
+            %h1#logo
+              %a.logolink{:href=>"/", :title=>"BCC DIY"}
+                %span.logotype
+                  = image_tag "bccdiy-logo.png"
+                  BCC DIY
+                  
+            #intro
+              %h2
+                A community-generated version of the 
+                %br
+                Birmingham City Council website
+        - else
+          #logo_and_breadcrumb
+            %h1#logo
+              %a.logolink{:href=>"/", :title=>"BCC DIY"}
+                %span.logotype
+                  = image_tag "bccdiy-logo.png"
+                  BCC DIY
         
-          #breadcrumb
-            = render :partial => "shared/breadcrumb"
+            #breadcrumb
+              = render :partial => "shared/breadcrumb"
             
         - if @page
           = render :partial=>"base/quick_find"

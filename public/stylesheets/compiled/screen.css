@@ -459,12 +459,21 @@ a:hover { color: red; }
 * html #header { overflow-x: hidden; }
 #header #logo_and_breadcrumb { display: inline; float: left; margin-right: 10px; width: 670px; }
 * html #header #logo_and_breadcrumb { overflow-x: hidden; }
-#header #logo_and_breadcrumb h1#logo { display: inline; float: left; margin-right: 0; width: 670px; }
+#header #logo_and_breadcrumb h1#logo { display: inline; float: left; margin-right: 0; width: 310px; }
 * html #header #logo_and_breadcrumb h1#logo { overflow-x: hidden; }
 #header #logo_and_breadcrumb h1#logo a { color: black; text-decoration: none; }
 #header #logo_and_breadcrumb h1#logo a:hover, #header #logo_and_breadcrumb h1#logo a:focus { color: red; }
 #header #logo_and_breadcrumb #breadcrumb { display: inline; float: left; margin-right: 0; width: 670px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
 * html #header #logo_and_breadcrumb #breadcrumb { overflow-x: hidden; }
+#header #intro_header { display: inline; float: left; margin-right: 10px; width: 950px; }
+* html #header #intro_header { overflow-x: hidden; }
+#header #intro_header h1#logo { display: inline; float: left; margin-right: 0; width: 350px; }
+* html #header #intro_header h1#logo { overflow-x: hidden; }
+#header #intro_header h1#logo a { color: black; text-decoration: none; }
+#header #intro_header h1#logo a:hover, #header #intro_header h1#logo a:focus { color: red; }
+#header #intro_header #intro { display: inline; float: left; margin-right: 0; width: 590px; }
+* html #header #intro_header #intro { overflow-x: hidden; }
+#header #intro_header #intro h2 { color: #999; }
 #header #quickly_find_something { display: inline; float: left; margin-right: 0; width: 270px; }
 * html #header #quickly_find_something { overflow-x: hidden; }
 
@@ -481,14 +490,20 @@ a:hover { color: red; }
 #content #messages { display: inline; float: left; margin-right: 0; width: 630px; }
 * html #content #messages { overflow-x: hidden; }
 #content h1 { padding-bottom: 0.5em; border-bottom: 4px solid #eee; font-size: 200%; }
-#content #quickly_find_something { margin-top: 4.5em; }
-#content #quickly_find_something #page_title { padding: 0.25em; font-size: 150%; }
+#content #quick_find { padding: 1.5em; background-color: #eeffee; margin-top: 1.5em; margin-bottom: 1.5em; }
+#content #quickly_find_something, #content #quickly_find_near_you { font-size: 150%; }
+#content #quickly_find_something input, #content #quickly_find_near_you input { padding: 0.25em; font-size: 100%; }
+#content #quickly_find_something #page_title, #content #quickly_find_near_you #page_title { width: 11em; color: #999; }
+#content #quickly_find_something #ward_name, #content #quickly_find_near_you #ward_name { width: 4em; color: #999; }
+#content #quickly_find_something #page_title, #content #quickly_find_something #ward_name, #content #quickly_find_near_you #page_title, #content #quickly_find_near_you #ward_name { border: 2px solid #666; }
+#content #quickly_find_something #page_title:focus, #content #quickly_find_something #ward_name:focus, #content #quickly_find_near_you #page_title:focus, #content #quickly_find_near_you #ward_name:focus { border: 2px solid black; }
+#content #quickly_find_something .submit:hover, #content #quickly_find_near_you .submit:hover { background-color: white; cursor: pointer; }
 #content #councillors { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 80px; }
 * html #content #councillors { overflow-x: hidden; }
 #content #fix_my_street { display: inline; float: left; margin-right: 0; width: 270px; }
 * html #content #fix_my_street { overflow-x: hidden; }
 
-#news_and_events { display: inline; float: left; margin-right: 0; width: 630px; }
+#news_and_events { display: inline; float: left; margin-right: 0; width: 630px; margin-top: 1.5em; }
 * html #news_and_events { overflow-x: hidden; }
 #news_and_events #events { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 80px; }
 * html #news_and_events #events { overflow-x: hidden; }

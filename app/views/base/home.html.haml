@@ -1,45 +1,37 @@
 - @ignore_page_title = true
 - @ignore_extra_formats = true
 - @ignore_main_menu = true
+- @show_intro = true  
 
-#intro
-  %h2
-    A community-generated version of the 
-    %br
-    Birmingham City Council website
-  
+#quick_find
+  = render :partial=>"base/quick_find"
 
-= render :partial=>"base/quick_find"
-
-  
-= render :partial=>"base/quick_near_you"
+  = render :partial=>"base/quick_near_you"
   
 #news_and_events  
   #events
     %h3
       Events today
-    
+
+    %ul
+      = render :partial=> 'shared/rss_item_event', :collection=>@events_today
+        
     %p.quiet
       (via
       = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
       )
     
-    %ul
-      = render :partial=> 'shared/rss_item_event', :collection=>@events_today
-    
   #news
     %h3
       News today
+
+    %ul
+      = render :partial=> 'shared/rss_item_event', :collection=>@news_today
 
     %p.quiet
       (via
       = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
       )
-
-    %ul
-      = render :partial=> 'shared/rss_item_event', :collection=>@news_today
-
-
 
 
 #tweets

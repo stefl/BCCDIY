@@ -1,11 +1,10 @@
 #quickly_find_something
-  %h3
-    Quickly find something:
+
   - form_for Page.new, :url=>{:controller=>'pages', :action=>'go_to_title'} do |page|
-    = page.text_field :title, :autocomplete =>"off"
-    = submit_tag 'Go'
-    %p.quiet
-      (Just start typing)
+    Take me to the:
+    = page.text_field :title, :autocomplete =>"off", :value=>'Council Tax', :onfocus=>'clearText(this);'
+    = submit_tag 'page', :class=>'submit'
+
 - content_for :scripts do
   
   - javascript_tag do

@@ -56,7 +56,7 @@ a:hover
   #logo_and_breadcrumb
     +column(17)
     h1#logo
-      +column(17,true)
+      +column(8,true)
     
       a
         :color black
@@ -67,6 +67,20 @@ a:hover
       +column(17,true)
       :padding-bottom 1.5em
       :margin-bottom 1.5em
+  #intro_header
+    +column(24)
+    h1#logo
+      +column(9,true)
+
+      a
+        :color black
+        :text-decoration none
+      a:hover, a:focus
+        :color red
+    #intro
+      +column(15,true)
+      h2
+        :color #999
   #quickly_find_something
     +column(7, true)
 
@@ -101,11 +115,33 @@ a:hover
     :border-bottom 4px solid #eee
     :font-size 200%
   
-  #quickly_find_something
-    :margin-top  4.5em
-    #page_title
+  #quick_find
+    :padding 1.5em
+    :background-color #eeffee
+    :margin-top 1.5em
+    :margin-bottom 1.5em
+  #quickly_find_something, #quickly_find_near_you
+    :font-size 150%
+    input
       :padding 0.25em
-      :font-size 150%
+
+      :font-size 100%
+      
+    #page_title
+      :width 11em
+      :color #999
+    #ward_name
+      :width 4em
+      :color #999
+      
+    
+    #page_title, #ward_name
+      :border 2px solid #666
+    #page_title:focus, #ward_name:focus
+      :border 2px solid black
+    .submit:hover
+      :background-color white
+      :cursor pointer
   
   
   #councillors
@@ -117,6 +153,7 @@ a:hover
   
 #news_and_events
   +column(16,true)
+  :margin-top 1.5em
   #events
     +column(7)
     +append(2)

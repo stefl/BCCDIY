@@ -10,7 +10,6 @@ $(function() {
 
   //get cookie value and pass to textResize function
   var cookie_val = $.cookie("textsize");
-  console.log("onload: " + cookie_val);
   textResize(cookie_val);
 
 });
@@ -18,7 +17,6 @@ $(function() {
 function textResize(level){
   level = parseInt(level); 
   var body = $("body");
-  console.log("textResize: " + level);
 
   switch(level) {
     case 1:

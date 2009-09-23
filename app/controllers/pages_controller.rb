@@ -56,8 +56,7 @@ class PagesController < ResourceController::Base
   end
 
   show.wants.html { 
-    redirect_to_alias
-    render
+    render unless redirect_to_alias
   } 
   show.wants.xml {render :xml=>@page}
   show.wants.json {render :json=>@page}
@@ -70,7 +69,9 @@ class PagesController < ResourceController::Base
 
     if @object.alias
       redirect_to page_path(Page.find(@object.alias_id))
+      return true
     end
+    return false
   end
   
   private

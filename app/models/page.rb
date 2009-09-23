@@ -1,12 +1,14 @@
 require 'anemone'
 require 'nokogiri'
 #require 'tidy'
-
+require 'html2textile'
 
 
 class Page < ActiveRecord::Base
   acts_as_solr :fields=>["title","content"]
   acts_as_tree :order => "title"
+  acts_as_versioned
+  self.non_versioned_columns << 'url' << 'page_source' << 'breadcrumb' << 'parent_url' << 'created_at' << 'updated_at'  
   #default_scope :conditions => 'pages.alias = false'
 
   named_scope :aliased, :conditions => 'pages.alias = true'
@@ -18,8 +20,25 @@ class Page < ActiveRecord::Base
   
   has_permalink :title, :slug
   
+  # for helpers
+  def name
+    title
+  end 
+  
   def to_param
     self.slug
+  end
+  
+  def original_content
+    self.versions[0].content
+  end
+  
+  def original_content_as_textile
+    
+    
+    parser = HTMLToTextileParser.new
+    parser.feed(self.versions[0].content)
+    parser.to_textile
   end
   
   # Remove any unnecessary text from titles
@@ -43,7 +62,8 @@ class Page < ActiveRecord::Base
     end
     unless possible.blank?
       if possible.alias
-        possible = Page.find_by_id(possible.alias_id)
+        possible_alias = Page.find_by_id(possible.alias_id)
+        possible = possible_alias unless possible_alias.blank?
       end
     end
     logger.info 'Success: ' + possible.title.to_s unless possible.blank?
@@ -53,9 +73,18 @@ class Page < ActiveRecord::Base
   # returns the content, cleaned and ready for display
   def parsed_content
     #content
-    content = self.relink_content
+    #TODO turn this off! set the following to false
+    content = self.relink_content false
     #content = Page.cleanup(content) #unless it's already been done locally that is...
       
+  end
+  
+  def parsed_content_as_textile 
+    
+    parser = HTMLToTextileParser.new
+    parser.feed(self.relink_content false)
+    parser.to_textile
+    
   end
   
   # Set this Page as an alias to another Page by passing it's ID
@@ -89,10 +118,11 @@ class Page < ActiveRecord::Base
       
     end    
   end
+
   
   # relink any local links in the content
   
-  def relink_content
+  def relink_content crawl
     the_content = self.content
     unless the_content.blank?
       links = self.extract_links
@@ -102,6 +132,7 @@ class Page < ActiveRecord::Base
       if links.size > 0
         links.delete_if {|x| x.match(/^http:\/\//) }
         links.delete_if {|x| x.match(/^mailto:/) }
+        links.delete_if {|x| x.match(/^javascript:/) }
         
         links.each do |link|
           link = link.sub('/','')
@@ -111,11 +142,21 @@ class Page < ActiveRecord::Base
           link_url = extracted_cid unless extracted_cid.blank?
           page = Page.get_alias_from_link_or_slug(link_url,link)
           
+          if crawl
+            if page.blank?
+              url="http://birmingham.gov.uk/#{link}".gsub('&amp;','&')
+              page = Page.create_from_anemone_page Anemone::Page.fetch(url)
+            else
+              logger.info "page: " + page.id.to_s + " : " +  page.title.to_s
+            end
+          
+          end
           unless page.blank?
           
             relinks['/' + link] = "/pages/" + page.slug 
           
           else
+            
             relinks['/' + link] = "http://birmingham.gov.uk/" + link
           end
           
@@ -209,7 +250,7 @@ class Page < ActiveRecord::Base
           unless found_page.blank?
             logger.info('Already indexed. Ignoring: ' + page.url.to_s)
           else
-        
+            
             title = page.doc.at('title')
             if title.blank?
               logger.info('Blank title. Ignoring: ' + page.url.to_s)
@@ -394,7 +435,24 @@ class Page < ActiveRecord::Base
   
   # Go through every page on the site and where there are inline links, replace them with (possibly) correct inline links
   def self.relink_all_content
+    pages = Page.find(:all)
     
+    pages.each do |page|
+      page.relink_content true
+    end
+    
+    pages.size
+  end
+  
+  def self.parse_all_content
+    pages = Page.find(:all, :conditions=>["is_textile = false"])
+    
+    pages.each do |page|
+      puts page.id
+      page.update_attributes({:content=>page.parsed_content_as_textile, :is_textile=>true})
+    end
+    
+    pages.size
   end
   
   

@@ -1,0 +1,41 @@
+<% content_for :right do %>
+
+  <h5><%=  I18n.t 'txt.views_users.avatars_title', :default => 'Avatars' %></h5>
+  <p><%= I18n.t 'txt.views_users.gravatar_notice', :default => 'To have your very own avatar displayed on this forum visit {{gravatar}} and sign up for a free gravatar.', :gravatar => '<a href="http://www.gravatar.com/" title="Gravatar - Globally Recognized Avatars">Gravatar</a>' %></p>
+
+  <% if current_user.admin? %>
+    <% form_for @user, :url => make_admin_user_path(@user) do |f| %>
+      <h5>Admin</h5>
+      <p>
+        <%= f.check_box :admin %>
+        <label for="user_admin"><%= I18n.t 'txt.admin.user_is_an_administrator', :default => 'User is an administrator' %></label>
+      </p>
+      <p>
+        <%= submit_tag 'Save'[:save] %>
+      </p>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+<h1><%= I18n.t 'txt.views_users.settings', :default => 'Settings' %></h1>
+
+<p class="subtitle"><%= I18n.t 'txt.views_users.for_user', :default => 'for {{user}}', :user => @user.display_name %>
+	<% if @user.login!=@user.display_name %>
+	(<%= @user.login %>)
+	<% end %>
+	</p>
+
+<%= error_messages_for :user %>
+
+<% form_for :user, :url => user_path(@user), :html => { :method => :put } do |f| -%>
+  <%= render :partial => "settings", :object => f %>
+  <p><%= submit_tag I18n.t('txt.views_users.change_email_or_password', :default => 'Change e-mail or password') %></p>
+<% end -%>
+
+<br />
+
+<% form_for :user, :url => user_path(@user), :html => { :method => :put } do |f| -%>
+  <%= render :partial => "contact_info", :locals => { :settings => f } %>
+  <%= submit_tag I18n.t('txt.views_users.update_profile', :default => 'Update profile') %> <%= I18n.t 'txt.or', :default => 'or' %> <%= link_to(I18n.t('txt.cancel', :default => 'Cancel'), user_path(@user)) %>
+<% end -%>

@@ -1,0 +1,10 @@
+- @page_title = "Move &laquo;#{@page.title}&raquo;"
+
+- form_for(@page) do |f|
+  
+  Change this page's parent page:
+  
+  = page_select @page.parent_id
+  
+  = submit_tag 'save', :class=>'submit'
+  

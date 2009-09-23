@@ -7,6 +7,15 @@ class PagesController < ResourceController::Base
   
   before_filter :send_cache_headers, :only=>[:show]
   
+  
+     def parse_textile
+  
+       render :text => RedCloth.new(params[:data]).to_html
+  
+     end
+
+  
+  
   def go_to_title
     unless params[:page].blank?
       unless params[:page][:title].blank?
@@ -40,6 +49,10 @@ class PagesController < ResourceController::Base
     page.alias = true
     page.save
     redirect_to page_path(page.parent)
+  end
+  
+  def move
+    page = Page.find_by_id(params[:id])
   end
 
   show.wants.html { 

@@ -2,7 +2,11 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
+  include AuthenticatedSystem
+  helper :all
+  helper_method :current_page
+  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
+  
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log

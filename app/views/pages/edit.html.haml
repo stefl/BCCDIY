@@ -1,0 +1,32 @@
+- @markitup = true
+- @page_title = "Editing &laquo;#{@page.title}&raquo;"
+= error_messages_for :page
+
+- form_for(@page) do |f|
+  Title
+  = f.text_field :title, :size =>50
+
+  = f.text_area :content, :size=> 50, :id=>"textile"
+                            
+                          
+  = submit_tag 'save', :class=>'submit'
+- content_for :scripts do
+  :javascript
+    $(document).ready(function() {
+      $("#textile").markItUp(mySettings);
+    });
+  
+
+
+#original_content
+  
+  %h3
+    The original page in Textile format:
+    
+  %pre.content_as_textile
+    = preserve @page.original_content_as_textile
+  %h3
+    The original page content as it appears:
+    
+  .content
+    = @page.original_content

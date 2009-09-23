@@ -2,6 +2,8 @@
 %html{:xmlns=>"http://www.w3.org/1999/xhtml"}
   %head
     %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+    %link{:rel=>"alternate", :type=>"application/rss+xml", :href=>"http://birminghamnewsroom.com/feed", :title=>"News feed from Birmingham Newsroom"}
+    
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
     %title= page_title
@@ -21,6 +23,15 @@
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     = stylesheet_link_tag 'jquery.autocomplete'
+    
+    
+    - unless @markitup.nil?
+      = stylesheet_link_tag "/javascripts/markitup/skins/markitup/style.css"
+      = stylesheet_link_tag "/javascripts/markitup/sets/textile/style.css"
+
+
+    
+    
     
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
@@ -48,6 +59,15 @@
             = link_to_function "[a]", "textResize(2);"
             = link_to_function "[A]", "textResize(3);"
       
+      %ul#user_menu 
+      - if logged_in?
+        %li.login=  link_to current_user.display_name, user_path(current_user)
+        %li.settings=  link_to I18n.t('txt.settings', :default => 'Settings'), settings_path
+        %li.logout=  link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri))
+      - else
+        %li.signup=   link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri))
+        %li.login=   link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri))
+      
       #header
         - if @show_intro
           #intro_header
@@ -56,7 +76,10 @@
               %a.logolink{:href=>"/", :title=>"BCC DIY"}
                 %span.logotype
                   = image_tag "bccdiy-logo.png"
+                  
                   BCC DIY
+                  %span.beta
+                    BETA
                   
             #intro
               %h2
@@ -70,6 +93,8 @@
                 %span.logotype
                   = image_tag "bccdiy-logo.png"
                   BCC DIY
+                  %span.beta
+                    BETA
         
             #breadcrumb
               = render :partial => "shared/breadcrumb"
@@ -95,6 +120,8 @@
         - if @ignore_page_title.blank?
           %h1
             = @page_title
+            = yield :edit_link
+              
         = @content_for_layout
 
 

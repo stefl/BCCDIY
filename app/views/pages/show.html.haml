@@ -1,4 +1,8 @@
-
+- content_for :edit_link do
+  (
+  = link_to "Edit", edit_page_path(@page)
+  )
+  
 - if @page.blank?
 
   - @page_title = "This is a dead link from the original site"
@@ -10,8 +14,13 @@
   - @page_title = @page.title
   
   #page_content
-    = @page.parsed_content
-    
+    #this_is_a_beta
+      These pages haven't been edited yet, so will probably contain broken links and formatting problems.
+      
+    - if @page.is_textile
+      = textilize @page.content
+    - else
+      = @page.content
   #original_url
     %h2
       =link_to 'Original', @page.url  

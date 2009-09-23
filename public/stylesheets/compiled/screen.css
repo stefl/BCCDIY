@@ -430,6 +430,12 @@ input.text, input.title { width: 300px; }
 
 textarea { width: 390px; height: 250px; }
 
+pre { overflow: auto; }
+
+.beta { font-size: 33%; }
+
+#this_is_a_beta { background-color: #ffeeee; padding: 1em; margin-bottom: 1.5em; }
+
 a { color: #06f; }
 
 a:hover { color: red; }

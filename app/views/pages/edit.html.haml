@@ -10,6 +10,7 @@
                             
                           
   = submit_tag 'save', :class=>'submit'
+  
 - content_for :scripts do
   :javascript
     $(document).ready(function() {
@@ -30,3 +31,7 @@
     
   .content
     = @page.original_content
+    
+#move_this_page
+  %h3
+    = link_to "Move this page", move_page_path(@page)

@@ -28,7 +28,7 @@ class BaseController < ApplicationController
     end
     
     #TODO this means once per day at about midnight someone won't see an events feed
-    @recently_updated_pages = Page.recently_updated.find(:all)
+    @recently_updated_pages = PageVersion.find(:all, :limit=>10, :order=>"id desc")
     
     news_feed = DailyFeed.find_by_url("http://birminghamnewsroom.com/?feed=rss2", :conditions=>["created_at > ?", Date.yesterday])
     if news_feed.blank?

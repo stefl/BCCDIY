@@ -13,6 +13,7 @@ class Page < ActiveRecord::Base
 
   named_scope :aliased, :conditions => 'pages.alias = true'
   named_scope :unaliased, :conditions => 'pages.alias = false'
+  named_scope :recently_updated, :limit => 10, :order=>'updated_at desc'
   #instance methods  
   #before_save :set_slug
   

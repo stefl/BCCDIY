@@ -19,7 +19,7 @@
   
   #page_content
     - if @page.alias
-      - @alias = Page.find_by_id(@page.alias_id).title
+      - @alias = Page.find_by_id(@page.alias_id)
       %h2
         This page is an alias
         - unless @alias.blank?

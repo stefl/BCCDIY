@@ -68,9 +68,9 @@ class PagesController < ResourceController::Base
   
   def redirect_to_alias
 
-    #if @object.alias
-      #redirect_to page_path(Page.find(@object.alias_id))
-    #end
+    if @object.alias
+      redirect_to page_path(Page.find(@object.alias_id))
+    end
   end
   
   private

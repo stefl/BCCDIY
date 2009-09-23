@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
     :requirements => { :method => :get }
     
   map.broken '/cs/Satellite', :controller => 'base', :action=>'broken_link'
+  map.broken '/pages/GenerateContent', :controller => 'base', :action=>'broken_link'
   
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,

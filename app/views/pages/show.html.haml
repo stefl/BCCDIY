@@ -1,7 +1,4 @@
-- content_for :edit_link do
-  (
-  = link_to "Edit", edit_page_path(@page)
-  )
+
   
 - if @page.blank?
 
@@ -10,6 +7,11 @@
   %p
     Lots of pages on the site are referenced, but don't actually go anywhere. We'll be removing these over time (with your help!)
 - else
+
+  - content_for :edit_link do
+    (
+    = link_to "Edit", edit_page_path(@page)
+    )
 
   - @page_title = @page.title
   

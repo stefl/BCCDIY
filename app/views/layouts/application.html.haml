@@ -59,14 +59,15 @@
             = link_to_function "[a]", "textResize(2);"
             = link_to_function "[A]", "textResize(3);"
       
-      %ul#user_menu 
-      - if logged_in?
-        %li.login=  link_to current_user.display_name, user_path(current_user)
-        %li.settings=  link_to I18n.t('txt.settings', :default => 'Settings'), settings_path
-        %li.logout=  link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri))
-      - else
-        %li.signup=   link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri))
-        %li.login=   link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri))
+      #user_menu 
+        %ul
+        - if logged_in?
+          %li.login=  link_to current_user.display_name, user_path(current_user)
+          %li.settings=  link_to I18n.t('txt.settings', :default => 'Settings'), settings_path
+          %li.logout=  link_to I18n.t('txt.logout', :default => 'Logout'), logout_path(:to => CGI.escape(request.request_uri))
+        - else
+          %li.signup=   link_to I18n.t('txt.signup', :default => 'Signup'), signup_path(:to => CGI.escape(request.request_uri))
+          %li.login=   link_to I18n.t('txt.login', :default => 'Login'), login_path(:to => CGI.escape(request.request_uri))
       
       #header
         - if @show_intro

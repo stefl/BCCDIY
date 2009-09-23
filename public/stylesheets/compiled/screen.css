@@ -455,6 +455,10 @@ a:hover { color: red; }
 
 #the_event { background-color: #dfd; padding: 1em; font-weight: bold; }
 
+#user_menu { display: inline; float: left; margin-right: 0; width: 950px; text-align: right; }
+* html #user_menu { overflow-x: hidden; }
+#user_menu ul, #user_menu li { list-style-type: none; display: inline-block; }
+
 #skip { margin-bottom: 1.5em; background-color: #ddd; display: inline; float: left; margin-right: 0; width: 950px; }
 * html #skip { overflow-x: hidden; }
 #skip a { color: #666; }

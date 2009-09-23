@@ -23,7 +23,7 @@ class WardsController < ResourceController::Base
         redirect_to constituency_ward_path(ward.constituency,ward)
         
       else
-        flash[:notice] = "Sorry - We couldn't find anything for #{params[:ward][:name]}"
+        flash[:notice] = "Sorry - We couldn't find anything for #{params[:ward][:name]} - please use a full UK postcode"
         redirect_to home_path
       end
     end  

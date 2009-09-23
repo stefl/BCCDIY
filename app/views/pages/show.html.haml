@@ -15,7 +15,17 @@
 
   - @page_title = @page.title
   
+
+  
   #page_content
+    - if @page.alias
+      - @alias = Page.find_by_id(@page.alias_id).title
+      %h2
+        This page is an alias
+        - unless @alias.blank?
+          to
+          = link_to @alias.title, page_path(@alias)
+          
     #this_is_a_beta
       These pages haven't been edited yet, so will probably contain broken links and formatting problems.
       

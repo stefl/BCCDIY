@@ -34,13 +34,19 @@ class WardsController < ResourceController::Base
     @ward = Ward.find_by_permalink(params[:id])
     source = "http://www.fixmystreet.com/rss/reports/Birmingham/" + @ward.name.gsub(' ', '+') # url or local file
     feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
-    unless feed.items.blank?
-      render :update do |page|
-        page.replace_html 'recent_problems', "<ul>" + render(:partial=>'shared/rss_item', :collection=>feed.items) + "</ul>"
-        page.visual_effect :highlight, 'recent_problems'
-        page << 'stop_loading_fix_my_street();'
+    unless feed.blank?
+      unless feed.items.blank?
+        render :update do |page|
+          page.replace_html 'recent_problems', "<ul>" + render(:partial=>'shared/rss_item', :collection=>feed.items) + "</ul>"
+          page.visual_effect :highlight, 'recent_problems'
+          page << 'stop_loading_fix_my_street();'
         
+        end
+      else
+        render :text=>""
       end
+    else
+      render :text=>""
     end
   end
   
@@ -48,12 +54,19 @@ class WardsController < ResourceController::Base
     @ward = Ward.find_by_permalink(params[:id])
     source = "http://www.planningalerts.com/api.php?postcode=#{cookies[:postcode]}&area_size=m"
     feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
-    unless feed.items.blank?
-      render :update do |page|
-        page.replace_html 'recent_alerts', "<ul>" + render(:partial=>'shared/rss_item', :collection=>feed.items) + "</ul>"
-        page.visual_effect :highlight, 'recent_alerts'
-        page << 'stop_loading_planning_alerts();'
+    unless feed.blank?
+      unless feed.items.blank?
+        render :update do |page|
+          page.replace_html 'recent_alerts', "<ul>" + render(:partial=>'shared/rss_item', :collection=>feed.items) + "</ul>"
+          page.visual_effect :highlight, 'recent_alerts'
+          page << 'stop_loading_planning_alerts();'
+        end
+      else
+        render :text=>""
       end
+    
+    else
+      render :text=>""
     end
   end
   

@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
     :controller => "sessions", :action => "create",
     :requirements => { :method => :get }
     
+  map.broken '/cs/Satellite', :controller => 'base', :action=>'broken_link'
+  
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,
                                      :make_admin => :put,
@@ -15,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login    '/login',                     :controller => 'sessions', :action => 'new'
   map.logout   '/logout',                    :controller => 'sessions', :action => 'destroy'
   map.settings '/settings',                  :controller => 'users',    :action => 'settings'
+  
   map.resource  :session
   
   

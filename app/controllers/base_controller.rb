@@ -8,6 +8,10 @@ class BaseController < ApplicationController
   auto_complete_for :ward, :name, :extra_conditions=> "wards.name IS NOT NULL"
   # Standard functions not giving enough control - overriding.
 
+  def broken_link
+    flash[:notice] = "Sorry - Looks like that's a broken link"
+    redirect_to home_path
+  end
   
   def home
     response.headers['Cache-Control'] = 'public, max-age=300'

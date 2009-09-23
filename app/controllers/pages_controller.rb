@@ -52,7 +52,7 @@ class PagesController < ResourceController::Base
   end
   
   def move
-    page = Page.find_by_id(params[:id])
+    page = Page.find_by_slug(params[:id])
   end
 
   show.wants.html { 

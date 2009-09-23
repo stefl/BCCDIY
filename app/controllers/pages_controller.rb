@@ -56,7 +56,7 @@ class PagesController < ResourceController::Base
   end
 
   show.wants.html { 
-    render unless redirect_to_alias
+    render #unless redirect_to_alias
   } 
   show.wants.xml {render :xml=>@page}
   show.wants.json {render :json=>@page}

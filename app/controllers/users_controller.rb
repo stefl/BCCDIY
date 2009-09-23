@@ -27,8 +27,7 @@ class UsersController < ApplicationController
     @user.register! if @user.valid?
     unless @user.new_record?
       redirect_back_or_default('/login')
-      flash[:notice] = I18n.t 'txt.activation_required', 
-        :default => "Thanks for signing up! Please click the link in your email to activate your account"
+      flash[:notice] = "Thanks for signing up! Please click the link in your email to activate your account"
     else
       render :action => 'new'
     end

@@ -9,8 +9,8 @@ class BaseController < ApplicationController
   # Standard functions not giving enough control - overriding.
 
   def broken_link
-    flash[:notice] = "Sorry - Looks like that's a broken link"
-    redirect_to home_path
+    #flash[:notice] = "Sorry - Looks like that's a broken link"
+    @original_url = request.request_uri.gsub("bccdiy.com" + "birmingham.gov.uk")
   end
   
   def home

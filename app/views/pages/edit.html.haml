@@ -3,11 +3,17 @@
 = error_messages_for :page
 
 - form_for(@page) do |f|
-  Title
+  %label{:for=>"page_title"}
+    Title
   = f.text_field :title, :size =>50
 
+  %label{:for=>"page_content"}
+    Content
   = f.text_area :content, :size=> 50, :id=>"textile"
-                            
+         
+  %label{:for=>"page_slug"}
+    Slug 
+  = f.text_field :slug, :size=> 50
                           
   = submit_tag 'save', :class=>'submit'
   

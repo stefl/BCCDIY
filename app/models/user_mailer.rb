@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
-    @body[:url]  = root_url(:host => "http://bccdiy.com")
+    @body[:url]  = home_url
   end
   
   protected

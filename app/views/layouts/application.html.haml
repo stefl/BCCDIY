@@ -107,6 +107,9 @@
         %a{:name=>"main_navigation"}
         = render :partial => "shared/navigation"
         
+        
+        = yield :left_hand
+        
       #content
         %a{:name=>"page_contents"}
         

@@ -3,11 +3,27 @@
 - @ignore_main_menu = true
 - @show_intro = true 
 
+- content_for :left_hand do
+  #edit_this_site
+    %h3
+      Anyone can edit this site
+    %p
+      Please contribute by fixing and improving the pages that you see here.
+
+    #recently_updated
+      %h3
+        Recently edited pages
+      #recently_updated_pages
+        %ul
+          = render :partial=>"pages/page_version", :collection=>@recently_updated_pages
+
 
 #quick_find
   = render :partial=>"base/quick_find"
 
   = render :partial=>"base/quick_near_you"
+  
+
   
 #news_and_events  
   #events
@@ -35,11 +51,5 @@
       )
 
 
-#recently_updated
-  %h3
-    Recently edited pages
-    #recently_updated_pages
-      %ul
-        = render :partial=>"pages/page_version", :collection=>@recently_updated_pages
 #tweets
-  // At some point add in the BCCnewsroom Twitter feed here?
+// At some point add in the BCCnewsroom Twitter feed here?

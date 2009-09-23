@@ -1,5 +1,8 @@
 - if @ignore_main_menu
-  = link_to 'Browse all pages', '/pages/home'
+  %h3
+    = link_to 'Browse all pages', '/pages/home'
+  %p
+    (We'll have a proper menu here on Friday)
   
 - if @page && @page != Page.root_page
   %p.quiet

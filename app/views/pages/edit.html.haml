@@ -6,18 +6,38 @@
   %label{:for=>"page_title"}
     Title
   = f.text_field :title, :size =>50
-
+  %br
   %label{:for=>"page_content"}
     Content
   = f.text_area :content, :size=> 50, :id=>"textile"
+  
+  %p
+    = link_to "Advanced options", "#", :id=>"slick-toggle"
+  #slickbox
          
-  %label{:for=>"page_slug"}
-    Slug 
-  = f.text_field :slug, :size=> 50
+    %label{:for=>"page_slug"}
+      Slug 
+    = f.text_field :slug, :size=> 50
+    
+    %br
+    
+    %label{:for=>"alias_id"}
+      Alias ID
+    = f.text_field :alias_id, :size=> 4
+    
+    %br
+    %label{:for=>"alias_id"}
+      Is an alias page?
+    = f.check_box :alias
+    
+    
+    
+    
                           
-  = submit_tag 'save', :class=>'submit'
+  = submit_tag 'Save', :class=>'submit'
   
 - content_for :scripts do
+  = javascript_include_tag "slickbox"
   :javascript
     $(document).ready(function() {
       $("#textile").markItUp(mySettings);

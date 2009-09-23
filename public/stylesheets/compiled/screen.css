@@ -459,12 +459,12 @@ a:hover { color: red; }
 * html #user_menu { overflow-x: hidden; }
 #user_menu ul, #user_menu li { list-style-type: none; display: inline-block; }
 
-#skip { margin-bottom: 1.5em; background-color: #ddd; display: inline; float: left; margin-right: 0; width: 950px; }
+#skip { margin-bottom: 1.5em; background-color: #fff; display: inline; float: left; margin-right: 0; width: 950px; }
 * html #skip { overflow-x: hidden; }
 #skip a { color: #666; }
-#skip #jump { background-color: #ddd; display: inline; float: left; margin-right: 10px; width: 470px; padding: 0.5em; }
+#skip #jump { background-color: #fff; display: inline; float: left; margin-right: 10px; width: 470px; padding: 0.5em; }
 * html #skip #jump { overflow-x: hidden; }
-#skip #resize { background-color: #ddd; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; padding: 0.5em; }
+#skip #resize { background-color: #fff; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; padding: 0.5em; }
 * html #skip #resize { overflow-x: hidden; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }

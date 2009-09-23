@@ -14,7 +14,8 @@ class BaseController < ApplicationController
   end
   
   def home
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    
+    #response.headers['Cache-Control'] = 'public, max-age=300'
     
     @page_title = "Birmingham City Council - DIY Community Version"
     

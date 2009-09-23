@@ -63,7 +63,7 @@ class PagesController < ResourceController::Base
   show.wants.json {render :json=>@page}
   
   def send_cache_headers
-    response.headers['Cache-Control'] = 'public, max-age=3600'
+    #response.headers['Cache-Control'] = 'public, max-age=3600'
   end
   
   def redirect_to_alias

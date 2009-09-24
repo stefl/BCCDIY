@@ -1,6 +1,11 @@
 
 
 class PagesController < ResourceController::Base
+  
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+     redirect_to broken_path
+  end
+   
   auto_complete_for :page, :title, :extra_conditions=> "pages.alias IS NOT true"
   
   #before_filter :redirect_to_alias, :only=>[:show]

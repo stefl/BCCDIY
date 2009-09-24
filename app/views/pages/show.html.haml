@@ -15,10 +15,11 @@
 
   - @page_title = @page.title
   
-  #last_edited_by
-    Last edited by 
-    %span.user
-      = link_to @page.user.login, user_path(@page.user)
+  - unless @page.user.blank?
+    #last_edited_by
+      Last edited by 
+      %span.user
+        = link_to @page.user.login, user_path(@page.user)
   
   #page_content
     - if @page.alias

@@ -9,7 +9,7 @@ class BaseController < ApplicationController
   # Standard functions not giving enough control - overriding.
 
   def broken_link
-    response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
+    #response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     #flash[:notice] = "Sorry - Looks like that's a broken link"
     @original_url = request.request_uri.to_s.gsub("bccdiy.com","birmingham.gov.uk")
   end
@@ -17,7 +17,7 @@ class BaseController < ApplicationController
   def home
     
     
-    response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
+    #response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     
     @page_title = "Birmingham City Council - DIY Community Version"
     

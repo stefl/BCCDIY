@@ -3,26 +3,39 @@
 - @ignore_main_menu = true
 - @show_intro = true 
 
+
 - content_for :left_hand do
   #edit_this_site
     %h3
       Anyone can edit this site
     %p
       Please contribute by fixing and improving the pages that you see here.
-
-    #recently_updated
-      %h3
-        Recently edited pages
-      #recently_updated_pages
-        %ul
-          = render :partial=>"pages/page_version", :collection=>@recently_updated_pages
-
+        
 
 #quick_find
   = render :partial=>"base/quick_find"
 
   = render :partial=>"base/quick_near_you"
   
+
+#hack_day
+  #recent_tweets   
+    %h3
+      Recent 
+      = link_to "Tweets", "http://search.twitter.com/search?q=bccdiy"
+      %span.very_quiet
+        (#bccdiy)
+    #twitter
+      .monitter{:title=>"bccdiy", :id=>"tweets"}
+      - content_for :scripts do
+        = javascript_include_tag "monitter"
+      .clear
+  #recently_updated
+    %h3
+      Recently edited pages
+    #recently_updated_pages
+      %ul
+        = render :partial=>"pages/page_version", :collection=>@recently_updated_pages
 
   
 #news_and_events  
@@ -49,7 +62,3 @@
       (via
       = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
       )
-
-
-#tweets
-// At some point add in the BCCnewsroom Twitter feed here?

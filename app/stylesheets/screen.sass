@@ -34,6 +34,8 @@ a:hover
 
 .quiet
   :color #666
+.very_quiet
+  :color #aaa
   
   
 .vcard
@@ -207,3 +209,36 @@ a:hover
       :margin-right 1.5em
       :padding 0
       :text-indent 0
+
+#hack_day
+  +column(16,true)
+  :margin-top 1.5em
+
+  #recent_tweets
+    +column(8)
+    +append(1)
+    #twitter
+      :padding 0.5em
+      :background-color #f6f6f6
+      .tweet
+        :display block
+        :clear both
+        :background-color white
+        :padding 0.6em
+        :margin 0.3em
+        :overflow hidden
+
+      .tweet img
+        :float left
+        :margin-right 1em
+        :border 2px solid #222
+
+      .tweet p.text
+        :margin 0
+        :padding 0
+        :padding-left 70px
+  #recently_updated
+    +column(7,true)
+
+.clear
+  :clear both

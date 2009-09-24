@@ -192,6 +192,13 @@ a:hover
     +append(2)
   #news
     +column(7,true)
+  ul
+    :text-indent 0
+    :margin 0
+    :padding 0
+    li
+      :list-style-type none
+      :margin-bottom 0.5em
 #footer
   +column(24,true)
   :margin-top 4.5em
@@ -231,7 +238,7 @@ a:hover
       .tweet img
         :float left
         :margin-right 1em
-        :border 2px solid #222
+        :border 2px solid #f6f6f6
 
       .tweet p.text
         :margin 0
@@ -239,6 +246,13 @@ a:hover
         :padding-left 70px
   #recently_updated
     +column(7,true)
+    ul
+      :text-indent 0
+      :margin 0
+      :padding 0
+      li
+        :list-style-type none
+        :margin-bottom 0.5em
 
 .clear
   :clear both

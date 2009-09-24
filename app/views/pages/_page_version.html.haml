@@ -2,6 +2,7 @@
 %li.page{:id=>page.id}
   = link_to page.title, page_path(page.page)
   - unless page.user.blank?
-    by 
+    %span.quiet
+      by 
     = link_to page.user.login, user_path(page.user)
   

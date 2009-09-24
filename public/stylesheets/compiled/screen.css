@@ -525,6 +525,8 @@ a:hover { color: red; }
 * html #news_and_events #events { overflow-x: hidden; }
 #news_and_events #news { display: inline; float: left; margin-right: 0; width: 270px; }
 * html #news_and_events #news { overflow-x: hidden; }
+#news_and_events ul { text-indent: 0; margin: 0; padding: 0; }
+#news_and_events ul li { list-style-type: none; margin-bottom: 0.5em; }
 
 #footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }
@@ -537,9 +539,11 @@ a:hover { color: red; }
 * html #hack_day #recent_tweets { overflow-x: hidden; }
 #hack_day #recent_tweets #twitter { padding: 0.5em; background-color: #f6f6f6; }
 #hack_day #recent_tweets #twitter .tweet { display: block; clear: both; background-color: white; padding: 0.6em; margin: 0.3em; overflow: hidden; }
-#hack_day #recent_tweets #twitter .tweet img { float: left; margin-right: 1em; border: 2px solid #222; }
+#hack_day #recent_tweets #twitter .tweet img { float: left; margin-right: 1em; border: 2px solid #f6f6f6; }
 #hack_day #recent_tweets #twitter .tweet p.text { margin: 0; padding: 0; padding-left: 70px; }
 #hack_day #recently_updated { display: inline; float: left; margin-right: 0; width: 270px; }
 * html #hack_day #recently_updated { overflow-x: hidden; }
+#hack_day #recently_updated ul { text-indent: 0; margin: 0; padding: 0; }
+#hack_day #recently_updated ul li { list-style-type: none; margin-bottom: 0.5em; }
 
 .clear { clear: both; }

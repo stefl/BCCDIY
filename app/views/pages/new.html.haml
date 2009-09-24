@@ -1,0 +1,6 @@
+- @markitup = true
+- @page_title = "Add a page"
+= error_messages_for :page
+
+- form_for(@page) do |f|
+  = render :partial=>"form", :object => f

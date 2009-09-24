@@ -6,6 +6,7 @@ class PagesController < ResourceController::Base
   #before_filter :redirect_to_alias, :only=>[:show]
   
   before_filter :send_cache_headers, :only=>[:show]
+  before_filter :own_page, :only=>[:create, :update]
   
   
      def parse_textile
@@ -17,6 +18,8 @@ class PagesController < ResourceController::Base
   
   
   def go_to_title
+    response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
+    
     unless params[:page].blank?
       unless params[:page][:title].blank?
         page = Page.find_by_title(params[:page][:title])
@@ -62,7 +65,7 @@ class PagesController < ResourceController::Base
   show.wants.json {render :json=>@page}
   
   def send_cache_headers
-    #response.headers['Cache-Control'] = 'public, max-age=3600'
+    response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
   end
   
   def redirect_to_alias
@@ -77,6 +80,13 @@ class PagesController < ResourceController::Base
   private
     def object
       @object ||= end_of_association_chain.find_by_slug(param)
+    end
+    
+    def own_page
+      unless params[:page].blank?
+        
+        params[:page][:user_id] = current_user.id
+      end
     end
   
 end

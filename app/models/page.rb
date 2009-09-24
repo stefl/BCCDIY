@@ -8,6 +8,8 @@ class Page < ActiveRecord::Base
   acts_as_solr :fields=>["title","content"]
   acts_as_tree :order => "title"
   acts_as_versioned
+  belongs_to :user
+  
   self.non_versioned_columns << 'url' << 'page_source' << 'breadcrumb' << 'parent_url' << 'created_at' << 'updated_at'  
   #default_scope :conditions => 'pages.alias = false'
 

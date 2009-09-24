@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
   
   def to_param
-    id.to_s # permalink || login
+    permalink || login
   end
 
   def openid_url=(value)

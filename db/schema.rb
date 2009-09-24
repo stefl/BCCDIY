@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090922185924) do
+ActiveRecord::Schema.define(:version => 20090924072327) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20090922185924) do
     t.boolean "alias",       :default => false
     t.string  "slug"
     t.boolean "is_textile",  :default => false
+    t.integer "user_id",     :default => 1
   end
 
   add_index "page_versions", ["page_id"], :name => "index_page_versions_on_page_id"
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20090922185924) do
     t.string   "slug"
     t.integer  "version"
     t.boolean  "is_textile",  :default => false
+    t.integer  "user_id",     :default => 1
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
@@ -149,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20090922185924) do
     t.string   "bio"
     t.string   "display_name"
     t.string   "permalink"
+    t.string   "twitter"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

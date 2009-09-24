@@ -1,5 +1,5 @@
 #quickly_find_near_you
-  - form_for Ward.new, :url=>{:controller=>'wards', :action=>'go'} do |page|
+  - form_for Ward.new, :url=>{:controller=>'wards', :action=>'go'}, :method=>:get do |page|
     Show me everything about the
   
     = page.text_field :name, :autocomplete =>"off", :value=>'B5 8AB', :onfocus=>'clearText(this);'

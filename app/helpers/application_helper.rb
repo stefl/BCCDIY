@@ -3,11 +3,15 @@ require 'md5'
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def page_title
-    page_title = @page_title
+    if(page_title)
+      page_title = @page_title
     
-    unless @is_home
-      page_title = page_title + " | Birmingham City Council | BCC, UK on BCCDIY"
+      unless @is_home
+        page_title = page_title + " | Birmingham City Council | BCC, UK on BCCDIY"
       
+      else
+        page_title = "Birmingham City Council DIY | A community-generated city council website | BCC, UK on BCCDIY "
+      end
     else
       page_title = "Birmingham City Council DIY | A community-generated city council website | BCC, UK on BCCDIY "
     end

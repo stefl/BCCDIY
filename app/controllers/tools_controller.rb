@@ -1,2 +1,2 @@
-class ToolsController <  ResourceController
+class ToolsController < ResourceController::Base
 end

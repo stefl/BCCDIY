@@ -137,13 +137,13 @@
         = @content_for_layout
 
 
-      #recommended_links
-        - footer = Page.find_by_slug("footer")
-        - unless footer.blank?
-          = textilize footer.content
+
           
       #footer
-      
+        #recommended_links
+          - footer = Page.find_by_slug("footer")
+          - unless footer.blank?
+            = textilize footer.content
 
         #about_this_site
           %p.quiet

@@ -2,4 +2,3 @@ giraffesoft-resource_controller --version '~> 0.6.1' --source http://gems.github
 anemone
 twitter
 haml --version '~> 2.2.5'
-acts_as_paranoid

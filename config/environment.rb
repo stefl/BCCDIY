@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "twitter"
   config.gem 'giraffesoft-resource_controller', :version => '~> 0.6.1', :lib => 'resource_controller', :source => 'http://gems.github.com'
-  config.gem "acts_as_paranoid"
+  #config.gem "acts_as_paranoid"
   
   
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -45,4 +45,4 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-require 'acts_as_paranoid'
+#require 'acts_as_paranoid'

@@ -20,6 +20,8 @@ class WardsController < ResourceController::Base
         
       unless ward.blank?
         cookies[:postcode] = params[:ward][:name].gsub(' ', '')
+        cookies[:ward_id] = ward.id
+        
         redirect_to constituency_ward_path(ward.constituency,ward)
         
       else
@@ -70,6 +72,26 @@ class WardsController < ResourceController::Base
     end
   end
   
+  def plings
+    @ward = Ward.find_by_permalink(params[:id])
+    source = "http://feeds.plings.net/rss.activity.php/6/postcode/#{cookies[:postcode]}"
+    feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
+    unless feed.blank?
+      unless feed.items.blank?
+        render :update do |page|
+          page.replace_html 'recent_plings', "<ul>" + render(:partial=>'shared/rss_item', :collection=>feed.items) + "</ul>"
+          page.visual_effect :highlight, 'recent_plings'
+          page << 'stop_loading_plings();'
+        end
+      else
+        render :text=>""
+      end
+    
+    else
+      render :text=>""
+    end
+  end
+  
   
   show.wants.html { 
     
@@ -85,9 +107,22 @@ class WardsController < ResourceController::Base
     else
       @fix_my_street = fix_my_street_feed.items
     end
+    
+    
         
     
     unless cookies[:postcode].blank?
+      
+      source = "http://feeds.plings.net/rss.activity.php/6/postcode/#{cookies[:postcode]}"
+      
+      
+      plings_feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])
+      if plings_feed.blank?
+        Delayed::Job.enqueue DailyFeed.create(:url=>source)
+        @plings = ''
+      else
+        @plings = plings_feed.items
+      end
       
       source = "http://www.planningalerts.com/api.php?postcode=#{cookies[:postcode]}&area_size=m"
       

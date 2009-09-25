@@ -2,4 +2,7 @@
 - unless rss_item.blank?
   %li
     %b.event_title
-      = link_to rss_item.title.slice!(/(.*),/).chomp(','), rss_item.link
+      - begin
+        - unless rss_item.title.blank?
+          = link_to rss_item.title.slice!(/(.*),/).chomp(','), rss_item.link
+      - rescue

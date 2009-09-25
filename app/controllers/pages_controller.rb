@@ -68,6 +68,10 @@ class PagesController < ResourceController::Base
   show.wants.xml {render :xml=>@page}
   show.wants.json {render :json=>@page}
   
+  edit.wants.html {
+    render
+  }
+  
   def send_cache_headers
     response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
   end

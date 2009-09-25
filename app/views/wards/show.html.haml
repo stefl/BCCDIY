@@ -1,5 +1,8 @@
 - @page_title = @ward.name
 
+#google_map
+  #map_canvas{:style=>"width: 500px; height: 500px"}
+  
 
 #councillors
 
@@ -37,6 +40,17 @@
               = link_to member.email, "mailto:#{member.email}"
 
 
+#plings
+  %h2
+    Things to do
+  %p.quiet
+    (via 
+    = link_to 'Plings', 'http://plings.info'
+    )
+  #recent_plings
+    %ul
+      /= render :partial=> 'shared/rss_item_long', :collection=>@plings
+
 #fix_my_street
   %h2
     Street problems 
@@ -67,6 +81,54 @@
 
 - content_for :scripts do
 
+  = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
+  = javascript_include_tag "http://www.google.com/uds/api?file=uds.js&v=1.0&key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
+  
+  %script{:type=>"text/javascript"}
+    :plain
+  
+      function usePointFromPostcode(postcode, callbackFunction) {
+
+        localSearch.setSearchCompleteCallback(null,
+          function() {
+
+            if (localSearch.results[0]) {    
+              var resultLat = localSearch.results[0].lat;
+              var resultLng = localSearch.results[0].lng;
+              var point = new GLatLng(resultLat,resultLng);
+              callbackFunction(point);
+            }else{
+              alert("Postcode not found!");
+            }
+          });  
+
+        localSearch.execute(postcode + ", UK");
+      }
+    
+      function initialize() {
+        var localSearch = new GlocalSearch();
+      
+        var map;
+        if (GBrowserIsCompatible()) {
+          var mapOptions = {
+            googleBarOptions : {
+              style : "new"
+            }
+          }
+          map = new GMap2(document.getElementById("map_canvas"), mapOptions);
+          map.setCenter(new GLatLng(33.956461,-118.396225), 13);
+          map.setUIToDefault();
+          map.enableGoogleBar();
+        
+    ='usePointFromPostcode("' + cookies[:postcode].gsub(' ', '') + '");'
+  
+    :plain
+        }
+      }
+    
+    
+    $(document).ready(function(){initialize()});
+    
   - if @fix_my_street.blank?
 
     :javascript
@@ -78,6 +140,17 @@
         fix_my_street = true;
       }
     = periodically_call_remote(:url=>fix_my_street_constituency_ward_path(@ward.constituency, @ward), :frequency => 0.5, :condition => "fix_my_street == false")
+    
+  - if @plings.blank?
+    :javascript
+
+      var plings = false;
+
+      function stop_loading_plings()
+      {
+        plings = true;
+      }
+    = periodically_call_remote(:url=>plings_constituency_ward_path(@ward.constituency, @ward), :frequency => 0.5, :condition => "plings == false")
   
   - if @planning_alerts.blank?
     

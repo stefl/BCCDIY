@@ -5,6 +5,7 @@
     %link{:rel=>"alternate", :type=>"application/rss+xml", :href=>"http://birminghamnewsroom.com/feed", :title=>"News feed from Birmingham Newsroom"}
     
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
+    %meta{:name=>"verify-v1", :content=>"D0qo6f8ZVcAd1GCfupe5A5MM8OEIxUbMBCsCvCBa92k="}
 
     %title= page_title
     -if @meta
@@ -53,11 +54,18 @@
         #jump
           = link_to "Jump to page contents", "#page_contents", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
           = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
-        - if 1 == 0
-          #resize
-            = link_to_function "[.]", "textResize(1);"
-            = link_to_function "[a]", "textResize(2);"
-            = link_to_function "[A]", "textResize(3);"
+        #my_near_me
+          - if cookies[:postcode]
+            - if cookies[:ward_id]
+              - ward = Ward.find_by_id(cookies[:ward_id])
+              - unless ward.blank?
+                = link_to ward.name, ward_path(ward)
+              
+            Based on postcode: 
+            = cookies[:postcode][0..2]
+            XXX
+            |
+            = link_to "Change", "/#postcode"
       
       #user_menu 
         %ul
@@ -169,3 +177,13 @@
                 = link_to 'JSON', request.request_uri + '.json'
     = render :partial=>"shared/scripts"
     = yield :scripts
+    :plain
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-10824918-1");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>

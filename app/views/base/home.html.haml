@@ -11,6 +11,11 @@
     %p
       Please contribute by fixing and improving the pages that you see here.
         
+  #tools
+    %h3
+      = link_to "Useful tools", tools_path
+    %ul#tool_items
+      = render :partial=>"tools/tool", :collection=>@tools
 
 #quick_find
   = render :partial=>"base/quick_find"

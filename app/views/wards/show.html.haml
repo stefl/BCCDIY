@@ -1,7 +1,7 @@
 - @page_title = @ward.name
 
 #google_map
-  #map_canvas{:style=>"width: 500px; height: 500px"}
+  #map_canvas{:style=>"width: 640px; height: 320px"}
   
 
 #councillors
@@ -83,32 +83,38 @@
 
   = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
   = javascript_include_tag "http://www.google.com/uds/api?file=uds.js&v=1.0&key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
-  
+  = javascript_include_tag "http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js"
   %script{:type=>"text/javascript"}
     :plain
   
-      function usePointFromPostcode(postcode, callbackFunction) {
-
-        localSearch.setSearchCompleteCallback(null,
-          function() {
-
-            if (localSearch.results[0]) {    
-              var resultLat = localSearch.results[0].lat;
-              var resultLng = localSearch.results[0].lng;
-              var point = new GLatLng(resultLat,resultLng);
-              callbackFunction(point);
-            }else{
-              alert("Postcode not found!");
-            }
-          });  
-
-        localSearch.execute(postcode + ", UK");
-      }
+      
+      
     
       function initialize() {
-        var localSearch = new GlocalSearch();
-      
-        var map;
+        
+        function usePointFromPostcode(postcode, callbackFunction) {
+
+          var localSearch = new GlocalSearch();
+          
+
+          localSearch.setSearchCompleteCallback(null,
+            function() {
+
+              if (localSearch.results[0]) {    
+                var resultLat = localSearch.results[0].lat;
+                var resultLng = localSearch.results[0].lng;
+                var point = new GLatLng(resultLat,resultLng);
+
+                map.setCenter(point, 13);
+
+              }else{
+                alert("Postcode not found!");
+              }
+            });  
+
+          localSearch.execute(postcode + ", UK");
+        }
+        
         if (GBrowserIsCompatible()) {
           var mapOptions = {
             googleBarOptions : {
@@ -116,10 +122,10 @@
             }
           }
           map = new GMap2(document.getElementById("map_canvas"), mapOptions);
-          map.setCenter(new GLatLng(33.956461,-118.396225), 13);
           map.setUIToDefault();
           map.enableGoogleBar();
-        
+          
+          
     ='usePointFromPostcode("' + cookies[:postcode].gsub(' ', '') + '");'
   
     :plain

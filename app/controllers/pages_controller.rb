@@ -21,7 +21,6 @@ class PagesController < ResourceController::Base
      end
 
   
-  
   def go_to_title
     response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tools
+
   map.open_id_complete '/session', 
     :controller => "sessions", :action => "create",
     :requirements => { :method => :get }
@@ -43,7 +45,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/auto_complete_for_page_title', :controller=>'base', :action=>'auto_complete_for_page_title'
   map.connect '/auto_complete_for_ward_name', :controller=>'base', :action=>'auto_complete_for_ward_name'
   
-  map.resources :pages, :member=> {:hide => :post, :move=>:get}, :collection => {:auto_complete_for_page_title => :any, :go_to_title => :any, :parse_textile => :post}
+  map.resources :pages, :member=> {:hide => :post, :move=>:get}, :collection => {:auto_complete_for_page_title => :any, :go_to_title => :any, :parse_textile => :post} do |page|
+    page.resources :page_versions
+  end
+  
+  map.resources :page_versions
 
   map.connect '/:slug', :controller=>'page', :action=>'show'
   # The priority is based upon order of creation: first created -> highest priority.

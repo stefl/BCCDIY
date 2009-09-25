@@ -455,7 +455,7 @@ a:hover { color: red; }
 .vcard .fn { font-weight: bold; }
 .vcard .country-name { display: none; }
 
-#the_event { background-color: #dfd; padding: 1em; font-weight: bold; }
+#the_event { background-color: #eee; padding: 1em; font-weight: bold; }
 
 #user_menu { display: inline; float: left; margin-right: 0; width: 950px; text-align: right; }
 * html #user_menu { overflow-x: hidden; }

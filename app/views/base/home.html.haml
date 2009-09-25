@@ -21,10 +21,13 @@
 #hack_day
   #recent_tweets   
     %h3
-      Recent 
-      = link_to "Tweets", "http://search.twitter.com/search?q=bccdiy"
+      On Twitter
       %span.very_quiet
-        (#bccdiy)
+        (
+        = link_to "#bccdiy", "http://search.twitter.com/search?q=bccdiy"
+        |
+        = link_to "Chat", "http://roomatic.com/bccdiy"
+        )
     #twitter
       .monitter{:title=>"bccdiy", :id=>"tweets"}
       - content_for :scripts do

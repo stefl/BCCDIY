@@ -142,7 +142,7 @@
         #recommended_links
           - footer = Page.find_by_slug("footer")
           - unless footer.blank?
-            = textilize @page.content
+            = textilize footer.content
         #about_this_site
           %p.quiet
             This is an unofficial website, aimed at providing a useful service to people in Birmingham based on the contents of the

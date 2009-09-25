@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
   #acts_as_paranoid
   
   
-  self.non_versioned_columns << 'url' << 'page_source' << 'breadcrumb' << 'parent_url' << 'created_at' << 'updated_at'  
+  self.non_versioned_columns << 'url' << 'page_source' << 'breadcrumb' << 'parent_url' << 'created_at' << 'updated_at' << 'favorite'
   #default_scope :conditions => 'pages.alias = false'
 
   named_scope :aliased, :conditions => 'pages.alias = true'

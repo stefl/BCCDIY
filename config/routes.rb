@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :members
 
   map.resources :constituencies do |c|
-    c.resources :wards, :member => {:fix_my_street => :post, :planning_alerts => :post}
+    c.resources :wards, :member => {:fix_my_street => :post, :planning_alerts => :post, :plings => :post}
   end
 
   #also provide direct link to wards

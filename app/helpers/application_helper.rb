@@ -3,7 +3,7 @@ require 'md5'
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def page_title
-    if(page_title)
+    unless page_title.blank?
       page_title = @page_title
     
       unless @is_home

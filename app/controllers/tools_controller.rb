@@ -1,2 +1,2 @@
-class ToolsController < ApplicationController
+class ToolsController <  ResourceController
 end

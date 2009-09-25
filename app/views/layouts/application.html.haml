@@ -110,13 +110,14 @@
             
         
           = render :partial=>"base/quick_find"
-              
-      #navigation
-        %a{:name=>"main_navigation"}
-        = render :partial => "shared/navigation"
+      
+      - if @hide_navigation.blank?     
+        #navigation
+          %a{:name=>"main_navigation"}
+          = render :partial => "shared/navigation"
         
         
-        = yield :left_hand
+          = yield :left_hand
         
       #content
         %a{:name=>"page_contents"}

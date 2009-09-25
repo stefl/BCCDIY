@@ -501,6 +501,8 @@ a:hover { color: red; }
 #navigation ul li.active { background-color: #ffd; }
 #navigation ul li.active a { color: black; font-weight: bold; }
 
+#tool_frame { width: 700px; height: 500px; }
+
 #content { display: inline; float: left; margin-right: 0; width: 630px; font-size: 125% !important; }
 * html #content { overflow-x: hidden; }
 #content #messages { display: inline; float: left; margin-right: 0; width: 630px; }

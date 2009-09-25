@@ -20,7 +20,7 @@ class BaseController < ApplicationController
     #response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     
     @page_title = "Birmingham City Council - DIY Community Version"
-    
+    @featured_pages = Page.find(:all, :conditions=>"pages.favorite = true", :order=>"pages.title asc")
     events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :conditions=>["created_at > ?", Date.yesterday])
     if events_feed.blank?
       Delayed::Job.enqueue DailyFeed.create(:url=>"http://allbrum.co.uk/today.rss")

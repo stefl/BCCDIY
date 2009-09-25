@@ -11,6 +11,7 @@ class Page < ActiveRecord::Base
   belongs_to :user
   #acts_as_paranoid
   
+  
   self.non_versioned_columns << 'url' << 'page_source' << 'breadcrumb' << 'parent_url' << 'created_at' << 'updated_at'  
   #default_scope :conditions => 'pages.alias = false'
 

@@ -184,6 +184,10 @@ a:hover
     +append(2)
   #fix_my_street
     +column(7,true)
+  #recent_plings
+    +column(7,true)
+    :height 16em
+    :overflow auto
 
   
 #news_and_events
@@ -203,15 +207,31 @@ a:hover
       :margin-bottom 0.5em
 #recommended_links
   +column(24,true)
+  :background-color #f6f6f6
   ul
-    +column(3)
-    +append(1)
+    :display block
+    :text-indent 0
+    :list-style-type none
+    :font-weight bold
+    li
+      +column(4)
+      :padding 1em
+      :list-style-type none
+      ul
+        :font-weight normal
+        li
+          :list-style-type bullet
+          :padding 0
+      
   
 
 #footer
   +column(24,true)
+  :background-color #f6f6f6
   :margin-top 4.5em
   :margin-bottom 1.5em
+  #about_this_site
+    :padding 1.5em
   ul#footer_navigation
     :list-style-type none
     :text-indent 0

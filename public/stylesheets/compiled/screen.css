@@ -520,6 +520,8 @@ a:hover { color: red; }
 * html #content #councillors { overflow-x: hidden; }
 #content #fix_my_street { display: inline; float: left; margin-right: 0; width: 270px; }
 * html #content #fix_my_street { overflow-x: hidden; }
+#content #recent_plings { display: inline; float: left; margin-right: 0; width: 270px; height: 16em; overflow: auto; }
+* html #content #recent_plings { overflow-x: hidden; }
 
 #news_and_events { display: inline; float: left; margin-right: 0; width: 630px; margin-top: 1.5em; }
 * html #news_and_events { overflow-x: hidden; }
@@ -530,13 +532,17 @@ a:hover { color: red; }
 #news_and_events ul { text-indent: 0; margin: 0; padding: 0; }
 #news_and_events ul li { list-style-type: none; margin-bottom: 0.5em; }
 
-#recommended_links { display: inline; float: left; margin-right: 0; width: 950px; }
+#recommended_links { display: inline; float: left; margin-right: 0; width: 950px; background-color: #f6f6f6; }
 * html #recommended_links { overflow-x: hidden; }
-#recommended_links ul { display: inline; float: left; margin-right: 10px; width: 110px; padding-right: 40px; }
-* html #recommended_links ul { overflow-x: hidden; }
+#recommended_links ul { display: block; text-indent: 0; list-style-type: none; font-weight: bold; }
+#recommended_links ul li { display: inline; float: left; margin-right: 10px; width: 150px; padding: 1em; list-style-type: none; }
+* html #recommended_links ul li { overflow-x: hidden; }
+#recommended_links ul li ul { font-weight: normal; }
+#recommended_links ul li ul li { list-style-type: bullet; padding: 0; }
 
-#footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
+#footer { display: inline; float: left; margin-right: 0; width: 950px; background-color: #f6f6f6; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }
+#footer #about_this_site { padding: 1.5em; }
 #footer ul#footer_navigation { list-style-type: none; text-indent: 0; margin: 0; margin-right: 1.5em; padding: 0; text-indent: 0; }
 #footer ul#footer_navigation li { display: inline; margin: 0; margin-right: 1.5em; padding: 0; text-indent: 0; }
 

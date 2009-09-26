@@ -1,9 +1,21 @@
 - @page_title = @ward.name
 
+%h2
+  Search your local area
 #google_map
   #map_canvas{:style=>"width: 640px; height: 320px"}
   
-
+#plings
+  %h2
+    Things to do
+  %p.quiet
+    (via 
+    = link_to 'Plings', 'http://plings.info'
+    )
+  #recent_plings
+    %ul
+      /= render :partial=> 'shared/rss_item_long', :collection=>@plings
+      
 #councillors
 
   %h2
@@ -40,16 +52,6 @@
               = link_to member.email, "mailto:#{member.email}"
 
 
-#plings
-  %h2
-    Things to do
-  %p.quiet
-    (via 
-    = link_to 'Plings', 'http://plings.info'
-    )
-  #recent_plings
-    %ul
-      /= render :partial=> 'shared/rss_item_long', :collection=>@plings
 
 #fix_my_street
   %h2

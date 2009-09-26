@@ -103,7 +103,7 @@ protected
     elsif params[:id] == current_user.id
       current_user
     else
-      User.find params[:id]
+      User.find_by_login params[:id]
     end or raise ActiveRecord::RecordNotFound
   end
 

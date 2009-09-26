@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  
   helper :all
   helper_method :current_page
   before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]

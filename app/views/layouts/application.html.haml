@@ -47,9 +47,8 @@
     
       #the_event
         Want to help?  
-        = link_to "Come to the free Hack day this Friday", "http://bccdiy.eventbrite.com/"
-        or 
-        = link_to "Contribute on the WIKI", "http://bccdiy.pbworks.com/"
+        = link_to "Edit a page", pages_path
+        = link_to "Discuss and contribute on the WIKI", "http://bccdiy.pbworks.com/"
       #skip
         #jump
           = link_to "Jump to page contents", "#page_contents", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
@@ -171,8 +170,7 @@
             %a{:href=>"http://steflewandowski.com", :title=>"Built by Stef"}
               ="Built by Stef and friends"
               
-          - if @rss_title && @rss_url
-            %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
+
       
       
         - unless @ignore_extra_formats
@@ -183,6 +181,8 @@
                 = link_to 'XML', request.request_uri + '.xml'
               %li
                 = link_to 'JSON', request.request_uri + '.json'
+              - if @rss_title && @rss_url
+                %li#rss= link_to "RSS", @rss_url, {:title => @rss_title}
     = render :partial=>"shared/scripts"
     = yield :scripts
     :plain
@@ -195,3 +195,22 @@
       var pageTracker = _gat._getTracker("UA-10824918-1");
       pageTracker._trackPageview();
       } catch(err) {}</script>
+      
+      <script type="text/javascript">
+        var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+        document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+      </script>
+      <script type="text/javascript">
+      UserVoice.Tab.show({ 
+        /* required */
+        key: 'bccdiy',
+        host: 'bccdiy.uservoice.com', 
+        forum: '29880', 
+        /* optional */
+        alignment: 'left',
+        background_color:'#f00', 
+        text_color: 'white',
+        hover_color: '#06C',
+        lang: 'en'
+      })
+      </script>

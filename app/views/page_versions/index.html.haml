@@ -1,0 +1,11 @@
+- @page_title = "Page revisions"
+- @rss_url = formatted_page_versions_url(:rss)
+- @rss_title = "Page Revisions"
+%p
+  The following is a list of pages that have been edited on this site by our community of users.
+  
+#page_versions
+  %ul
+    = render :partial=>"page_version", :collection => @page_versions
+
+= will_paginate @page_versions

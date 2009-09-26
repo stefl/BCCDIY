@@ -15,7 +15,8 @@
   
   #recently_updated
     %h3
-      Recently edited pages
+      Recently 
+      = link_to "edited pages", page_versions_path
     %span.quiet
       
       = @edit_count 

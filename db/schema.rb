@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090925182802) do
+ActiveRecord::Schema.define(:version => 20090926175546) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -81,19 +81,20 @@ ActiveRecord::Schema.define(:version => 20090925182802) do
   end
 
   create_table "page_versions", :force => true do |t|
-    t.integer "page_id"
-    t.integer "version"
-    t.string  "title"
-    t.string  "keywords"
-    t.string  "description"
-    t.string  "categories"
-    t.text    "content"
-    t.integer "parent_id"
-    t.integer "alias_id"
-    t.boolean "alias",       :default => false
-    t.string  "slug"
-    t.boolean "is_textile",  :default => false
-    t.integer "user_id",     :default => 1
+    t.integer  "page_id"
+    t.integer  "version"
+    t.string   "title"
+    t.string   "keywords"
+    t.string   "description"
+    t.string   "categories"
+    t.text     "content"
+    t.integer  "parent_id"
+    t.integer  "alias_id"
+    t.boolean  "alias",       :default => false
+    t.string   "slug"
+    t.boolean  "is_textile",  :default => false
+    t.integer  "user_id",     :default => 1
+    t.datetime "updated_at",  :default => '2009-09-26 19:01:37'
   end
 
   add_index "page_versions", ["page_id"], :name => "index_page_versions_on_page_id"

@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "twitter"
   config.gem 'giraffesoft-resource_controller', :version => '~> 0.6.1', :lib => 'resource_controller', :source => 'http://gems.github.com'
   #config.gem "acts_as_paranoid"
-  
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -46,3 +46,4 @@ Rails::Initializer.run do |config|
 end
 
 #require 'acts_as_paranoid'
+require 'will_paginate'

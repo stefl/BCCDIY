@@ -2,3 +2,4 @@ giraffesoft-resource_controller --version '~> 0.6.1' --source http://gems.github
 anemone
 twitter
 haml --version '~> 2.2.5'
+mislav-will_paginate

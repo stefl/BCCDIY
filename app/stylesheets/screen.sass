@@ -189,6 +189,12 @@ a:hover
     :height 16em
     :overflow auto
 
+#home
+  #featured_pages
+    +column(7)
+    +append(2)
+  #useful_tools
+    +column(7,true)
   
 #news_and_events
   +column(16,true)
@@ -282,6 +288,19 @@ a:hover
       li
         :list-style-type none
         :margin-bottom 0.5em
+
+li
+  a
+    :padding 0.1em
+    :padding-left 0
+    
+.featured
+  ul
+    li
+      a
+        :display block
+        :border-bottom 1px dotted #ddd
+        :line-height 1.5em
 
 .clear
   :clear both

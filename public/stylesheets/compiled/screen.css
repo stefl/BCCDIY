@@ -523,6 +523,11 @@ a:hover { color: red; }
 #content #recent_plings { display: inline; float: left; margin-right: 0; width: 270px; height: 16em; overflow: auto; }
 * html #content #recent_plings { overflow-x: hidden; }
 
+#home #featured_pages { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 80px; }
+* html #home #featured_pages { overflow-x: hidden; }
+#home #useful_tools { display: inline; float: left; margin-right: 0; width: 270px; }
+* html #home #useful_tools { overflow-x: hidden; }
+
 #news_and_events { display: inline; float: left; margin-right: 0; width: 630px; margin-top: 1.5em; }
 * html #news_and_events { overflow-x: hidden; }
 #news_and_events #events { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 80px; }
@@ -558,5 +563,9 @@ a:hover { color: red; }
 * html #hack_day #recently_updated { overflow-x: hidden; }
 #hack_day #recently_updated ul { text-indent: 0; margin: 0; padding: 0; }
 #hack_day #recently_updated ul li { list-style-type: none; margin-bottom: 0.5em; }
+
+li a { padding: 0.1em; padding-left: 0; }
+
+.featured ul li a { display: block; border-bottom: 1px dotted #ddd; line-height: 1.5em; }
 
 .clear { clear: both; }

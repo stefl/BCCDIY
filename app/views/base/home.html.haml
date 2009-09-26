@@ -7,28 +7,24 @@
 - content_for :left_hand do
   #edit_this_site
     %h3
-      Anyone can edit this site
+      Improve this site
+      
     %p
-      Please contribute by fixing and improving the pages that you see here.
-        
-  #tools
-    %h3
-      = link_to "Useful tools", tools_path
-    %ul#tool_items
-      = render :partial=>"tools/tool", :collection=>@tools
+      Please contribute by fixing and improving the pages that you see here.      
 
-#quick_find
-  = render :partial=>"base/quick_find"
-
-  = render :partial=>"base/quick_near_you"
   
-#featured_pages
-  %h3
-    Useful pages
-  %ul
-    = render :partial=>"pages/featured_page", :collection=> @featured_pages
-
-#hack_day
+  #recently_updated
+    %h3
+      Recently edited pages
+    %span.quiet
+      
+      = @edit_count 
+      edits so far
+      
+    #recently_updated_pages
+      %ul
+        = render :partial=>"pages/page_version", :collection=>@recently_updated_pages 
+      %p.clear
   #recent_tweets   
     %h3
       On Twitter
@@ -42,36 +38,53 @@
       .monitter{:title=>"bccdiy", :id=>"tweets"}
       - content_for :scripts do
         = javascript_include_tag "monitter"
-      .clear
-  #recently_updated
+      .clear     
+
+#home
+  #quick_find
+    = render :partial=>"base/quick_find"
+
+    = render :partial=>"base/quick_near_you"
+  
+  #featured_pages.featured
     %h3
-      Recently edited pages
-    #recently_updated_pages
-      %ul
-        = render :partial=>"pages/page_version", :collection=>@recently_updated_pages
+      Useful 
+      = link_to "pages", pages_path
+    %ul
+      = render :partial=>"pages/featured_page", :collection=> @featured_pages
+    
+  #useful_tools.featured
+    %h3
+      Useful
+      = link_to "tools", tools_path
+    %ul#tool_items
+      = render :partial=>"tools/tool", :collection=>@tools
 
   
-#news_and_events  
-  #events
-    %h3
-      Events today
+  
 
-    %ul
-      = render :partial=> 'shared/rss_item_event', :collection=>@events_today
+  
+  #news_and_events  
+    #events
+      %h3
+        Events today
+
+      %ul
+        = render :partial=> 'shared/rss_item_event', :collection=>@events_today
         
-    %p.quiet
-      (via
-      = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
-      )
+      %p.quiet
+        (via
+        = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
+        )
     
-  #news
-    %h3
-      News today
+    #news
+      %h3
+        News today
 
-    %ul
-      = render :partial=> 'shared/rss_item_news', :collection=>@news_today
+      %ul
+        = render :partial=> 'shared/rss_item_news', :collection=>@news_today
 
-    %p.quiet
-      (via
-      = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
-      )
+      %p.quiet
+        (via
+        = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
+        )

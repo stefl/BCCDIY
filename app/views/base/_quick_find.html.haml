@@ -1,7 +1,7 @@
 #quickly_find_something
 
   - form_for Page.new, :url=>{:controller=>'pages', :action=>'go_to_title'}, :method=>:get do |page|
-    Take me to the:
+    Take me to the
     = page.text_field :title, :autocomplete =>"off", :value=>'Council Tax', :onfocus=>'clearText(this);'
     = submit_tag 'page', :class=>'submit'
 

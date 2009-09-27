@@ -457,17 +457,16 @@ a:hover { color: red; }
 
 #the_event { background-color: #eee; padding: 1em; font-weight: bold; }
 
-#user_menu { display: inline; float: left; margin-right: 0; width: 950px; text-align: right; }
-* html #user_menu { overflow-x: hidden; }
-#user_menu ul, #user_menu li { list-style-type: none; display: inline-block; }
-
-#skip { margin-bottom: 1.5em; background-color: #fff; display: inline; float: left; margin-right: 0; width: 950px; }
-* html #skip { overflow-x: hidden; }
-#skip a { color: #666; }
-#skip #jump { background-color: #fff; display: inline; float: left; margin-right: 10px; width: 470px; padding: 0.5em; }
-* html #skip #jump { overflow-x: hidden; }
-#skip #resize { background-color: #fff; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; padding: 0.5em; }
-* html #skip #resize { overflow-x: hidden; }
+#top_bar { margin-bottom: 1.5em; background-color: #fff; display: inline; float: left; margin-right: 0; width: 950px; }
+* html #top_bar { overflow-x: hidden; }
+#top_bar a { color: #666; }
+#top_bar #jump { background-color: #fff; display: inline; float: left; margin-right: 10px; width: 470px; }
+* html #top_bar #jump { overflow-x: hidden; }
+#top_bar #resize { background-color: #fff; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; }
+* html #top_bar #resize { overflow-x: hidden; }
+#top_bar #user_menu { display: inline; float: left; margin-right: 0; width: 430px; text-align: right; }
+* html #top_bar #user_menu { overflow-x: hidden; }
+#top_bar #user_menu ul, #top_bar #user_menu li { list-style-type: none; display: inline-block; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }

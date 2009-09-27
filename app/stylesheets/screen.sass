@@ -49,14 +49,8 @@ a:hover
   :padding 1em
   :font-weight bold
 
-#user_menu
-  +column(24,true)
 
-  :text-align right
-  ul, li
-    :list-style-type none
-    :display inline-block
-#skip
+#top_bar
   :margin-bottom 1.5em
   :background-color #fff
   +column(24,true)
@@ -66,13 +60,18 @@ a:hover
     :background-color #fff
   
     +column(12)
-    :padding 0.5em
   #resize
     :background-color #fff
     
     +column(11,true)
     :text-align right
-    :padding 0.5em
+  #user_menu
+    +column(11,true)
+
+    :text-align right
+    ul, li
+      :list-style-type none
+      :display inline-block
 #header
   +column(24,true)
   :padding-top 1.5em

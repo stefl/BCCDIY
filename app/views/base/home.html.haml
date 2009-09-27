@@ -4,24 +4,82 @@
 - @show_intro = true 
 - @home_page = true
 
-- content_for :left_hand do
+   
+
+#home_upper
+
+  #upper_left
+    #quick_find
+      = render :partial=>"base/quick_find"
+
+      = render :partial=>"base/quick_near_you"
+  
+    #featured_pages.featured
+      %h3
+        Useful 
+        = link_to "pages", pages_path
+      %ul
+        = render :partial=>"pages/featured_page", :collection=> @featured_pages
+    
+    #useful_tools.featured
+      %h3
+        Useful
+        = link_to "tools", tools_path
+      %ul#tool_items
+        = render :partial=>"tools/tool", :collection=>@tools
+
+  
+  
+
+    
+  #upper_right
+    #flickr_pick
+      - unless @flickr_today.blank?
+        = render :partial=>"shared/flickr_image", :object=>@flickr_today.sort_by{ rand }[0]
+        
+    #news_and_events  
+      #events
+        %h3
+          Events today
+
+        %ul
+          = render :partial=> 'shared/rss_item_event', :collection=>@events_today
+        
+        %p.quiet
+          (via
+          = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
+          )
+    
+      #news
+        %h3
+          News today
+
+        %ul
+          = render :partial=> 'shared/rss_item_news', :collection=>@news_today
+
+        %p.quiet
+          (via
+          = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
+          )
+              
+
+#home_lower
   #edit_this_site
     %h3
       Improve this site
-      
-    %p
-      Please contribute by fixing and improving the pages that you see here.      
 
-  
+    %p
+      Please contribute by fixing and improving the pages that you see here.
+      
   #recently_updated
     %h3
       Recently 
       = link_to "edited pages", page_versions_path
     %span.quiet
-      
+
       = @edit_count 
       edits so far
-      
+
     #recently_updated_pages
       %ul
         = render :partial=>"pages/page_version", :collection=>@recently_updated_pages 
@@ -39,53 +97,4 @@
       .monitter{:title=>"bccdiy", :id=>"tweets"}
       - content_for :scripts do
         = javascript_include_tag "monitter"
-      .clear     
-
-#home
-  #quick_find
-    = render :partial=>"base/quick_find"
-
-    = render :partial=>"base/quick_near_you"
-  
-  #featured_pages.featured
-    %h3
-      Useful 
-      = link_to "pages", pages_path
-    %ul
-      = render :partial=>"pages/featured_page", :collection=> @featured_pages
-    
-  #useful_tools.featured
-    %h3
-      Useful
-      = link_to "tools", tools_path
-    %ul#tool_items
-      = render :partial=>"tools/tool", :collection=>@tools
-
-  
-  
-
-  
-  #news_and_events  
-    #events
-      %h3
-        Events today
-
-      %ul
-        = render :partial=> 'shared/rss_item_event', :collection=>@events_today
-        
-      %p.quiet
-        (via
-        = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
-        )
-    
-    #news
-      %h3
-        News today
-
-      %ul
-        = render :partial=> 'shared/rss_item_news', :collection=>@news_today
-
-      %p.quiet
-        (via
-        = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
-        )
+      .clear

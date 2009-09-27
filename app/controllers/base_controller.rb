@@ -29,6 +29,16 @@ class BaseController < ApplicationController
       @events_today = events_feed.items
     end
     
+    
+    flickr_url = "http://www.degraeve.com/flickr-rss/rss.php?tags=bccdiypick&tagmode=all&sort=date-posted-desc&num=25"
+    flickr_feed = DailyFeed.find_by_url(flickr_url, :conditions=>["created_at > ?", Date.yesterday])
+    if flickr_feed.blank?
+      Delayed::Job.enqueue DailyFeed.create(:url=>flickr_url)
+      @flickr_today = ''
+    else
+      @flickr_today = flickr_feed.items
+    end
+    
     #TODO this means once per day at about midnight someone won't see an events feed
     @recently_updated_pages = PageVersion.find(:all, :limit=>10, :order=>"id desc")
     

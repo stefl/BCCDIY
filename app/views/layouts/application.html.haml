@@ -104,37 +104,54 @@
                   %span.beta
                     BETA
         
-            #breadcrumb
-              = render :partial => "shared/breadcrumb"
             
         
           = render :partial=>"base/quick_find"
       
-      - if @hide_navigation.blank?     
-        #navigation
-          %a{:name=>"main_navigation"}
-          = render :partial => "shared/navigation"
+      #main_menu
+        = render :partial=>"shared/tabs"
         
+      - unless @home_page
+        #breadcrumb
+          = render :partial => "shared/breadcrumb"
+      
+      - if @home_page
+        #home_content
         
-          = yield :left_hand
+          #messages
+            - %w(info notice error).each do |type|
+              - if flash[type.to_sym]
+                .warning.flash_message{:class => "#{type.to_s}"}
+                  %span= h(flash[type.to_sym])
+                  
+          = @content_for_layout
+      - else  
         
-      #content
-        %a{:name=>"page_contents"}
+        - if @hide_navigation.blank?     
+          #navigation
+            %a{:name=>"main_navigation"}
+            = render :partial => "shared/navigation"
+
+
+            = yield :left_hand
+      
+        #content
+          %a{:name=>"page_contents"}
         
-        #messages
-          - %w(info notice error).each do |type|
-            - if flash[type.to_sym]
-              .warning.flash_message{:class => "#{type.to_s}"}
-                %span= h(flash[type.to_sym])
+          #messages
+            - %w(info notice error).each do |type|
+              - if flash[type.to_sym]
+                .warning.flash_message{:class => "#{type.to_s}"}
+                  %span= h(flash[type.to_sym])
 
 
 
-        - if @ignore_page_title.blank?
-          %h1
-            = @page_title
-            = yield :edit_link
+          - if @ignore_page_title.blank?
+            %h1
+              = @page_title
+              = yield :edit_link
               
-        = @content_for_layout
+          = @content_for_layout
 
 
 

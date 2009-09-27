@@ -28,3 +28,8 @@
 
 <p><%= I18n.t 'txt.user_since', :default => 'User since {{date}}', :date => @user.created_at.to_date.to_s(:long) %></p>
 
+<h2>Page edits</h2>
+
+<ul>
+  <%= render :partial=>"page_versions/page_version", :collection=>@user.page_versions
+</ul>

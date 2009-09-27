@@ -91,10 +91,7 @@ a:hover
       a:hover, a:focus
         :color red
 
-    #breadcrumb
-      +column(17,true)
-      :padding-bottom 1.5em
-      :margin-bottom 1.5em
+    
   #intro_header
     +column(24)
     h1#logo
@@ -117,7 +114,26 @@ a:hover
     :margin-top -1.5em
     +column(7, true)
 
-  
+#main_menu
+  ul
+    +column(24,true)
+    :background-color #def
+    :margin 0
+    :text-indent 0
+    :font-size 150%
+    :list-style-type none
+    li
+      :list-style-type none
+      +column(3)
+      a
+        :display block
+        :padding 0.5em
+        
+#breadcrumb
+  +column(24,true)
+  :padding-bottom 1.5em
+  :margin-bottom 1.5em
+          
 #navigation
   +column(6)
   +append(2)
@@ -150,33 +166,7 @@ a:hover
     :border-bottom 4px solid #eee
     :font-size 200%
   
-  #quick_find
-    :padding 1.5em
-    :background-color #eeffee
-    :margin-top 1.5em
-    :margin-bottom 1.5em
-  #quickly_find_something, #quickly_find_near_you
-    :font-size 150%
-    input
-      :padding 0.25em
-
-      :font-size 100%
-      
-    #page_title
-      :width 11em
-      :color #999
-    #ward_name
-      :width 4em
-      :color #999
-      
-    
-    #page_title, #ward_name
-      :border 2px solid #666
-    #page_title:focus, #ward_name:focus
-      :border 2px solid black
-    .submit:hover
-      :background-color white
-      :cursor pointer
+  
   
   
   #councillors
@@ -189,21 +179,63 @@ a:hover
     :height 16em
     :overflow auto
 
-#home
+#home_content
+  +column(24,true)
+  :margin-top 1em
+  
+  #home_upper
+    +column(24,true)
+    #upper_left
+      +column(12)
+    #upper_right
+      +column(12,true)
+  #home_lower
+    +column(24,true)
+    
   #featured_pages
-    +column(7)
-    +append(2)
+    +column(6)
   #useful_tools
-    +column(7,true)
+    +column(6,true)
+  #quick_find
+    :padding 1.5em
+    :background-color #eeffee
+    :margin-bottom 1.5em
+  #quickly_find_something, #quickly_find_near_you
+    :font-size 150%
+    input
+      :padding 0.25em
+
+      :font-size 100%
+
+    #page_title
+      :width 11em
+      :color #999
+    #ward_name
+      :width 4em
+      :color #999
+
+
+    #page_title, #ward_name
+      :border 2px solid #666
+    #page_title:focus, #ward_name:focus
+      :border 2px solid black
+    .submit:hover
+      :background-color white
+      :cursor pointer
   
 #news_and_events
-  +column(16,true)
+  +column(12,true)
   :margin-top 1.5em
   #events
-    +column(7)
-    +append(2)
+    +column(6)
+    ul
+      :height 16em
+      :overflow auto
   #news
-    +column(7,true)
+    +column(6,true)
+    ul
+      :height 16em
+      :overflow auto
   ul
     :text-indent 0
     :margin 0

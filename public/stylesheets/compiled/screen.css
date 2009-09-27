@@ -586,5 +586,6 @@ a:hover { color: red; }
 li a { padding: 0.1em; padding-left: 0; }
 
 .featured ul li a { display: block; border-bottom: 1px dotted #ddd; line-height: 1.5em; }
+.featured ul li a:hover { background-color: #fee; }
 
 .clear { clear: both; }

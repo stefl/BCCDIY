@@ -1,7 +1,7 @@
 #quickly_find_near_you
   %a{:name=>"postcode"}
   - form_for Ward.new, :url=>{:controller=>'wards', :action=>'go'}, :method=>:get do |page|
-    Show me everything about the
+    Take me to the page for the
   
     = page.text_field :name, :autocomplete =>"off", :value=>'B5 8AB', :onfocus=>'clearText(this);'
     = submit_tag 'postcode', :class=>'submit'

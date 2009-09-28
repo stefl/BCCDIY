@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :planning_applications, :collection => {:planning_alerts => :get}
+
   map.resources :tools
 
   map.open_id_complete '/session', 

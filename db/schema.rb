@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090926175546) do
+ActiveRecord::Schema.define(:version => 20090928122724) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -123,6 +123,20 @@ ActiveRecord::Schema.define(:version => 20090926175546) do
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
   add_index "pages", ["title"], :name => "index_pages_on_title"
+
+  create_table "planning_applications", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "council_reference"
+    t.string   "council_id"
+    t.string   "address"
+    t.string   "postcode"
+    t.text     "description"
+    t.string   "info_url"
+    t.string   "comment_url"
+    t.date     "date_received"
+    t.integer  "ward_id"
+  end
 
   create_table "revisions", :force => true do |t|
     t.datetime "created_at"

@@ -1,0 +1,12 @@
+.planning_application{:id=>@planning_application.id}
+
+  %h3.description
+    = link_to @planning_application.description, @planning_application.info_url
+  %p
+    %span.date
+      = @planning_application.date_received
+    %span.comments
+      = link_to "View comments", @planning_application.comment_url
+  %p
+  %p.address
+    = @planning_application.address.gsub("\n", "<br />")

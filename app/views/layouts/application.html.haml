@@ -111,6 +111,7 @@
           = render :partial=>"base/quick_find"
       
       #main_menu
+        %a{:name=>"main_navigation"}
         = render :partial=>"shared/tabs"
         
       - unless @home_page
@@ -129,9 +130,9 @@
           = @content_for_layout
       - else  
         
-        - if @hide_navigation.blank?     
+        - unless @page.blank?
           #navigation
-            %a{:name=>"main_navigation"}
+            
             = render :partial => "shared/navigation"
 
 

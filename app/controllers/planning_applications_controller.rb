@@ -12,6 +12,15 @@ class PlanningApplicationsController < ResourceController::Base
    render :xml => @planning_applications
   }
   
+  def search
+    day = params[:day]
+    month = params[:month]
+    year = params[:year]
+    date = Date.new(year.to_i,month.to_i,day.to_i)
+    @planning_applications = PlanningApplication.find(:all, :conditions  => { :date_received  => date })
+    render
+  end
+  
   def planning_alerts
     
     day = params[:day]

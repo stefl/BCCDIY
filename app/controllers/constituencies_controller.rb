@@ -5,6 +5,7 @@ class ConstituenciesController < ResourceController::Base
   index.wants.xml { render :xml=>@constituencies}
   index.wants.json { render :json=>@constituencies}
   
+  
   private
     def object
       @object ||= end_of_association_chain.find_by_permalink(param)

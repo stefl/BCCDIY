@@ -5,4 +5,8 @@ class Constituency < ActiveRecord::Base
   def to_param
      self.permalink
    end
+   
+  def mp
+    
+  end
 end

@@ -1,0 +1,10 @@
+- @page_title = "Planning Applications"
+- @rss_url = formatted_planning_applications_url(:rss)
+- @rss_title = "Planning Applications"
+
+  
+#planning_applications
+  %ul
+    = render :partial=>"planning_application", :collection => @planning_applications
+
+= will_paginate @planning_applications

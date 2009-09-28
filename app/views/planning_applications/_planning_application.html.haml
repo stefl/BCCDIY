@@ -1,0 +1,8 @@
+%li.planning_application
+
+  .description
+    = link_to planning_application.description
+  .date
+    = planning_application.date_received
+  .address
+    = planning_application.address.gsub("\n", "<br />")

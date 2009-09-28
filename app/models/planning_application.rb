@@ -1,9 +1,5 @@
-require 'httparty'
 require 'nokogiri'
 require 'open-uri'
-require 'mechanize'
-require 'hpricot'
-require 'rest_client'
 require 'net/http'
 
 

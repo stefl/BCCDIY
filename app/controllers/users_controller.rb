@@ -41,6 +41,15 @@ class UsersController < ApplicationController
   def edit
     @user = find_user
   end
+  
+  def show
+    @user = find_user
+    
+
+      params[:page] = 1 if params[:page].blank?
+      @page_versions = @user.page_versions.paginate(:page => params[:page], :order => 'id DESC')
+      
+  end
 
   def update
     @user = admin? ? find_user : current_user

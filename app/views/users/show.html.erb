@@ -31,5 +31,7 @@
 <h2>Page edits</h2>
 
 <ul>
-  <%= render :partial=>"page_versions/page_version", :collection=>@user.page_versions
+  <%= render :partial=>"page_versions/page_version", :collection=>@page_versions %>
 </ul>
+
+<%= will_paginate @page_versions %>

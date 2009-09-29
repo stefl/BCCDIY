@@ -10,6 +10,14 @@ class MembersController < ResourceController::Base
     @members = @council.members
   }
   
+  
+  index.wants.json{
+    @council = OpenlyLocal::CouncilRemote.find(167)
+    render :json=>@council.members
+  }
+  show.wants.json{render :json=>@members.to_json}
+  
+  
   show.wants.xml{render :xml=>@member.to_xml}
   private
     def object

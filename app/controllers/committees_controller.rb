@@ -9,6 +9,14 @@ class CommitteesController < ResourceController::Base
     
     @committees = @council.committees
   }
+  
+  index.wants.json{
+    @council = OpenlyLocal::CouncilRemote.find(167)
+    render :json=>@council.committees
+  }
+  show.wants.json{render :json=>@committee.to_json}
+  
+  
   show.wants.xml{render :xml=>@committee.to_xml}
   private
     def object

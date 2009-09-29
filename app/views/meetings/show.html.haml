@@ -1,3 +1,8 @@
 - @page_title = "Meeting of the #{event.committee.title}"
 
 = render :partial=>"event", :object=>@event
+
+%p.quiet
+  (via 
+  = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+  )

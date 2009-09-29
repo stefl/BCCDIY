@@ -63,12 +63,12 @@
           )
               
 
+#recommended_links
+  - footer = Page.find_by_slug("footer")
+  - unless footer.blank?
+    = textilize footer.content
+    
 #home_lower
-
-  #recommended_links
-    - footer = Page.find_by_slug("footer")
-    - unless footer.blank?
-      = textilize footer.content
       
   #edit_this_site
     %h3
@@ -90,17 +90,18 @@
       %ul
         = render :partial=>"pages/page_version", :collection=>@recently_updated_pages 
       %p.clear
-  #recent_tweets   
-    %h3
-      On Twitter
-      %span.very_quiet
-        (
-        = link_to "#bccdiy", "http://search.twitter.com/search?q=bccdiy"
-        |
-        = link_to "Chat", "http://roomatic.com/bccdiy"
-        )
-    #twitter
-      .monitter{:title=>"bccdiy", :id=>"tweets"}
-      - content_for :scripts do
-        = javascript_include_tag "monitter"
-      .clear
+  - if 1 == 0
+    #recent_tweets   
+      %h3
+        On Twitter
+        %span.very_quiet
+          (
+          = link_to "#bccdiy", "http://search.twitter.com/search?q=bccdiy"
+          |
+          = link_to "Chat", "http://roomatic.com/bccdiy"
+          )
+      #twitter
+        .monitter{:title=>"bccdiy", :id=>"tweets"}
+        - content_for :scripts do
+          = javascript_include_tag "monitter"
+        .clear

@@ -2,5 +2,5 @@
   %h3
     = link_to constituency.name, constituency_path(constituency)
   
-  .wards
+  %ul.wards
     = render :partial=>'wards/ward', :collection=>constituency.wards

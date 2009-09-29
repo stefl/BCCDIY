@@ -5,12 +5,5 @@
   = @constituency.name
   
 #wards
-  = render :partial=>'wards/ward', :collection=>@constituency.wards
-
-#other_formats
-  Get this page as:
   %ul
-    %li
-      = link_to 'XML', formatted_constituency_path(@constituency,:xml)
-    %li
-      = link_to 'JSON', formatted_constituency_path(@constituency,:json)
+    = render :partial=>'wards/ward', :collection=>@constituency.wards

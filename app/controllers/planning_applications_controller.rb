@@ -40,7 +40,8 @@ class PlanningApplicationsController < ResourceController::Base
                xml.address o.address
                xml.postcode o.postcode
                xml.description o.description
-               xml.info_url o.info_url
+               #xml.info_url o.info_url # use the original information url
+               xml.info_url planning_application_url(o) # use our pages as the destination
                xml.comment_url o.comment_url
                xml.date_received o.date_received.strftime("%d/%m/%Y")
              }

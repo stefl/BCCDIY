@@ -1,6 +1,7 @@
 - @page_title = "Committees"
 
-= render :partial=>"committee", :collection=>@committees
+%ul
+  = render :partial=>"committee", :collection=>@committees
 
 %p.quiet
   (via 

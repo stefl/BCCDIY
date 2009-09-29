@@ -12,9 +12,10 @@
     %span.party.org
       = @member.party
     Party
-  %p.ward
-    Council member for
-    = link_to @member.ward.name, ward_path(@member.ward)
+  - unless @member.ward.blank?
+    %p.ward
+      Council member for
+      = link_to @member.ward.name, ward_path(@member.ward)
   
   %p.email
     = link_to @member.email, "mailto:"+@member.email
@@ -42,3 +43,16 @@
   = textilize @member.qualifications
 
 
+- unless @member.committees.blank?
+  %h3
+    Committees
+  
+  %ul
+    = render :partial=>"committees/committee", :collection=>@member.committees
+
+- unless @member.forthcoming_meetings.blank?
+  %h3
+    Forthcoming Meetings
+
+  %ul
+    = render :partial=>"meetings/meeting", :collection=>@member.forthcoming_meetings

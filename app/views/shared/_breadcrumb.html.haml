@@ -18,4 +18,6 @@
   &raquo;
   = link_to 'Wards', constituency_wards_path(@ward.constituency)
   
-  
+- if @member
+  = link_to 'Councillors', members_path
+  &raquo;

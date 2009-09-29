@@ -64,6 +64,12 @@
               
 
 #home_lower
+
+  #recommended_links
+    - footer = Page.find_by_slug("footer")
+    - unless footer.blank?
+      = textilize footer.content
+      
   #edit_this_site
     %h3
       Improve this site

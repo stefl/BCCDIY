@@ -1,0 +1,18 @@
+%p.vevent
+  %span.summary
+    
+    = link_to "Meeting of the #{OpenlyLocal::CommitteeRemote.find(meeting.committee_id).title}", meeting_path(meeting.id)
+    
+  on 
+  %abbr.dtstart{:title=>meeting.date_held}
+    = meeting.date_held
+  %br
+  at 
+  %span.location
+    = meeting.venue
+  %br
+  %span.quiet
+    (
+    = link_to "Official meeting page", meeting.url, :class=>"url hidden"
+    )
+  

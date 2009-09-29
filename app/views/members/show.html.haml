@@ -1,0 +1,44 @@
+- @page_title = "Councillor " + @member.name_title.to_s + @member.first_name + " " + @member.last_name
+
+// TODO Make these microformats better
+
+    
+.member.vcard{:id=>"member_#{@member.id}"}
+  %p.fn
+    = @member.first_name + " " + @member.last_name
+
+  %p
+     
+    %span.party.org
+      = @member.party
+    Party
+  %p.ward
+    Council member for
+    = link_to @member.ward.name, ward_path(@member.ward)
+  
+  %p.email
+    = link_to @member.email, "mailto:"+@member.email
+
+  
+  %p.tel
+    = @member.telephone
+      
+  %p.adr
+    .adr
+      .street_address
+        = @member.address
+      .locality
+        Birmingham
+      .country-name
+        UK
+  %p.url
+    = link_to "Official page", @member.url
+    
+
+%p.register_of_interests
+  = link_to "Register of interests", @member.register_of_interests
+
+%p.qualifications
+  = textilize @member.qualifications
+
+

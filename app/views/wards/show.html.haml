@@ -1,7 +1,7 @@
 - @page_title = @ward.name
 
 %h2
-  Search your local area
+  Search this local area
 #google_map
   #map_canvas{:style=>"width: 640px; height: 320px"}
   
@@ -28,28 +28,11 @@
   %h3
     = link_to "Write to them", "http://www.writetothem.com/"
 
-  #ward_councillors
+  #ward_members
     %ul
-      - @openly_local_ward.members.each do |member|        
-        %li
+      = render :partial=>"members/member", :collection=>@openly_local_ward.members
 
-          .councillor.vcard
-            .fn
-              = member.first_name
-              = member.last_name
-            .org
-              = member.party
-            .adr
-              .street_address
-                = member.address
-              .locality
-                Birmingham
-              .country-name
-                UK
-            .tel
-              = member.telephone
-            .email
-              = link_to member.email, "mailto:#{member.email}"
+
 
 
 
@@ -127,15 +110,19 @@
           map.setUIToDefault();
           map.enableGoogleBar();
           
-          
-    ='usePointFromPostcode("' + cookies[:postcode].gsub(' ', '') + '");'
-  
+    - if cookies[:ward_id] == @ward.id    
+    
+    
+      ='usePointFromPostcode("' + cookies[:postcode].gsub(' ', '') + '");'
+    - else
+      ='usePointFromPostcode("' + @ward.name + ", Birmingham, UK" + '");'
+
     :plain
         }
       }
     
     
-    $(document).ready(function(){initialize()});
+      $(document).ready(function(){initialize()});
     
   - if @fix_my_street.blank?
 

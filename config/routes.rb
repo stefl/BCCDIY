@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :committees
 
+  map.resources :meetings
+  
   map.resources :members
 
   map.resources :constituencies do |c|

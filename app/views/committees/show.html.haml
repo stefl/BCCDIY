@@ -1,0 +1,24 @@
+- @page_title = "Committee: " + @committee.title
+
+- if @committee.ward
+  %p.ward
+    A committee relating to
+    = link_to @committee.ward.name, ward_path(@committee.ward)
+
+%h3
+  = link_to "Official page", @committee.url
+
+%h3
+  Subscribe to 
+  = link_to "this committee's meeting calendar", "webcal://openlylocal.com/committees/#{@committee.id}.ics"
+
+#members
+  %h3
+    Members
+  %ul
+    = render :partial=>"members/member", :collection=>@committee.members
+
+#meetings
+  %h3
+    Meetings
+  = render :partial=>"meetings/meeting", :collection=>@committee.meetings

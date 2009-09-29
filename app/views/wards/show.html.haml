@@ -118,13 +118,19 @@
           map = new GMap2(document.getElementById("map_canvas"), mapOptions);
           map.setUIToDefault();
           map.enableGoogleBar();
-          
-    - if cookies[:ward_id] == @ward.id    
     
-    
-      ='usePointFromPostcode("' + cookies[:postcode].gsub(' ', '') + '");'
+    - if params[:postcode] 
+      - search_term = params[:postcode]    
     - else
-      ='usePointFromPostcode("' + @ward.name + ", Birmingham, UK" + '");'
+      - if cookies[:postcode]
+        - if cookies[:ward_id] == @ward.id  
+          - search_term = @ward.name + ", Birmingham, UK"
+        - else
+          - search_term = cookies[:postcode]
+      - else
+        - search_term = @ward.name + ", Birmingham, UK"
+      
+      ='usePointFromPostcode("' + search_term + '");'
 
     :plain
         }

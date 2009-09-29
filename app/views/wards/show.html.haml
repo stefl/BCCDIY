@@ -32,8 +32,17 @@
     %ul
       = render :partial=>"members/member", :collection=>@openly_local_ward.members
 
-
-
+- if 1 ==0
+  #committees
+    %h2
+      Committees
+    %p.quiet
+      (via 
+      = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+      )
+    #ward_committees
+      %ul
+        = render :partial=>"committees/committee", :colletion=>@openly_local_ward.committees
 
 
 #fix_my_street

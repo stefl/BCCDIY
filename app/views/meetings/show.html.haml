@@ -1,4 +1,4 @@
-- @page_title = "Meeting of the #{OpenlyLocal::CommitteeRemote.find(meeting.committee_id).title}"
+- @page_title = "Meeting of the #{OpenlyLocal::CommitteeRemote.find(@meeting.committee_id).title}"
 
 = render :partial=>"meeting", :object=>@meeting
 

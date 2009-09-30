@@ -1,6 +1,6 @@
-- @page_title = "Meeting of the #{event.committee.title}"
+- @page_title = "Meeting of the #{@meeting.committee.title}"
 
-= render :partial=>"event", :object=>@event
+= render :partial=>"meeting", :object=>@meeting
 
 %p.quiet
   (via 

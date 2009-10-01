@@ -46,6 +46,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :wards, :collection => {:auto_complete_for_ward_name => :any}
 
   map.home '/', :controller=>'base', :action=>'home'
+  map.news '/news', :controller=>'base', :action=>'news'
+  map.formatted_news '/news.:format', :controller=>'base', :action=>'news'
+  map.events '/events', :controller=>'base', :action=>'events'
+  map.formatted_events '/events.:format', :controller=>'base', :action=>'events'
+  
   map.connect '/auto_complete_for_page_title', :controller=>'base', :action=>'auto_complete_for_page_title'
   map.connect '/auto_complete_for_ward_name', :controller=>'base', :action=>'auto_complete_for_ward_name'
   

@@ -1,0 +1,9 @@
+#events
+  %h3
+    What is happening today in Birmingham
+  %ul
+    = render :partial=> 'shared/rss_item_news', :collection=>@events
+
+  %h3
+    For a full list of events, go to
+    = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"

@@ -2,7 +2,12 @@
 %html{:xmlns=>"http://www.w3.org/1999/xhtml"}
   %head
     %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
-    %link{:rel=>"alternate", :type=>"application/rss+xml", :href=>"http://birminghamnewsroom.com/feed", :title=>"News feed from Birmingham Newsroom"}
+    
+    
+    - if @rss_title && @rss_url
+      = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+    - else  
+      %link{:rel=>"alternate", :type=>"application/rss+xml", :href=>"http://bccdiy.com/news.rss", :title=>"News feed from Birmingham Newsroom"}
     
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
     %meta{:name=>"verify-v1", :content=>"D0qo6f8ZVcAd1GCfupe5A5MM8OEIxUbMBCsCvCBa92k="}
@@ -36,10 +41,7 @@
     
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-    
-    
-    - if @rss_title && @rss_url
-      = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+
     
   %body.blueprint{:style=>"bigText"}
     

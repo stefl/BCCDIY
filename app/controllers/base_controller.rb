@@ -14,6 +14,69 @@ class BaseController < ApplicationController
     @original_url = request.request_uri.to_s.gsub("bccdiy.com","birmingham.gov.uk")
   end
   
+  def news
+    @page_title = "News"
+    @rss_title = "Birmingham City Council News"
+    @rss_url = "http://bccdiy.com/news.rss"
+    news_feed = DailyFeed.find_by_url("http://birminghamnewsroom.com/?feed=rss2", :order=>"created_at desc", :limit=>1)
+    @news = news_feed.items
+
+    respond_to do |wants|
+      wants.html{ render } 
+      wants.json{ render :json=>@news.to_json } 
+      
+      wants.xml do 
+        
+         render_rss_feed_for(@news, { :feed => {:title => @rss_title, :link => news_url},
+                                :item => {:title => Proc.new {|item| item.title},
+                                          :link =>  Proc.new {|item| item.link},
+                                           :description => Proc.new {|item| item.description},                                       
+                                           :pub_date => Proc.new {|item| item.date}
+          }})
+      end
+      wants.rss do 
+        # TODO - this isn't very DRY!
+         render_rss_feed_for(@news, { :feed => {:title => @rss_title, :link => news_url},
+                                :item => {:title => Proc.new {|item| item.title},
+                                          :link =>  Proc.new {|item| item.link},
+                                           :description => Proc.new {|item| item.description},                                       
+                                           :pub_date => Proc.new {|item| item.date}
+          }})
+      end
+    end
+  end
+  
+  def events
+    @page_title = "Events"
+    @rss_title = "Birmingham City Council Events"
+    @rss_url = "http://bccdiy.com/events.rss"
+    events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :order=>"created_at desc", :limit=>1)
+    @events = events_feed.items
+
+    respond_to do |wants|
+      wants.html{ render } 
+      wants.json{ render :json=>@events.to_json } 
+      wants.xml do 
+        
+         render_rss_feed_for(@events, { :feed => {:title => @rss_title, :link => events_url},
+                                :item => {:title => Proc.new {|item| item.title},
+                                          :link =>  Proc.new {|item| item.link},
+                                           :description => Proc.new {|item| item.description},                                       
+                                           :pub_date => Proc.new {|item| item.date}
+          }})
+      end
+      wants.rss do 
+         # TODO - this isn't very DRY!
+         render_rss_feed_for(@events, { :feed => {:title => @rss_title, :link => events_url},
+                                :item => {:title => Proc.new {|item| item.title},
+                                          :link =>  Proc.new {|item| item.link},
+                                           :description => Proc.new {|item| item.description},                                       
+                                           :pub_date => Proc.new {|item| item.date}
+          }})
+      end
+    end
+  end
+  
   def home
     
     @edit_count = PageVersion.count(:all)

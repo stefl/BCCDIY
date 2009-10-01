@@ -1,0 +1,9 @@
+#news
+
+  %ul
+    = render :partial=> 'shared/rss_item_news', :collection=>@news
+
+  %h3
+    View more news at
+    = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
+    

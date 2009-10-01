@@ -12,9 +12,15 @@ class DailyFeed < ActiveRecord::Base
     content = "" # raw content of rss feed will be loaded here
     open(source) do |s| content = s.read end
     rss = RSS::Parser.parse(content, false)
-    unless rss.blank?  
-      update_attribute(:items, rss.items)
+    unless rss.blank? 
+      unless rss.items.blank?
+        update_attribute(:items, rss.items)
+      else
+        self.delete
+        return false
+      end
     else
+      self.delete
       return false
     end
   end

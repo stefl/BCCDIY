@@ -1,5 +1,14 @@
 - @page_title = @ward.name
 
+- @postcode = ''
+- if params[:postcode] 
+  - @postcode = params[:postcode]    
+- else
+  - if cookies[:postcode]
+    - if cookies[:ward_id] == @ward.id  
+      - @postcode = cookies[:postcode]
+
+  
 %h2
   Search this local area
 #google_map
@@ -55,7 +64,10 @@
     )
     
   %h3
-    = link_to 'Report a problem', 'http://fixmystreet.com'
+    - unless @postcode.blank?
+      = link_to 'Report a problem', 'http://www.fixmystreet.com/?pc=' + @postcode.gsub(' ', '+')
+    - else
+      = link_to 'Report a problem', 'http://www.fixmystreet.com/'
     
   #recent_problems
     %ul

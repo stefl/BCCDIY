@@ -574,6 +574,10 @@ a:hover { color: red; }
 #recommended_links ul li ul { font-weight: normal; }
 #recommended_links ul li ul li { list-style-type: bullet; padding: 0; width: 150px; height: auto; }
 
+#alphabet { margin-bottom: 1.5em; }
+
+#flickr_pick { background-color: #eee; }
+
 #constituencies_and_wards { display: inline; float: left; margin-right: 0; width: 630px; }
 * html #constituencies_and_wards { overflow-x: hidden; }
 #constituencies_and_wards #constituencies { display: inline; float: left; margin-right: 10px; width: 310px; }

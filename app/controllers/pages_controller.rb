@@ -20,7 +20,21 @@ class PagesController < ResourceController::Base
   
      end
 
-  
+  def atoz
+    
+    if params[:letter]
+      @pages = Page.find_by_sql(["select * from pages where alias = false and (LOWER(title) LIKE ?) ORDER BY title ASC", '' + params[:letter].downcase + '%' ])
+      
+      respond_to do |wants|
+        wants.html{ render } 
+        wants.json{ render :json=>@pages.to_json } 
+        wants.xml {render :xml=>@pages.to_xml }
+      end
+      
+    end
+    
+
+  end
   def go_to_title
     response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     

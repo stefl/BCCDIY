@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :jobs
+
   map.resources :planning_applications, :collection => {:planning_alerts => :get}
 
   map.resources :tools
@@ -55,9 +57,16 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/auto_complete_for_page_title', :controller=>'base', :action=>'auto_complete_for_page_title'
   map.connect '/auto_complete_for_ward_name', :controller=>'base', :action=>'auto_complete_for_ward_name'
   
+  
+  map.atoz '/pages/atoz', :controller=>'pages', :action=>'atoz'
+  map.connect '/pages/atoz/:letter', :controller=>'pages', :action=>'atoz'
+  map.connect '/pages/atoz/:letter.:format', :controller=>'pages', :action=>'atoz'
+  
   map.resources :pages, :member=> {:hide => :post, :move=>:get}, :collection => {:auto_complete_for_page_title => :any, :go_to_title => :any, :parse_textile => :post} do |page|
     page.resources :page_versions
   end
+
+  
   
   map.resources :page_versions
 

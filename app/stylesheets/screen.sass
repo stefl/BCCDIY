@@ -17,7 +17,9 @@ pre
   :padding 1em
   :margin-bottom 1.5em
 a
-  :color #06f
+  :color #06c
+a:visited
+  :color #68c
   
 a:hover
   :color red
@@ -76,7 +78,7 @@ a:hover
   +column(24,true)
   :padding-top 1.5em
   #logo_and_breadcrumb
-    +column(17)
+    +column(8)
     h1#logo
       +column(8,true)
     
@@ -109,29 +111,49 @@ a:hover
       +column(15,true)
       h2
         :color #999
+        :line-height 1em
+        :font-size 133%
+        a
+          :color #666
+        a:hover, a:focus
+          :color red
   #quickly_find_something
-    :margin-top -1.5em
-    +column(7, true)
+    +column(16, true)
+    :text-align right
 
 #main_menu
   ul
     +column(24,true)
-    :background-color #def
+    :background-color #dfefff
+    :padding-top 0.5em
+    :padding-bottom 0.5em
+    :padding-left 0.1em
     :margin 0
     :text-indent 0
-    :font-size 150%
+    :font-size 125%
     :list-style-type none
     li
       :list-style-type none
-      +column(3)
+      
+      :float left
       a
-        :display block
         :padding 0.5em
+        :text-decoration none
+        :background-color #def
+        :border-right 1px solid white
+      a:hover, a:focus
+        :background-color #eef6ff
+        :color black !important
+        :text-decoration underline
+      a:visited
+        :color #06c
+        
         
 #breadcrumb
   +column(24,true)
   :padding-bottom 1.5em
   :margin-bottom 1.5em
+  :margin-top 1em
           
 #navigation
   +column(6)
@@ -196,33 +218,35 @@ a:hover
     +column(6)
   #useful_tools
     +column(6,true)
-  #quick_find
-    :padding 1.5em
-    :background-color #eeffee
-    :margin-bottom 1.5em
-  #quickly_find_something, #quickly_find_near_you
-    :font-size 150%
-    input
-      :padding 0.25em
-
-      :font-size 100%
-
-    #page_title
-      :width 11em
-      :color #999
-    #ward_name
-      :width 4em
-      :color #999
 
 
-    #page_title, #ward_name
-      :border 2px solid #666
-    #page_title:focus, #ward_name:focus
-      :border 2px solid black
-    .submit:hover
-      :background-color white
-      :cursor pointer
-  
+
+
+#quick_find
+  :padding 1.5em
+  :background-color #eeffee
+  :margin-bottom 1.5em
+#quickly_find_something, #quickly_find_near_you
+  :font-size 150%
+  input
+    :padding 0.25em
+    :font-size 100%
+#page_title
+  :width 11em
+  :color #999
+#ward_name
+  :width 4em
+  :color #999
+
+
+#page_title, #ward_name
+  :border 2px solid #666
+#page_title:focus, #ward_name:focus
+  :border 2px solid black
+.submit:hover
+  :background-color white
+  :cursor pointer
+    
 #news_and_events
   +column(12,true)
   :margin-top 1.5em
@@ -246,23 +270,33 @@ a:hover
 #recommended_links
   +column(24,true)
   :background-color #f6f6f6
+  :padding 1em
   ul
     :display block
     :text-indent 0
     :list-style-type none
     :font-weight bold
     li
-      +column(4)
-      :padding 1em
+      :width 170px
+      :float left
+      :height 170px
+      :padding-left 10px
       :list-style-type none
       ul
         :font-weight normal
         li
           :list-style-type bullet
           :padding 0
-      
+          :width 150px
+          :height auto
   
-
+#constituencies_and_wards
+  +column(16,true)
+  #constituencies
+    +column(8)
+  #wards
+  
+    +column(8,true)
 #footer
   +column(24,true)
   :margin-top 4.5em

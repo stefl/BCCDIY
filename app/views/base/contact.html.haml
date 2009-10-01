@@ -1,0 +1,38 @@
+#contact
+  %h2
+    Contact your MP, Councillor or local Officer:
+  
+  #quick_find
+    = render :partial=>"base/quick_near_you", :locals=>{:phrase=>"who"}
+  
+  %h2
+    Contact someone else
+    
+  %h3
+    Contacting the council is expensive!
+  %p
+    We have designed this site to reduce how many times we have to contact the council via phone and email.
+  %p 
+    By some estimates it can cost up to &pound;8 per phone call to find out information that you can easily find online.
+  
+  %h3
+    Step 1. First - please try a search
+  %p
+    This could save the council thousands per year.
+  %h3
+    Step 2. If that fails, use the following means of contact:
+    
+  %p
+    Email: 
+    = link_to "contact@birmingham.gov.uk", "mailto:contact@birmingham.gov.uk"
+  %p
+    Telephone: 0121 303 1111
+  %p
+    Textphone: 0121 303 1119
+    
+  %h3
+    We'll soon have a way of searching for the right person and are looking for help on how to do it
+  %p
+    Suggestions in 
+    = link_to "the WIKI", "http://bccdiy.pbworks.com" 
+    please

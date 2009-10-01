@@ -14,6 +14,9 @@ class BaseController < ApplicationController
     @original_url = request.request_uri.to_s.gsub("bccdiy.com","birmingham.gov.uk")
   end
   
+  def contact
+    @page_title = "Contacting the Council"
+  end
   def news
     @page_title = "News"
     @rss_title = "Birmingham City Council News"

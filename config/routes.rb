@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.home '/', :controller=>'base', :action=>'home'
   map.news '/news', :controller=>'base', :action=>'news'
+  map.contact '/contact', :controller=>'base', :action=>'contact'
   map.formatted_news '/news.:format', :controller=>'base', :action=>'news'
   map.events '/events', :controller=>'base', :action=>'events'
   map.formatted_events '/events.:format', :controller=>'base', :action=>'events'

@@ -1,7 +1,30 @@
-%h2
-  Birmingham is divided up into the following 'constituencies' - geographic parts of the city, each of which contains a number of 'wards'.
-%p
-  Choose your ward from the following list to get a useful page of information for that area of Birmingham.
+- @page_title = "Near me"
 
-#constituencies
-  = render :partial => 'constituency', :collection=>@constituencies
+  
+#quick_find
+  = render :partial=>"base/quick_near_you"
+
+
+%h2
+  Birmingham is divided up into the following 'constituencies' and 'wards'
+  
+%p
+  A constituency is a geographic part of the city and each has a Member of Parliament that you can find here.
+%p  
+  A ward is a smaller area, each of which having a number of local Councillors, which you can also find out about here.
+
+#constituencies_and_wards
+
+  #constituencies
+
+    %h3
+      Constituencies
+  
+    = render :partial => 'constituency', :collection=>@constituencies
+  
+  #wards
+
+    %h3
+      Wards
+
+    = render :partial => 'wards/ward', :collection=>@wards

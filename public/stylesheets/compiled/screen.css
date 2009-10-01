@@ -436,7 +436,9 @@ pre { overflow: auto; }
 
 #this_is_a_beta { background-color: #ffeeee; padding: 1em; margin-bottom: 1.5em; }
 
-a { color: #06f; }
+a { color: #06c; }
+
+a:visited { color: #68c; }
 
 a:hover { color: red; }
 
@@ -470,7 +472,7 @@ a:hover { color: red; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }
-#header #logo_and_breadcrumb { display: inline; float: left; margin-right: 10px; width: 670px; }
+#header #logo_and_breadcrumb { display: inline; float: left; margin-right: 10px; width: 310px; }
 * html #header #logo_and_breadcrumb { overflow-x: hidden; }
 #header #logo_and_breadcrumb h1#logo { display: inline; float: left; margin-right: 0; width: 310px; }
 * html #header #logo_and_breadcrumb h1#logo { overflow-x: hidden; }
@@ -486,17 +488,20 @@ a:hover { color: red; }
 #header #intro_header h1#logo a:hover, #header #intro_header h1#logo a:focus { color: red; }
 #header #intro_header #intro { display: inline; float: left; margin-right: 0; width: 590px; }
 * html #header #intro_header #intro { overflow-x: hidden; }
-#header #intro_header #intro h2 { color: #999; }
-#header #quickly_find_something { margin-top: -1.5em; display: inline; float: left; margin-right: 0; width: 270px; }
+#header #intro_header #intro h2 { color: #999; line-height: 1em; font-size: 133%; }
+#header #intro_header #intro h2 a { color: #666; }
+#header #intro_header #intro h2 a:hover, #header #intro_header #intro h2 a:focus { color: red; }
+#header #quickly_find_something { display: inline; float: left; margin-right: 0; width: 630px; text-align: right; }
 * html #header #quickly_find_something { overflow-x: hidden; }
 
-#main_menu ul { display: inline; float: left; margin-right: 0; width: 950px; background-color: #def; margin: 0; text-indent: 0; font-size: 150%; list-style-type: none; }
+#main_menu ul { display: inline; float: left; margin-right: 0; width: 950px; background-color: #dfefff; padding-top: 0.5em; padding-bottom: 0.5em; padding-left: 0.1em; margin: 0; text-indent: 0; font-size: 125%; list-style-type: none; }
 * html #main_menu ul { overflow-x: hidden; }
-#main_menu ul li { list-style-type: none; display: inline; float: left; margin-right: 10px; width: 110px; }
-* html #main_menu ul li { overflow-x: hidden; }
-#main_menu ul li a { display: block; padding: 0.5em; }
+#main_menu ul li { list-style-type: none; float: left; }
+#main_menu ul li a { padding: 0.5em; text-decoration: none; background-color: #def; border-right: 1px solid white; }
+#main_menu ul li a:hover, #main_menu ul li a:focus { background-color: #eef6ff; color: black !important; text-decoration: underline; }
+#main_menu ul li a:visited { color: #06c; }
 
-#breadcrumb { display: inline; float: left; margin-right: 0; width: 950px; padding-bottom: 1.5em; margin-bottom: 1.5em; }
+#breadcrumb { display: inline; float: left; margin-right: 0; width: 950px; padding-bottom: 1.5em; margin-bottom: 1.5em; margin-top: 1em; }
 * html #breadcrumb { overflow-x: hidden; }
 
 #navigation { display: inline; float: left; margin-right: 10px; width: 230px; padding-right: 80px; }
@@ -535,14 +540,21 @@ a:hover { color: red; }
 * html #home_content #featured_pages { overflow-x: hidden; }
 #home_content #useful_tools { display: inline; float: left; margin-right: 0; width: 230px; }
 * html #home_content #useful_tools { overflow-x: hidden; }
-#home_content #quick_find { padding: 1.5em; background-color: #eeffee; margin-bottom: 1.5em; }
-#home_content #quickly_find_something, #home_content #quickly_find_near_you { font-size: 150%; }
-#home_content #quickly_find_something input, #home_content #quickly_find_near_you input { padding: 0.25em; font-size: 100%; }
-#home_content #quickly_find_something #page_title, #home_content #quickly_find_near_you #page_title { width: 11em; color: #999; }
-#home_content #quickly_find_something #ward_name, #home_content #quickly_find_near_you #ward_name { width: 4em; color: #999; }
-#home_content #quickly_find_something #page_title, #home_content #quickly_find_something #ward_name, #home_content #quickly_find_near_you #page_title, #home_content #quickly_find_near_you #ward_name { border: 2px solid #666; }
-#home_content #quickly_find_something #page_title:focus, #home_content #quickly_find_something #ward_name:focus, #home_content #quickly_find_near_you #page_title:focus, #home_content #quickly_find_near_you #ward_name:focus { border: 2px solid black; }
-#home_content #quickly_find_something .submit:hover, #home_content #quickly_find_near_you .submit:hover { background-color: white; cursor: pointer; }
+
+#quick_find { padding: 1.5em; background-color: #eeffee; margin-bottom: 1.5em; }
+
+#quickly_find_something, #quickly_find_near_you { font-size: 150%; }
+#quickly_find_something input, #quickly_find_near_you input { padding: 0.25em; font-size: 100%; }
+
+#page_title { width: 11em; color: #999; }
+
+#ward_name { width: 4em; color: #999; }
+
+#page_title, #ward_name { border: 2px solid #666; }
+
+#page_title:focus, #ward_name:focus { border: 2px solid black; }
+
+.submit:hover { background-color: white; cursor: pointer; }
 
 #news_and_events { display: inline; float: left; margin-right: 0; width: 470px; margin-top: 1.5em; }
 * html #news_and_events { overflow-x: hidden; }
@@ -555,13 +567,19 @@ a:hover { color: red; }
 #news_and_events ul { text-indent: 0; margin: 0; padding: 0; }
 #news_and_events ul li { list-style-type: none; margin-bottom: 0.5em; }
 
-#recommended_links { display: inline; float: left; margin-right: 0; width: 950px; background-color: #f6f6f6; }
+#recommended_links { display: inline; float: left; margin-right: 0; width: 950px; background-color: #f6f6f6; padding: 1em; }
 * html #recommended_links { overflow-x: hidden; }
 #recommended_links ul { display: block; text-indent: 0; list-style-type: none; font-weight: bold; }
-#recommended_links ul li { display: inline; float: left; margin-right: 10px; width: 150px; padding: 1em; list-style-type: none; }
-* html #recommended_links ul li { overflow-x: hidden; }
+#recommended_links ul li { width: 170px; float: left; height: 170px; padding-left: 10px; list-style-type: none; }
 #recommended_links ul li ul { font-weight: normal; }
-#recommended_links ul li ul li { list-style-type: bullet; padding: 0; }
+#recommended_links ul li ul li { list-style-type: bullet; padding: 0; width: 150px; height: auto; }
+
+#constituencies_and_wards { display: inline; float: left; margin-right: 0; width: 630px; }
+* html #constituencies_and_wards { overflow-x: hidden; }
+#constituencies_and_wards #constituencies { display: inline; float: left; margin-right: 10px; width: 310px; }
+* html #constituencies_and_wards #constituencies { overflow-x: hidden; }
+#constituencies_and_wards #wards { display: inline; float: left; margin-right: 0; width: 310px; }
+* html #constituencies_and_wards #wards { overflow-x: hidden; }
 
 #footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }

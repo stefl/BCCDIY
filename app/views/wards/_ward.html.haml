@@ -1,3 +1,3 @@
-%li.ward
-  %h4{:id=>'ward_' + ward.name.parameterize}
-    = link_to ward.name, constituency_ward_path(ward.constituency,ward)
+.ward
+  %h3{:id=>'ward_' + ward.name.parameterize}
+    = link_to ward.name, ward_path(ward)

@@ -1,5 +1,7 @@
 class ConstituenciesController < ResourceController::Base
-  
+  index.wants.html { @wards = Ward.find(:all, :order=>"name asc") 
+    render
+    }
   show.wants.xml { render :xml=>@constituency}
   show.wants.json { render :json=>@constituency}
   index.wants.xml { render :xml=>@constituencies}

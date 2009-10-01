@@ -102,9 +102,14 @@
                   
             #intro
               %h2
-                A community-generated version of the 
-                %br
-                Birmingham City Council website
+                The community-powered Birmingham City Council site that makes it easy to
+                %br 
+                = link_to "report problems", constituencies_path
+                , view 
+                = link_to "planning applications", planning_applications_path
+                and more in your 
+                = link_to "local area", constituencies_path
+                
         - else
           #logo_and_breadcrumb
             %h1#logo

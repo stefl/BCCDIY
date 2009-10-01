@@ -519,12 +519,6 @@ a:hover { color: red; }
 #content #messages { display: inline; float: left; margin-right: 0; width: 630px; }
 * html #content #messages { overflow-x: hidden; }
 #content h1 { padding-bottom: 0.5em; border-bottom: 4px solid #eee; font-size: 200%; }
-#content #councillors { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 80px; }
-* html #content #councillors { overflow-x: hidden; }
-#content #fix_my_street { display: inline; float: left; margin-right: 0; width: 270px; }
-* html #content #fix_my_street { overflow-x: hidden; }
-#content #recent_plings { display: inline; float: left; margin-right: 0; width: 270px; height: 16em; overflow: auto; }
-* html #content #recent_plings { overflow-x: hidden; }
 
 #home_content { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 1em; }
 * html #home_content { overflow-x: hidden; }
@@ -584,6 +578,21 @@ a:hover { color: red; }
 * html #constituencies_and_wards #constituencies { overflow-x: hidden; }
 #constituencies_and_wards #wards { display: inline; float: left; margin-right: 0; width: 310px; }
 * html #constituencies_and_wards #wards { overflow-x: hidden; }
+
+#ward { display: inline; float: left; margin-right: 0; width: 950px; }
+* html #ward { overflow-x: hidden; }
+#ward #left_ward { display: inline; float: left; margin-right: 10px; width: 710px; }
+* html #ward #left_ward { overflow-x: hidden; }
+#ward #left_ward h2 { margin-top: 1.5em; }
+#ward #left_ward #fix_my_street { display: inline; float: left; margin-right: 10px; width: 350px; }
+* html #ward #left_ward #fix_my_street { overflow-x: hidden; }
+#ward #left_ward #planning_alerts { display: inline; float: left; margin-right: 0; width: 350px; }
+* html #ward #left_ward #planning_alerts { overflow-x: hidden; }
+#ward #left_ward #plings { display: inline; float: left; margin-right: 0; width: 350px; }
+* html #ward #left_ward #plings { overflow-x: hidden; }
+#ward #left_ward #recent_plings, #ward #left_ward #recent_alerts, #ward #left_ward #recent_problems { height: 16em; overflow: auto; }
+#ward #right_ward { display: inline; float: left; margin-right: 0; width: 230px; }
+* html #ward #right_ward { overflow-x: hidden; }
 
 #footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }

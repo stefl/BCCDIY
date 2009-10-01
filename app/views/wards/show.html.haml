@@ -7,82 +7,88 @@
   - if cookies[:postcode]
     - if cookies[:ward_id] == @ward.id  
       - @postcode = cookies[:postcode]
-
-  
-%h2
-  Search this local area
-#google_map
-  #map_canvas{:style=>"width: 640px; height: 320px"}
-  
-#plings
-  %h2
-    Things to do
-  %p.quiet
-    (via 
-    = link_to 'Plings', 'http://plings.info'
-    )
-  #recent_plings
-    %ul
-      /= render :partial=> 'shared/rss_item_long', :collection=>@plings
-      
-#councillors
-
-  %h2
-    Councillors
-  
-  %p.quiet
-    (via 
-    = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
-    )
-  %h3
-    = link_to "Write to them", "http://www.writetothem.com/"
-
-  #ward_members
-    %ul
-      = render :partial=>"members/member", :collection=>@openly_local_ward.members
-
-- if 1 ==0
-  #committees
+#ward
+  #left_ward  
     %h2
-      Committees
-    %p.quiet
-      (via 
-      = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
-      )
-    #ward_committees
-      %ul
-        = render :partial=>"committees/committee", :colletion=>@openly_local_ward.committees
-
-
-#fix_my_street
-  %h2
-    Street problems 
+      Search this local area
+    #google_map
+      #map_canvas{:style=>"width: 640px; height: 320px"}
   
-  %p.quiet
-    (via 
-    = link_to 'FixMyStreet.com', 'http://fixmystreet.com'
-    )
-    
-  %h3
-    - unless @postcode.blank?
-      = link_to 'Report a problem', 'http://www.fixmystreet.com/?pc=' + @postcode.gsub(' ', '+')
-    - else
-      = link_to 'Report a problem', 'http://www.fixmystreet.com/'
-    
-  #recent_problems
-    %ul
-      = render :partial=> 'shared/rss_item', :collection=>@fix_my_street
+  
+    #fix_my_street
+      %h2
+        Street problems 
+
+
+      #recent_problems
+        %ul
+          = render :partial=> 'shared/rss_item', :collection=>@fix_my_street
+      %p.quiet
+        (via 
+        = link_to 'FixMyStreet.com', 'http://fixmystreet.com'
+        )
+      %h3
+        - unless @postcode.blank?
+          = link_to 'Report a problem', 'http://www.fixmystreet.com/?pc=' + @postcode.gsub(' ', '+')
+        - else
+          = link_to 'Report a problem', 'http://www.fixmystreet.com/'
       
-#planning_alerts
-  %h2
-    Recent planning applications
-  %p.quiet
-    (via 
-    = link_to 'PlanningAlerts.com', 'http://planningalerts.com'
-    )
-  #recent_alerts
-    %ul
-      = render :partial=> 'shared/rss_item_long', :collection=>@planning_alerts
+
+    #planning_alerts
+      %h2
+        Planning applications
+
+      #recent_alerts
+        %ul
+          = render :partial=> 'shared/rss_item_long', :collection=>@planning_alerts
+
+      %p.quiet
+        (via 
+        = link_to 'PlanningAlerts.com', 'http://planningalerts.com'
+        )
+    #plings
+      %h2
+        Things to do
+
+      #recent_plings
+        %ul
+          = render :partial=> 'shared/rss_item_long', :collection=>@plings
+      %p.quiet
+        (via 
+        = link_to 'Plings', 'http://plings.info'
+        )
+      
+  #right_ward
+    #councillors
+
+      %h2
+        Councillors
+  
+      
+      %h3
+        = link_to "Write to them", "http://www.writetothem.com/"
+      
+      %p.quiet
+        (via 
+        = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+        )
+
+      #ward_members
+        %ul
+          = render :partial=>"members/member", :collection=>@openly_local_ward.members
+
+    - if 1 ==0
+      #committees
+        %h2
+          Committees
+        %p.quiet
+          (via 
+          = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+          )
+        #ward_committees
+          %ul
+            = render :partial=>"committees/committee", :colletion=>@openly_local_ward.committees
+
 
 
 - content_for :scripts do

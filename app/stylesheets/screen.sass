@@ -190,15 +190,6 @@ a:hover
   
   
   
-  #councillors
-    +column(7)
-    +append(2)
-  #fix_my_street
-    +column(7,true)
-  #recent_plings
-    +column(7,true)
-    :height 16em
-    :overflow auto
 
 #home_content
   +column(24,true)
@@ -301,6 +292,26 @@ a:hover
   #wards
   
     +column(8,true)
+#ward
+  +column(24, true)
+  #left_ward
+    +column(18)
+    h2
+      :margin-top 1.5em
+    #google_map
+      
+    #fix_my_street
+      +column(9)
+    #planning_alerts
+      +column(9,true)
+    #plings
+      +column(9,true)
+    #recent_plings, #recent_alerts, #recent_problems
+      :height 16em
+      :overflow auto
+  #right_ward
+    +column(6,true)
+    #councillors
 #footer
   +column(24,true)
   :margin-top 4.5em

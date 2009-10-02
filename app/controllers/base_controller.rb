@@ -100,7 +100,7 @@ class BaseController < ApplicationController
       @events_today = events_feed.items
     end
     
-    #@featured_events = ScrapeJob.scrape_featured_events[0]
+    @featured_events = ScrapeJob.scrape_featured_events[0]
     
     
     flickr_url = "http://www.degraeve.com/flickr-rss/rss.php?tags=bccdiypick&tagmode=all&sort=date-posted-desc&num=25"

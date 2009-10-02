@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @user = find_user
     
     unless params[:postcode].blank?
-      @user.postcode = params[:postcode]
+      @user.update_attribute("postcode", params[:postcode])
       render :action => "set_postcode.js.rjs"
     end
   end

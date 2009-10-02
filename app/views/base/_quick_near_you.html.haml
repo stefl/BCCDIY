@@ -1,4 +1,9 @@
-- postcode = "B1 1AA" || cookies[:postode]
+
+- if logged_in?
+  - postcode = current_user.postcode
+
+- postcode ||= cookies[:postcode]
+- postcode ||= "B1 1AB"
 - phrase ||= "what"
 #quickly_find_near_you
   %a{:name=>"postcode"}

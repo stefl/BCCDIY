@@ -10,8 +10,9 @@
 
 - unless @postcode.blank?
   - if logged_in?
-    #save_postcode
-      = button_to_remote "Save this as my postcode", :url=>"/users/#{current_user.login}/set_postcode", :with=>"'postcode=" + @postcode + "'", :method=>:put
+    - unless current_user.postcode == cookies[:postcode]
+      #save_postcode
+        = button_to_remote "Save this as my postcode", :url=>"/users/#{current_user.login}/set_postcode", :with=>"'postcode=" + @postcode + "'", :method=>:put
     
 #ward
   #left_ward  

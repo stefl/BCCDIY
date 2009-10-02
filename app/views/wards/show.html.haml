@@ -7,13 +7,31 @@
   - if cookies[:postcode]
     - if cookies[:ward_id] == @ward.id  
       - @postcode = cookies[:postcode]
+      
+- unless @postcode.blank?
+  - search_term = @postcode  + ", UK"  
+- else
+  - search_term = @ward.name + ", Birmingham, UK"
+
+
+    
 #ward
   #left_ward  
-    %h2
-      Search this local area
-    #google_map
-      #map_canvas{:style=>"width: 640px; height: 320px"}
-  
+    - form_tag do
+      %h2
+        Search this local area for
+        - options_words = ["public park", "bank", "library", "council office", "school", "citizens advice bureau", "tax office", "DVLA office", "cafe", "gallery", "kids", "gallery", "museum", "playground", "college", "waterway", "cycle route", "rolice"].sort
+        - options = [["something... ", search_term]]
+        - options_words.each do |word|
+          - options << [word, word + ", " + search_term]
+        
+        = select_tag :query_term, options_for_select(options), :onchange => "localSearch.execute(this.value)"
+        
+    #mapsearch
+      %span
+        Loading...
+        
+      
   
     #fix_my_street
       %h2
@@ -90,72 +108,70 @@
             = render :partial=>"committees/committee", :colletion=>@openly_local_ward.committees
 
 
-
-- content_for :scripts do
-
-  = javascript_include_tag "http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
-  = javascript_include_tag "http://www.google.com/uds/api?file=uds.js&v=1.0&key=ABQIAAAAa7htYtqM06zRBCnvw4H0whT4RPgNTbRw-6xXu3oOlixanS-NkRRvsEzhRxgsYXDewt8vTRJMtM4cLA"
-  = javascript_include_tag "http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js"
-  %script{:type=>"text/javascript"}
-    :plain
-  
-      
-      
+- content_for :styles do
+  :plain
+    <style type="text/css">
+      @import url("http://www.google.com/uds/css/gsearch.css");
+    </style>
+    <style type="text/css">
+      @import url("http://www.google.com/uds/solutions/mapsearch/gsmapsearch.css");
+    </style>
     
-      function initialize() {
-        
-        function usePointFromPostcode(postcode, callbackFunction) {
-
-          var localSearch = new GlocalSearch();
-          
-
-          localSearch.setSearchCompleteCallback(null,
-            function() {
-
-              if (localSearch.results[0]) {    
-                var resultLat = localSearch.results[0].lat;
-                var resultLng = localSearch.results[0].lng;
-                var point = new GLatLng(resultLat,resultLng);
-
-                map.setCenter(point, 13);
-
-              }else{
-                alert("Postcode not found!");
-              }
-            });  
-
-          localSearch.execute(postcode + ", UK");
-        }
-        
-        if (GBrowserIsCompatible()) {
-          var mapOptions = {
-            googleBarOptions : {
-              style : "new"
-            }
-          }
-          map = new GMap2(document.getElementById("map_canvas"), mapOptions);
-          map.setUIToDefault();
-          map.enableGoogleBar();
-    
-    - if params[:postcode] 
-      - search_term = params[:postcode]    
-    - else
-      - if cookies[:postcode]
-        - if cookies[:ward_id] == @ward.id  
-          - search_term = @ward.name + ", Birmingham, UK"
-        - else
-          - search_term = cookies[:postcode]
-      - else
-        - search_term = @ward.name + ", Birmingham, UK"
-      
-      ='usePointFromPostcode("' + search_term + '");'
-
-    :plain
-        }
+    <style type="text/css">
+      .gsmsc-mapDiv {
+        height : 320px;
       }
+
+      .gsmsc-idleMapDiv {
+        height : 320px;
+      }
+
+      #mapsearch {
+        width : 640px;
+        margin-bottom: 10px;
+      }
+    </style>
     
-    
-      $(document).ready(function(){initialize()});
+- content_for :scripts do
+  :plain
+    <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAB7lks_NsFBRocEhVDHvmbBT4RPgNTbRw-6xXu3oOlixanS-NkRQat9me5DBOLXPpWQzNGFE13UEIhg"
+       type="text/javascript"></script>
+     <script src="http://www.google.com/uds/api?file=uds.js&v=1.0&source=uds-msw&key=ABQIAAAAB7lks_NsFBRocEhVDHvmbBT4RPgNTbRw-6xXu3oOlixanS-NkRQat9me5DBOLXPpWQzNGFE13UEIhg"
+       type="text/javascript"></script>
+
+
+     <!-- Map Search Control and Stylesheet -->
+     <script type="text/javascript">
+       window._uds_msw_donotrepair = true;
+     </script>
+     <script src="http://www.google.com/uds/solutions/mapsearch/gsmapsearch.js?mode=new"
+       type="text/javascript"></script>
+       <script type="text/javascript">
+         var localSearch;
+         function LoadMapSearchControl() {
+           var options = {
+                 zoomControl : GSmapSearchControl.ZOOM_CONTROL_ENABLE_ALL,
+                 title : "BCCDIY",
+                 url : "http://bccdiy.com",
+                 idleMapZoom : GSmapSearchControl.ACTIVE_MAP_ZOOM+1,
+                 activeMapZoom : GSmapSearchControl.ACTIVE_MAP_ZOOM+1
+                 }
+
+           localSearch = new GSmapSearchControl(
+                 document.getElementById("mapsearch"),
+
+  ="'" + search_term + "',"
+  :plain
+               options
+               );
+
+       }
+       // arrange for this function to be called during body.onload
+       // event processing
+       $(document).ready(function(){LoadMapSearchControl()});
+     </script>
+
+
     
   - if @fix_my_street.blank?
 

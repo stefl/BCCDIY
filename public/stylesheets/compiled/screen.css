@@ -581,6 +581,7 @@ a:hover { color: red; }
 
 #ward { display: inline; float: left; margin-right: 0; width: 950px; }
 * html #ward { overflow-x: hidden; }
+#ward #query_term { font-size: 90%; }
 #ward #left_ward { display: inline; float: left; margin-right: 10px; width: 710px; }
 * html #ward #left_ward { overflow-x: hidden; }
 #ward #left_ward h2 { margin-top: 1.5em; }

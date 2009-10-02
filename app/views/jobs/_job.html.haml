@@ -1,6 +1,6 @@
 %li.job{:id=>"job_#{job.id}"}
   %h3.title
-    = link_to job.title, job_path(job)
+    = link_to job.title.strip, job_path(job)
     %br
     %span.quiet
       ( 

@@ -462,13 +462,12 @@ a:hover { color: red; }
 #top_bar { margin-bottom: 1.5em; background-color: #fff; display: inline; float: left; margin-right: 0; width: 950px; }
 * html #top_bar { overflow-x: hidden; }
 #top_bar a { color: #666; }
-#top_bar #jump { background-color: #fff; display: inline; float: left; margin-right: 10px; width: 470px; }
-* html #top_bar #jump { overflow-x: hidden; }
-#top_bar #resize { background-color: #fff; display: inline; float: left; margin-right: 0; width: 430px; text-align: right; }
-* html #top_bar #resize { overflow-x: hidden; }
+#top_bar #jump { background-color: #fff; display: block; position: absolute; left: -1000px; }
+#top_bar #my_near_me { display: inline; float: left; margin-right: 10px; width: 470px; }
+* html #top_bar #my_near_me { overflow-x: hidden; }
 #top_bar #user_menu { display: inline; float: left; margin-right: 0; width: 430px; text-align: right; }
 * html #top_bar #user_menu { overflow-x: hidden; }
-#top_bar #user_menu ul, #top_bar #user_menu li { list-style-type: none; display: inline-block; }
+#top_bar #user_menu ul, #top_bar #user_menu li { margin: 0; padding: 0; list-style-type: none; display: inline-block; }
 
 #header { display: inline; float: left; margin-right: 0; width: 950px; padding-top: 1.5em; }
 * html #header { overflow-x: hidden; }

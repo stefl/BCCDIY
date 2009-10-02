@@ -67,16 +67,18 @@
         - if logged_in?
           #my_near_me
             - if cookies[:postcode]
-              - if cookies[:ward_id]
-                - ward = Ward.find_by_id(cookies[:ward_id])
-                - unless ward.blank?
-                  = link_to ward.name, ward_path(ward)
+              %p
+                My location: 
+                - if cookies[:ward_id]
+                  - ward = Ward.find_by_id(cookies[:ward_id])
+                  - unless ward.blank?
+                    = link_to ward.name, ward_path(ward)
               
-              Based on postcode: 
-              = cookies[:postcode][0..2]
-              XXX
-              |
-              = link_to "Change", "/constituencies#postcode"
+                based on postcode: 
+                = cookies[:postcode][0..2]
+                XXX
+                |
+                = link_to "Change", "/constituencies#postcode"
       
         #user_menu 
           %ul

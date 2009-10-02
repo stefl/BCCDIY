@@ -6,7 +6,7 @@ class Job < ActiveRecord::Base
   def perform
     job_page = Nokogiri::HTML(open(self.url))
     
-    self.title = job_page.css('.vacancy h2').inner_html
+    self.title = job_page.css('.vacancy h2').inner_html.strip
     self.description = job_page.css('.vacancy').inner_html
     self.description.gsub(/<table(.*)?<\/table>/m, '').gsub(/<h2(.*)?<\/h2>/m,'')
     job_page.css('.vacancytable tr').each do |row|

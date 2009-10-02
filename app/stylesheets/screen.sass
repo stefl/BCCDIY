@@ -60,18 +60,19 @@ a:hover
     :color #666
   #jump
     :background-color #fff
-  
+    :display block
+    :position absolute
+    :left -1000px
+  #my_near_me
     +column(12)
-  #resize
-    :background-color #fff
-    
-    +column(11,true)
-    :text-align right
+  
   #user_menu
     +column(11,true)
 
     :text-align right
     ul, li
+      :margin 0
+      :padding 0
       :list-style-type none
       :display inline-block
 #header

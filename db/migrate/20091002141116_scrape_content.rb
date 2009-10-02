@@ -7,3 +7,5 @@ class ScrapeContent < ActiveRecord::Migration
     remove_column :scrape_jobs, :content
   end
 end
+
+

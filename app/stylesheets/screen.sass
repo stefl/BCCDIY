@@ -121,7 +121,29 @@ a:hover
   #quickly_find_something
     +column(16, true)
     :text-align right
-
+#home_mid
+  :background-color #f6f6f6
+  +column(24,true)
+  #featured_events
+    +column(11)
+    :padding 1.5em
+    
+    .allbrumtoday
+      +column(3)
+      :margin-bottom 1em
+      h3, h5
+        :margin-bottom 0
+      h5
+        :display none
+      h3
+        
+        :font-size 125%
+        :display block
+    img
+      +column(3)
+      :margin-bottom 0.5em
+  
+  
 #main_menu
   ul
     +column(24,true)
@@ -261,7 +283,8 @@ a:hover
       :margin-bottom 0.5em
 #recommended_links
   +column(24,true)
-  :background-color #f6f6f6
+  :background-color #f3f3ff
+  :margin-top 1em
   :padding 1em
   ul
     :display block

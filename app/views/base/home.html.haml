@@ -29,8 +29,7 @@
         = render :partial=>"tools/tool", :collection=>@tools
 
   
-    #featured_events
-      /= @featured_events
+    
 
     
   #upper_right
@@ -38,47 +37,48 @@
       - unless @flickr_today.blank?
         = render :partial=>"shared/flickr_image", :object=>@flickr_today.sort_by{ rand }[0]
         
-    #news_and_events  
-      #events
-        %h3
-          = link_to "Events", events_path 
-          today
-
-        %ul
-          = render :partial=> 'shared/rss_item_event', :collection=>@events_today
-        
-        %p.quiet
-          (via
-          = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
-          )
+#home_mid
+  #featured_events
+    %h3
+      What's happening today
+    = @featured_events.content.gsub('="/', '="http://allbrum.co.uk/')
     
-      #news
-        %h3
-          = link_to "News", news_path
-          today
+  #news_and_events  
+    #events
+      %h3
+        All 
+        = link_to "events", events_path
+        today
+      %ul
+        = render :partial=> 'shared/rss_item_event', :collection=>@events_today
+      
+      %p.quiet
+        (via
+        = link_to 'AllBrum.co.uk', "http://allbrum.co.uk"
+        )
+  
+    #news
+      %h3
+        = link_to "News", news_path
+        today
 
-        %ul
-          = render :partial=> 'shared/rss_item_news', :collection=>@news_today
+      %ul
+        = render :partial=> 'shared/rss_item_news', :collection=>@news_today
 
-        %p.quiet
-          (via
-          = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
-          )
+      %p.quiet
+        (via
+        = link_to 'BirminghamNewsRoom.com', "http://birminghamnewsroom.com"
+        )
               
 
 #recommended_links
+  %h3
+    Directory
   - footer = Page.find_by_slug("footer")
   - unless footer.blank?
     = textilize footer.content
     
 #home_lower
-      
-  #edit_this_site
-    %h3
-      Improve this site
-
-    %p
-      Please contribute by fixing and improving the pages that you see here.
       
   #recently_updated
     %h3

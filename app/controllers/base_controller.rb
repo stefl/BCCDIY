@@ -100,8 +100,8 @@ class BaseController < ApplicationController
       @events_today = events_feed.items
     end
     
-    @featured_events = ScrapeJob.scrape_featured_events
-    debugger
+    #@featured_events = ScrapeJob.scrape_featured_events
+    #debugger
     
     flickr_url = "http://www.degraeve.com/flickr-rss/rss.php?tags=bccdiypick&tagmode=all&sort=date-posted-desc&num=25"
     flickr_feed = DailyFeed.find_by_url(flickr_url, :conditions=>["created_at > ?", Date.yesterday])

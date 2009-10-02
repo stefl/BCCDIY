@@ -6,6 +6,8 @@ require 'anemone'
 require 'nokogiri'
 
 class ScrapeJob < ActiveRecord::Base
+  serialize :content
+  
   def perform
     logger.info("perform srapejob")
     # ... do work to read and parse the feed and place it in the database
@@ -20,7 +22,20 @@ class ScrapeJob < ActiveRecord::Base
              Delayed::Job.enqueue Job.create(:url=>url)
            end
         end
+      when "FeaturedEvents"
+        event_page = Nokogiri::HTML(open(url))
+        self.update_attribute("content", event_page.css('.smallfeature'))
     end
+  end
+  
+  def self.scrape_featured_events
+    unless ScrapeJob.exists?(["created_at > ? AND model = 'FeaturedEvents'", Date.yesterday])
+      Delayed::Job.enqueue ScrapeJob.create(:model=>"FeaturedEvents", :url=>"http://allbrum.co.uk/today")
+    else
+      
+    end
+    
+    return ScrapeJob.find(:all, :conditions=> ["model = 'FeaturedEvents'"], :limit=>1, :order=>"created_at desc")[0].content 
   end
   
   def self.jobs_scrape

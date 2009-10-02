@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002111634) do
+ActiveRecord::Schema.define(:version => 20091002141116) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20091002111634) do
     t.text     "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content"
   end
 
   create_table "tools", :force => true do |t|

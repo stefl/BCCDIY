@@ -88,7 +88,7 @@ class BaseController < ApplicationController
     @page_title = "Birmingham City Council - DIY Community Version"
     @featured_pages = Page.find(:all, :conditions=>"pages.favorite = true", :order=>"pages.title asc")
     
-    ScrapeJob.jobs_scrape
+    #ScrapeJob.jobs_scrape
 
     
     
@@ -100,7 +100,8 @@ class BaseController < ApplicationController
       @events_today = events_feed.items
     end
     
-    
+    @featured_events = ScrapeJob.scrape_featured_events
+    debugger
     
     flickr_url = "http://www.degraeve.com/flickr-rss/rss.php?tags=bccdiypick&tagmode=all&sort=date-posted-desc&num=25"
     flickr_feed = DailyFeed.find_by_url(flickr_url, :conditions=>["created_at > ?", Date.yesterday])

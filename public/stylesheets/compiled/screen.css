@@ -533,6 +533,7 @@ a:hover { color: red; }
 
 #home_content { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 1em; }
 * html #home_content { overflow-x: hidden; }
+#home_content #quickly_find_near_you { border-top: 2px solid #fff; margin-top: 1em; padding-top: 1em; }
 #home_content #home_upper { display: inline; float: left; margin-right: 0; width: 950px; }
 * html #home_content #home_upper { overflow-x: hidden; }
 #home_content #home_upper #upper_left { display: inline; float: left; margin-right: 10px; width: 470px; }

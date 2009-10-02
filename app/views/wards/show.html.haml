@@ -19,10 +19,11 @@
     - form_tag do
       %h2.first
         Search this area for
-        - options_words = ["public park", "bank", "library", "council office", "school", "citizens advice bureau", "tax office", "DVLA office", "cafe", "gallery", "kids", "gallery", "museum", "playground", "college", "waterway", "cycle route", "rolice"].sort
+        - options_words = ["public park", "adventure playground", "post office", "bank", "library", "council office", "school", "citizens advice bureau", "tax office", "DVLA office", "cafe", "gallery", "soft play", "housing association", "job centre",  "gallery", "museum", "college", "waterway", "cycle route", "police", "gym", "swimming pool", "children's nursery"].sort
         - options = [["something... ", search_term]]
         - options_words.each do |word|
           - options << [word, word + ", " + search_term]
+        
         
         = select_tag :query_term, options_for_select(options), :onchange => "localSearch.execute(this.value)"
         

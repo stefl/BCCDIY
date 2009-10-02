@@ -1,0 +1,45 @@
+- @page_title = @job.title
+
+#job
+  %dl
+    %dt
+      Service area
+    %dd
+      = @job.service_area
+    %dt
+      Job reference
+    %dd
+      = @job.reference
+    %dt
+      Salary
+    %dd
+      &pound;
+      %span.salary_low
+        = @job.salary_low
+      &ndash;
+      &pound;
+      %span.salary_high
+        = @job.salary_high
+    %dt
+      Contract type
+    %dd
+      = @job.contract_type
+    %dt
+      Closing date
+    %dd
+      = @job.closing_date
+    %dt
+      Criminal Records Bureau check required?
+    %dd
+      -if @job.cbi_check
+        Yes
+      - else
+        No
+    %dt
+      About the check
+    %dd
+      = @job.cbi_check_text
+    
+    
+  .description
+    = @job.description.gsub(/<table(.*)?<\/table>/m, '').gsub(/<h2(.*)?<\/h2>/m,'')

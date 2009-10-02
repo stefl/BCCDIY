@@ -12,8 +12,8 @@
   
     = page.text_field :name, :autocomplete =>"off", :value=>postcode, :onfocus=>'clearText(this);'
     
-    , so 
-    = phrase
+     
+    = phrase.humanize
     is
     = submit_tag 'near me', :class=>'submit'
     ?

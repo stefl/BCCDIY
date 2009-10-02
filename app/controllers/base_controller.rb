@@ -87,6 +87,11 @@ class BaseController < ApplicationController
     @tools = Tool.find(:all, :order=>"title asc")
     @page_title = "Birmingham City Council - DIY Community Version"
     @featured_pages = Page.find(:all, :conditions=>"pages.favorite = true", :order=>"pages.title asc")
+    
+    ScrapeJob.jobs_scrape
+
+    
+    
     events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :conditions=>["created_at > ?", Date.yesterday])
     if events_feed.blank?
       Delayed::Job.enqueue DailyFeed.create(:url=>"http://allbrum.co.uk/today.rss")
@@ -94,6 +99,7 @@ class BaseController < ApplicationController
     else
       @events_today = events_feed.items
     end
+    
     
     
     flickr_url = "http://www.degraeve.com/flickr-rss/rss.php?tags=bccdiypick&tagmode=all&sort=date-posted-desc&num=25"

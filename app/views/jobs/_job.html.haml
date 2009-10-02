@@ -1,0 +1,13 @@
+%li.job{:id=>"job_#{job.id}"}
+  %h3.title
+    = link_to job.title, job_path(job)
+    %br
+    %span.quiet
+      ( 
+      = "&pound;" + job.salary_low.to_s
+      &ndash;
+      = "&pound;" + job.salary_high.to_s
+      )
+  %p
+    Closing
+    = job.closing_date

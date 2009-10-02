@@ -1,0 +1,10 @@
+- @page_title = "Jobs with Birmingham City Council"
+#jobs
+  %p
+    The following are Birmingham City Council jobs that are currently advertised.
+  #jobs_list
+    %ul
+      = render :partial=>"job", :collection=>@jobs
+      
+  = will_paginate @jobs
+  

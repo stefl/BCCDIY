@@ -42,7 +42,7 @@
     %h3
       What's happening today
     - unless @featured_events.blank?
-      /= @featured_events.scraped_content.gsub('="/', '="http://allbrum.co.uk/')
+      = @featured_events.scraped_content.gsub('="/', '="http://allbrum.co.uk/')
     
   #news_and_events  
     #events

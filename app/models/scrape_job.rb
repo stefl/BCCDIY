@@ -34,7 +34,7 @@ class ScrapeJob < ActiveRecord::Base
     scrape = ScrapeJob.find(:all, :conditions=> ["model = 'FeaturedEvents'"], :limit=>1, :order=>"created_at desc")
 
     if scrape.blank?
-      scrape = ScrapeJob.new(:model=>"FeaturedEvents", :url=>"http://allbrum.co.uk/bccdiy",:scraped_content=>Nokogiri::HTML(open("http://allbrum.co.uk/bccdiy")).css('.allbrumtoday')[0..5].to_s)
+      scrape = ScrapeJob.new(:model=>"FeaturedEvents", :url=>"http://allbrum.co.uk/bccdiy",:scrape_content=>Nokogiri::HTML(open("http://allbrum.co.uk/bccdiy")).css('.allbrumtoday')[0..5].to_s)
       scrape.save
       scrape
     else

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090928124506) do
+ActiveRecord::Schema.define(:version => 20091001165413) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(:version => 20090928124506) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.text     "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.string   "title"
+    t.text     "service_area"
+    t.integer  "salary_low"
+    t.integer  "salary_high"
+    t.string   "salary"
+    t.string   "reference"
+    t.string   "contract_type"
+    t.date     "closing_date"
+    t.boolean  "cbi_check"
+    t.string   "cbi_check_text"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20090928124506) do
     t.string   "display_name"
     t.string   "permalink"
     t.string   "twitter"
+    t.string   "postcode"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

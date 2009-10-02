@@ -43,12 +43,20 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = find_user
+    @user = User.find_by_login params[:id]
     
-
       params[:page] = 1 if params[:page].blank?
       @page_versions = @user.page_versions.paginate(:page => params[:page], :order => 'id DESC')
       
+  end
+  
+  def set_postcode
+    @user = find_user
+    
+    unless params[:postcode].blank?
+      @user.postcode = params[:postcode]
+      render :action => "set_postcode.js.rjs"
+    end
   end
 
   def update

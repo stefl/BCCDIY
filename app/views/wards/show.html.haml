@@ -1,25 +1,23 @@
 - @page_title = @ward.name
 
-- @postcode = ''
-- if params[:postcode] 
-  - @postcode = params[:postcode]    
-- else
-  - if cookies[:postcode]
-    - if cookies[:ward_id] == @ward.id  
-      - @postcode = cookies[:postcode]
+- if cookies[:postcode] && cookies[:ward_id].to_i == @ward.id
+  - @postcode = cookies[:postcode]
       
 - unless @postcode.blank?
   - search_term = @postcode  + ", UK"  
 - else
   - search_term = @ward.name + ", Birmingham, UK"
 
-
+- unless @postcode.blank?
+  - if logged_in?
+    #save_postcode
+      = button_to_remote "Save this as my postcode", :url=>"/users/#{current_user.login}/set_postcode", :with=>"'postcode=" + @postcode + "'", :method=>:put
     
 #ward
   #left_ward  
     - form_tag do
-      %h2
-        Search this local area for
+      %h2.first
+        Search this area for
         - options_words = ["public park", "bank", "library", "council office", "school", "citizens advice bureau", "tax office", "DVLA office", "cafe", "gallery", "kids", "gallery", "museum", "playground", "college", "waterway", "cycle route", "rolice"].sort
         - options = [["something... ", search_term]]
         - options_words.each do |word|
@@ -83,17 +81,21 @@
         Councillors
   
       
-      %h3
-        = link_to "Write to them", "http://www.writetothem.com/"
-      
-      %p.quiet
-        (via 
-        = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
-        )
+
 
       #ward_members
         %ul
           = render :partial=>"members/member", :collection=>@openly_local_ward.members
+      %h3
+        = link_to "Write to them", "http://www.writetothem.com/"
+
+      %p.quiet
+        (via 
+        = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'
+        and 
+        = link_to 'WriteToThem', 'http://writetothem.com'
+        
+        )
 
     - if 1 ==0
       #committees

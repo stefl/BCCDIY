@@ -579,12 +579,15 @@ a:hover { color: red; }
 #constituencies_and_wards #wards { display: inline; float: left; margin-right: 0; width: 310px; }
 * html #constituencies_and_wards #wards { overflow-x: hidden; }
 
+#save_postcode { float: right; margin-top: -3.5em; }
+
 #ward { display: inline; float: left; margin-right: 0; width: 950px; }
 * html #ward { overflow-x: hidden; }
 #ward #query_term { font-size: 90%; }
 #ward #left_ward { display: inline; float: left; margin-right: 10px; width: 710px; }
 * html #ward #left_ward { overflow-x: hidden; }
 #ward #left_ward h2 { margin-top: 1.5em; }
+#ward #left_ward h2.first { margin-top: 0; }
 #ward #left_ward #fix_my_street { display: inline; float: left; margin-right: 10px; width: 350px; }
 * html #ward #left_ward #fix_my_street { overflow-x: hidden; }
 #ward #left_ward #planning_alerts { display: inline; float: left; margin-right: 0; width: 350px; }
@@ -594,6 +597,7 @@ a:hover { color: red; }
 #ward #left_ward #recent_plings, #ward #left_ward #recent_alerts, #ward #left_ward #recent_problems { height: 16em; overflow: auto; }
 #ward #right_ward { display: inline; float: left; margin-right: 0; width: 230px; }
 * html #ward #right_ward { overflow-x: hidden; }
+#ward #right_ward #councillors h2 { margin-top: 0.5em; }
 
 #footer { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 4.5em; margin-bottom: 1.5em; }
 * html #footer { overflow-x: hidden; }
@@ -605,7 +609,8 @@ a:hover { color: red; }
 * html #footer ul#footer_navigation { overflow-x: hidden; }
 #footer ul#footer_navigation li { display: inline; margin: 0; margin-right: 1.5em; padding: 0; text-indent: 0; }
 #footer #footer_navigation { padding: 1.5em; }
-#footer #other_formats { padding: 1.5em; }
+#footer #other_formats { display: inline; float: left; margin-right: 0; width: 910px; padding: 1.5em; }
+* html #footer #other_formats { overflow-x: hidden; }
 
 #hack_day { display: inline; float: left; margin-right: 0; width: 630px; margin-top: 1.5em; }
 * html #hack_day { overflow-x: hidden; }

@@ -16,7 +16,8 @@ ActionController::Routing::Routes.draw do |map|
                                      :settings  => :get,
                                      :make_admin => :put,
                                      :unsuspend => :put,
-                                     :purge     => :delete },
+                                     :purge     => :delete,
+                                     :set_postcode => :put },
                         :has_many => [:posts]
 
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate', :activation_code => nil

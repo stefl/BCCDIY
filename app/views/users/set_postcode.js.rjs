@@ -1,0 +1,2 @@
+page.insert_html :bottom, 'messages', '<div class="warning flash_message notice">Your postcode has been set and will be remembered on your next visit.</div>'
+page.visual_effect :fade, 'save_postcode'

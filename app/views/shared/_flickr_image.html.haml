@@ -1,5 +1,5 @@
 .flickr_image
-  = link_to flickr_image.link, flickr_image.description.gsub('alt=""', 'alt="' + flickr_image.title + "on Flickr" + '"')
+  = flickr_image.description.gsub('alt=""', 'alt="' + flickr_image.title + "on Flickr" + '"')
   
   %p
     &#147;

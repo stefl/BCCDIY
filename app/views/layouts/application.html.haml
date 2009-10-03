@@ -71,8 +71,8 @@
           %p
             = link_to "Jump to page contents", "#page_contents", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
             = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
-        - if logged_in?
-          #my_near_me
+        #my_near_me
+          - if logged_in?
             - if cookies[:postcode]
               %p
                 My location: 

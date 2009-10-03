@@ -1,5 +1,5 @@
 - rss_item = rss_item_news
 - unless rss_item.blank?
   %li
-    %b.event_title
+    %strong.event_title
       = link_to rss_item.title, rss_item.link

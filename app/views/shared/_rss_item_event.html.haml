@@ -1,7 +1,7 @@
 - rss_item = rss_item_event
 - unless rss_item.blank?
   %li
-    %b.event_title
+    %strong.event_title
       - begin
         - unless rss_item.title.blank?
           = link_to rss_item.title.slice!(/(.*),/).chomp(','), rss_item.link

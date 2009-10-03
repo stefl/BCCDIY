@@ -1,0 +1,26 @@
+- @page_title = "Customise your viewing experience"
+
+- unless cookies[:restyle_id].blank?
+  #remove_restyle
+    
+    %h3
+      You are currently using the 
+      = Restyle.find(cookies[:restyle_id]).title
+      style
+    %p
+      = button_to "Revert to the default display style", revert_restyles_path, :method=>:put
+    %p
+      &nbsp;
+
+%h3
+  Choose from the following alternative display styles
+%p
+  These are particularly well suited to partially sighted users, and will be change the appearance of this website to suit your needs.
+  
+
+#restyles
+  = render :partial=>"restyle", :collection=>@restyles
+  
+- if logged_in? && admin?
+  %p
+    = link_to "New", new_restyle_path

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002171130) do
+ActiveRecord::Schema.define(:version => 20091003172255) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -156,6 +156,15 @@ ActiveRecord::Schema.define(:version => 20091002171130) do
     t.integer  "ward_id"
   end
 
+  create_table "restyles", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.text     "css"
+    t.integer  "times_used",  :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "revisions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -203,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20091002171130) do
     t.string   "permalink"
     t.string   "twitter"
     t.string   "postcode"
+    t.integer  "restyle_id"
   end
 
   add_index "users", ["last_seen_at"], :name => "index_users_on_last_seen_at"

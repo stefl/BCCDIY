@@ -1,0 +1,12 @@
+.restyle{:id=>"restyle_#{restyle.id}"}
+  %h3
+    = restyle.title
+  %p
+    = restyle.description
+  .apply_restyle
+    %p
+      = button_to "Apply the " + restyle.title + " display style", apply_restyle_path(restyle), :method=>:put
+  
+  - if logged_in? && admin?
+    %p
+      = link_to "Edit", edit_restyle_path(restyle)

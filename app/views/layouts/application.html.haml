@@ -32,6 +32,13 @@
     
     = yield :styles
     
+    - unless cookies[:restyle_id].blank?
+      %style{:type=>"text/css"}
+        - begin
+          = Restyle.find(cookies[:restyle_id]).css
+        - rescue
+        
+        
     - unless @markitup.nil?
       = stylesheet_link_tag "/javascripts/markitup/skins/markitup/style.css"
       = stylesheet_link_tag "/javascripts/markitup/sets/textile/style.css"

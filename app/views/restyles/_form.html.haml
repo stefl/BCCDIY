@@ -1,0 +1,16 @@
+%label{:for=>"title"}
+  Title
+= form.text_field :title, :size =>50
+
+%br
+%label{:for=>"description"}
+  Description
+= form.text_area :description, :size=> 50
+
+%br
+%label{:for=>"css"}
+  CSS
+= form.text_area :css, :size=> 50
+
+                        
+= submit_tag 'Save', :class=>'submit'

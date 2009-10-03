@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   concerned_with :states, :activation, :posting, :validation
   formats_attributes :bio
   
+  has_one :restyle
   has_many :page_versions, :order=>'id desc'
   has_permalink :login
   

@@ -1,0 +1,21 @@
+- @page_title = "'" + @restyle.title + "' display style"
+
+
+
+#restyle
+  .restyle{:id=>"restyle_#{@restyle.id}"}
+    %p
+      = @restyle.description
+      
+    - unless cookies[:restyle_id].blank?
+      #remove_restyle
+        %p
+          = button_to "Remove custom style", revert_restyles_path, :method=>:put
+      - unless cookies[:restyle_id] == @restyle.id
+        .apply_restyle
+          %p
+            = button_to "Apply the " + @restyle.title + " display style", apply_restyle_path(@restyle), :method=>:put
+  
+    - if logged_in? && admin?
+      %p
+        = link_to "Edit", edit_restyle_path(@restyle)

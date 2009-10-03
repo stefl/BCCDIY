@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :restyles, :collection=>{:revert => :put}, :member => {:apply => :put}
+
   map.resources :jobs
 
   map.resources :planning_applications, :collection => {:planning_alerts => :get}

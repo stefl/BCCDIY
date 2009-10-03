@@ -1,5 +1,5 @@
 - rss_item = rss_item_long
 %li
-  = link_to rss_item.title, rss_item.link
+  = link_to h(rss_item.title), rss_item.link
   .description
-    = rss_item.description
+    = h rss_item.description

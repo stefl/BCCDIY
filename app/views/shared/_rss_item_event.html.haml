@@ -4,5 +4,5 @@
     %strong.event_title
       - begin
         - unless rss_item.title.blank?
-          = link_to rss_item.title.slice!(/(.*),/).chomp(','), rss_item.link
+          = link_to h(rss_item.title.slice!(/(.*),/).chomp(',')), rss_item.link
       - rescue

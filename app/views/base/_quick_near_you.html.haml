@@ -8,9 +8,10 @@
 #quickly_find_near_you
   %a{:name=>"postcode"}
   - form_for Ward.new, :url=>{:controller=>'wards', :action=>'go'}, :method=>:get do |page|
-    My postcode is
+    %label{:for=>"page_name"}
+      My postcode is
   
-    = page.text_field :name, :autocomplete =>"off", :value=>postcode, :onfocus=>'clearText(this);'
+      = page.text_field :name, :autocomplete =>"off", :value=>postcode, :onfocus=>'clearText(this);'
     
      
     = phrase.humanize

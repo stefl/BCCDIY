@@ -88,6 +88,7 @@
                 = link_to "Change", "/constituencies#postcode"
       
         #user_menu 
+          = link_to "Change the way this site looks", restyles_path
           %ul
           - if logged_in?
             %li.login=  link_to current_user.display_name, user_path(current_user)

@@ -51,7 +51,7 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
     
-  %body.blueprint{:style=>"bigText"}
+  %body.blueprint
     
     .container
     
@@ -146,7 +146,7 @@
       
       - if @home_page
         #home_content
-        
+          %a{:name=>"page_contents"}
           #messages
             - %w(info notice error).each do |type|
               - if flash[type.to_sym]

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091003172255) do
+ActiveRecord::Schema.define(:version => 20091003185125) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20091003172255) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "daily_feeds", ["created_at", "url"], :name => "index_daily_feeds_on_created_at_and_url"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -139,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20091003172255) do
     t.boolean  "favorite",    :default => false
   end
 
+  add_index "pages", ["favorite"], :name => "index_pages_on_favorite"
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
   add_index "pages", ["title"], :name => "index_pages_on_title"
 

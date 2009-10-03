@@ -82,7 +82,7 @@ class BaseController < ApplicationController
   
   def home
     
-    @edit_count = PageVersion.count(:all)
+    #@edit_count = PageVersion.count(:all)
     #response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     @tools = Tool.find(:all, :order=>"title asc")
     @page_title = "Birmingham City Council - DIY Community Version"

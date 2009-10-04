@@ -87,7 +87,7 @@ class Page < ActiveRecord::Base
   def parsed_content_as_textile 
     
     parser = HTMLToTextileParser.new
-    parser.feed(self.relink_content false)
+    parser.feed(self.relink_content(false))
     parser.to_textile
     
   end

@@ -11,7 +11,7 @@
     %label{:for=>"ward_name"}
       My postcode is
   
-      = page.text_field :name, :autocomplete =>"off", :value=>postcode, :onfocus=>'clearText(this);'
+      = page.text_field :name, :value=>postcode, :onfocus=>'clearText(this);'
     
      
     = phrase.humanize
@@ -22,4 +22,9 @@
 - content_for :scripts do
   
   - javascript_tag do
-    $(document).ready(function() { $("input#ward_name").autocomplete("auto_complete_for_ward_name") });
+    $(document).ready(function() { 
+    
+    $("input#ward_name").attr("autocomplete", "off")
+    $("input#ward_name").autocomplete("auto_complete_for_ward_name"); 
+    
+    });

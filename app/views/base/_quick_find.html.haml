@@ -3,10 +3,16 @@
   - form_for Page.new, :url=>{:controller=>'pages', :action=>'go_to_title'}, :method=>:get do |page|
     %label{:for=>"page_title"}
       Take me to the
-      = page.text_field :title, :autocomplete =>"off", :value=>'Council Tax', :onfocus=>'clearText(this);'
+      = page.text_field :title, :value=>'Council Tax', :onfocus=>'clearText(this);'
     = submit_tag 'page', :class=>'submit'
 
 - content_for :scripts do
   
   - javascript_tag do
-    $(document).ready(function() { $("input#page_title").autocomplete("auto_complete_for_page_title") });
+    $(document).ready(function() { 
+    
+    $("input#page_title").attr("autocomplete", "off");
+    $("input#page_title").autocomplete("auto_complete_for_page_title");
+    
+    
+    });

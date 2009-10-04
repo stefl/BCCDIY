@@ -96,7 +96,7 @@ class PlanningApplication < ActiveRecord::Base
     Hpricot.buffer_size = 1048576
     page = agent.get('http://eplanning.birmingham.gov.uk/Northgate/PlanningExplorer/GeneralSearch.aspx')
     
-    #pp page #pretty print the page
+    pp page #pretty print the page
     
     
     form = page.form("M3Form")
@@ -104,7 +104,7 @@ class PlanningApplication < ActiveRecord::Base
     form.radiobuttons_with(:name => 'rbGroup')[0].check
     
     form.buttons_with(:name=>'csbtnSearch')[0].value = 'Search'
-    #pp form # pretty print the form
+    pp form # pretty print the form
     
     results = agent.submit(form)
     

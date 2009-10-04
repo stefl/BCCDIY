@@ -1,5 +1,15 @@
 - @page_title = "Committees"
 
+- content_for :left_hand do
+
+    
+  - if cookies[:ward_id]
+    %h3
+      Committees in my area
+    #ward_committees
+      %ul
+        = render :partial=>"committees/committee", :collection=>Ward.find(cookies[:ward_id]).openly_local_ward.committees
+
 %ul
   = render :partial=>"committee", :collection=>@committees
 

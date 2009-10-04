@@ -1,4 +1,7 @@
 class ConstituenciesController < ResourceController::Base
+  
+  caches_action :index
+  
   index.wants.html { @wards = Ward.find(:all, :order=>"name asc") 
     render
     }

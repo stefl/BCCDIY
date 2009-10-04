@@ -185,7 +185,12 @@
             %h1
               = @page_title
               = yield :edit_link
-              
+            
+            - unless @rss_url.blank?
+              #page_rss_feed_icon
+                %a{:href=>@rss_url, :title=>@rss_title}
+                  %span
+                    RSS Feed for this page
           = @content_for_layout
 
 

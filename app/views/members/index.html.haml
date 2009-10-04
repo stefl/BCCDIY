@@ -1,4 +1,5 @@
 - @page_title = "Councillors"
 
-%ul
-  = render :partial=>"members/member", :collection=>@members
+- cache do
+  %ul
+    = render :partial=>"members/member", :collection=>@members

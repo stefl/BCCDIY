@@ -31,14 +31,14 @@ class ScrapeJob < ActiveRecord::Base
   
   def self.scrape_featured_events
     
-    scrape = ScrapeJob.find(:all, :conditions=> ["model = 'FeaturedEvents'"], :limit=>1, :order=>"created_at desc")
+    scrape = ScrapeJob.find(:all, :conditions=> ["model = 'FeaturedEvents' AND created_at > ?", Date.yesterday], :limit=>1, :order=>"created_at desc")
 
     if scrape.blank?
       scrape = ScrapeJob.new(:model=>"FeaturedEvents", :url=>"http://allbrum.co.uk/bccdiy",:scraped_content=>Nokogiri::HTML(open("http://allbrum.co.uk/bccdiy")).css('.allbrumtoday')[0..5].to_s)
       scrape.save
       scrape
     else
-      scrape
+      scrape = ScrapeJob.find(:all, :conditions=> ["model = 'FeaturedEvents'"], :limit=>1, :order=>"created_at desc")
     end
   end
   

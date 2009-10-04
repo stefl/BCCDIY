@@ -72,12 +72,7 @@
         )
               
 
-#recommended_links
-  %h3
-    Directory
-  - footer = Page.find_by_slug("footer")
-  - unless footer.blank?
-    = textilize footer.content
+= render :partial=>"pages/directory"
     
 #home_lower
       

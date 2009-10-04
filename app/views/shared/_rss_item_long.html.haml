@@ -1,5 +1,7 @@
 - rss_item = rss_item_long
-%li
-  = link_to h(rss_item.title), rss_item.link
-  .description
-    = h rss_item.description
+- unless rss_item.blank?
+  - unless rss_item.class == String
+    %li
+      = link_to h(rss_item.title), rss_item.link
+      .description
+        = h rss_item.description

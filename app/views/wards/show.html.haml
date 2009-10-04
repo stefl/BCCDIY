@@ -91,6 +91,13 @@
       %h3
         = link_to "Write to them", "http://www.writetothem.com/"
 
+      %h2
+        Committees
+      #ward_committees
+        %ul
+          = render :partial=>"committees/committee", :collection=>@openly_local_ward.committees
+  
+      
       %p.quiet
         (via 
         = link_to 'Openly Local', 'http://openlylocal.com/councils/167-Birmingham-City-Council'

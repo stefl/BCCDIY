@@ -6,7 +6,6 @@ class PagesController < ResourceController::Base
      redirect_to broken_path
   end
    
-  caches_action :atoz
   
   auto_complete_for :page, :title, :extra_conditions=> "pages.alias IS NOT true"
   

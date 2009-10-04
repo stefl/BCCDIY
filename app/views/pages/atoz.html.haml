@@ -1,20 +1,21 @@
-- @atoz = true
-- @page_title = "A to Z list of pages"
-- alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] 
+- cache do
+  - @atoz = true
+  - @page_title = "A to Z list of pages"
+  - alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] 
 
-#alphabet
-  = alphabet.collect { |letter| link_to(letter, "/pages/atoz/" + letter.downcase ) }.join(" | ")
+  #alphabet
+    = alphabet.collect { |letter| link_to(letter, "/pages/atoz/" + letter.downcase ) }.join(" | ")
 
 
-- if params[:letter] 
-  - @page_title = params[:letter].upcase + " : " + @page_title
+  - if params[:letter] 
+    - @page_title = params[:letter].upcase + " : " + @page_title
   
-  #pages
-    %ul
-      - for page in @pages
-        - unless page.alias
-          %li
-            - begin
-              = link_to h(page.title), page_path(page)
-            - rescue
+    #pages
+      %ul
+        - for page in @pages
+          - unless page.alias
+            %li
+              - begin
+                = link_to h(page.title), page_path(page)
+              - rescue
 

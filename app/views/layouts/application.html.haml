@@ -191,6 +191,10 @@
                 %a{:href=>@rss_url, :title=>@rss_title}
                   %span
                     RSS Feed for this page
+              #page_email_feed_icon
+                %a{:href=>"javascript:(function(){var%20e=prompt('Enter%20your%20email%20address.');if%20(e%20!=%20''%20&&%20e%20!=%20null){f='http://www.feedmyinbox.com/feeds/bookmark/?email='+encodeURIComponent(e)%20+'&feed=" + @rss_url + "';a=function(){if(!window.open(f,'fmi','location=yes,links=no,scrollbars=no,toolbar=no,width=500,height=490'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}}})()", :title=>"Get email updates for this page"}
+                  %span
+                    Get email updates for this page
           = @content_for_layout
 
 
@@ -240,6 +244,7 @@
                 = link_to 'JSON', request.request_uri + '.json'
               - if @rss_title && @rss_url
                 %li#rss= link_to "RSS", @rss_url, {:title => @rss_title}
+                %li#email= link_to "Email updates", "javascript:(function(){var%20e=prompt('Enter%20your%20email%20address.');if%20(e%20!=%20''%20&&%20e%20!=%20null){f='http://www.feedmyinbox.com/feeds/bookmark/?email='+encodeURIComponent(e)%20+'&feed='+encodeURIComponent(" + @rss_url + ");a=function(){if(!window.open(f,'fmi','location=yes,links=no,scrollbars=no,toolbar=no,width=500,height=490'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}}})()"
     = render :partial=>"shared/scripts"
     = yield :scripts
     :plain

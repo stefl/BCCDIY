@@ -534,8 +534,11 @@ a:hover { color: red; }
 * html #content #messages { overflow-x: hidden; }
 #content h1 { padding-bottom: 0.5em; border-bottom: 4px solid #eee; font-size: 200%; }
 #content #page_rss_feed_icon { float: right; }
-#content #page_rss_feed_icon a { display: block; width: 28px; height: 28px; background-image: url(/images/feed-icon-28x28.png); background-repeat: no-repeat; margin-top: -4em; }
+#content #page_rss_feed_icon a { display: block; width: 28px; height: 28px; background-image: url(/images/feed-icon-28x28.png); background-repeat: no-repeat; margin-top: -4em; margin-right: 3em; }
 #content #page_rss_feed_icon a span { display: none; }
+#content #page_email_feed_icon { float: right; }
+#content #page_email_feed_icon a { display: block; width: 28px; height: 28px; background-image: url(/images/email-feed-icon-28x28.png); background-repeat: no-repeat; margin-top: -4em; }
+#content #page_email_feed_icon a span { display: none; }
 
 #home_content { display: inline; float: left; margin-right: 0; width: 950px; margin-top: 1em; }
 * html #home_content { overflow-x: hidden; }

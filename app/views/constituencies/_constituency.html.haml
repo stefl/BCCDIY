@@ -1,4 +1,4 @@
 .constituency{:id=>"constituency_" + constituency.name.parameterize}
   %h3
-    = link_to constituency.name, constituency_path(constituency)
+    = link_to constituency.name + '<span class="quiet"> constituency</span>', constituency_path(constituency)
   

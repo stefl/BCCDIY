@@ -499,8 +499,8 @@ a:hover { color: red; }
 * html #home_mid #featured_events { overflow-x: hidden; }
 #home_mid #featured_events .allbrumtoday { display: inline; float: left; margin-right: 10px; width: 110px; margin-bottom: 1em; }
 * html #home_mid #featured_events .allbrumtoday { overflow-x: hidden; }
-#home_mid #featured_events .allbrumtoday h3, #home_mid #featured_events .allbrumtoday h5 { margin-bottom: 0; }
-#home_mid #featured_events .allbrumtoday h5 { display: none; }
+#home_mid #featured_events .allbrumtoday h3, #home_mid #featured_events .allbrumtoday h4 { margin-bottom: 0; }
+#home_mid #featured_events .allbrumtoday h4 { display: none; }
 #home_mid #featured_events .allbrumtoday h3 { font-size: 125%; display: block; }
 #home_mid #featured_events img { display: inline; float: left; margin-right: 10px; width: 110px; margin-bottom: 0.5em; }
 * html #home_mid #featured_events img { overflow-x: hidden; }
@@ -509,7 +509,7 @@ a:hover { color: red; }
 * html #main_menu ul { overflow-x: hidden; }
 #main_menu ul li { list-style-type: none; float: left; }
 #main_menu ul li a { padding: 0.5em; text-decoration: none; background-color: #def; border-right: 1px solid white; }
-#main_menu ul li a:hover, #main_menu ul li a:focus { background-color: #eef6ff; color: black !important; text-decoration: underline; }
+#main_menu ul li a:hover, #main_menu ul li a:focus { background-color: #eef6ff; color: black; text-decoration: underline; }
 #main_menu ul li a:visited { color: #06c; }
 
 #breadcrumb { display: inline; float: left; margin-right: 0; width: 950px; padding-bottom: 1.5em; margin-bottom: 1.5em; margin-top: 1em; }
@@ -524,6 +524,9 @@ a:hover { color: red; }
 #navigation ul li.active a { color: black; font-weight: bold; }
 
 #tool_frame { width: 700px; height: 500px; }
+
+#left_hand { display: inline; float: left; margin-right: 10px; width: 270px; padding-right: 40px; }
+* html #left_hand { overflow-x: hidden; }
 
 #content { display: inline; float: left; margin-right: 0; width: 630px; font-size: 125% !important; }
 * html #content { overflow-x: hidden; }

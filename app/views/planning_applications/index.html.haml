@@ -4,7 +4,34 @@
 
   
 #planning_applications
+  %h3
+    Recent applications
   %ul
     = render :partial=>"planning_application", :collection => @planning_applications
 
 = will_paginate @planning_applications
+
+
+- content_for :left_hand do
+  - if cookies[:postcode]
+    - ward = Ward.find(cookies[:ward_id])
+    %h3
+      Applications near me
+
+    #recent_alerts
+      %ul
+        = render :partial=> 'shared/rss_item_long', :collection=>@planning_alerts
+
+    %p.quiet
+      (via 
+      = link_to 'PlanningAlerts.com', 'http://planningalerts.com'
+      )
+    - content_for :scripts do
+      :javascript
+        var planning_alerts = false;
+
+        function stop_loading_planning_alerts()
+        {
+          planning_alerts = true;
+        }
+      = periodically_call_remote(:url=>planning_alerts_constituency_ward_path(ward.constituency, ward), :frequency => 0.5, :condition => "planning_alerts == false")

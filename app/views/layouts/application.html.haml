@@ -167,7 +167,9 @@
 
 
             = yield :left_hand
-      
+        - else
+          #left_hand
+            = yield :left_hand
         #content
           %a{:name=>"page_contents"}
         

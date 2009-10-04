@@ -138,7 +138,7 @@ class WardsController < ResourceController::Base
     render
     }
     
-  show.wants.xml { render :xml=>[:ward=>@ward, :openly_local_ward=>OpenlyLocal::WardRemote.find(@ward.openly_local_ward_id)]}
+  show.wants.xml { render :xml=>[:ward=>@ward, :openly_local_ward=>@ward.openly_local_ward]}
   show.wants.json { render :json=>@ward}
   index.wants.xml { render :xml=>@wards}
   index.wants.json { render :json=>@wards}

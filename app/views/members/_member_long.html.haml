@@ -1,0 +1,28 @@
+- member = member_long
+.member.vcard{:id=>"member_#{member.id}"}
+  %h4.fn
+    = link_to(member.first_name + " " + member.last_name, member_path(member))
+
+  %p
+     
+    %span.party.org
+      = member.party
+    Party
+
+  %p.email
+    = link_to member.email, "mailto:"+member.email
+
+  
+  %p.tel
+    = member.telephone
+      
+  %p.adr
+    .adr
+      .street_address
+        = member.address
+      .locality
+        Birmingham
+      .country-name
+        UK
+  %p.url
+    = link_to "Official page", member.url

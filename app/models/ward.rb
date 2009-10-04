@@ -12,6 +12,10 @@ class Ward < ActiveRecord::Base
   def to_param
      self.permalink
    end
+   
+  def openly_local_ward
+    OpenlyLocal::WardRemote.find(self.openly_local_ward_id)
+  end
  
   def self.get_by_postcode postcode
     

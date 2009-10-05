@@ -26,9 +26,3 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
-
-if ENV['MEMCACHE_SERVERS']
-  memcache_config = ENV['MEMCACHE_SERVERS'].split(',')
-  memcache_config << {:namespace => ENV['MEMCACHE_NAMESPACE']}
-  config.cache_store = :mem_cache_store, memcache_config
-end

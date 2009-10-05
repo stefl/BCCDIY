@@ -1,3 +1,4 @@
 - @page_title = "Council services and information"
 
-= render :partial=>"directory"
+- cache('pages_index', { :ttl => 1.hour }) do 
+  = render :partial=>"directory"

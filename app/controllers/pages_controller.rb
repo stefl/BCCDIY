@@ -20,6 +20,10 @@ class PagesController < ResourceController::Base
        render :text => RedCloth.new(params[:data]).to_html
   
      end
+    
+  def index
+    render
+  end
 
   def atoz
     

@@ -8,6 +8,7 @@ class Page < ActiveRecord::Base
   acts_as_solr :fields=>["title","content"]
   acts_as_tree :order => "title"
   acts_as_versioned
+  acts_as_cached
   belongs_to :user
   #acts_as_paranoid
   

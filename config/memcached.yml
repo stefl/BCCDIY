@@ -8,7 +8,7 @@ defaults:
   namespace: app
   sessions: false
   session_servers: false
-  fragments: false
+  fragments: true
   memory: 64
   servers: localhost:11211
   benchmarking: false

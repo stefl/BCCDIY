@@ -18,7 +18,12 @@ class JobsController < ResourceController::Base
    render :json=>@jobs
   }
   
-  show.wants.xml{
+  show.wants.html{
+   @job.format_description
+   render 
+  }
+  
+  show.wants.xml{  
    render :xml=>@job
   }
   

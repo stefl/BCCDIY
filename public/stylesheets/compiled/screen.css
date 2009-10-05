@@ -508,7 +508,7 @@ a:hover { color: red; }
 #main_menu ul { display: inline; float: left; margin-right: 0; width: 950px; background-color: #dfefff; padding-top: 0.5em; padding-bottom: 0.5em; padding-left: 0.1em; margin: 0; text-indent: 0; font-size: 125%; list-style-type: none; }
 * html #main_menu ul { overflow-x: hidden; }
 #main_menu ul li { list-style-type: none; float: left; }
-#main_menu ul li a { padding: 0.5em; text-decoration: none; background-color: #def; border-right: 1px solid white; }
+#main_menu ul li a { padding: 0.5em; text-decoration: none; background-color: #def; border-right: 1px solid white; font-weight: bold; }
 #main_menu ul li a:hover, #main_menu ul li a:focus { background-color: #eef6ff; color: black; text-decoration: underline; }
 #main_menu ul li a:visited { color: #06c; }
 

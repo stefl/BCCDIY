@@ -3,12 +3,17 @@ require 'anemone'
 require 'nokogiri'
 
 class Job < ActiveRecord::Base
+  
+  def format_description
+    self.description = self.description.gsub(/<table(.*)?<\/table>/m, '').gsub(/<h2(.*)?<\/h2>/m,'').gsub(/<table(.*)?<\/table>/m, '').gsub(/<h2(.*)?<\/h2>/m,'').gsub('href="/', 'href="http://www.birmingham.gov.uk/') 
+  end
+  
   def perform
     job_page = Nokogiri::HTML(open(self.url))
     
     self.title = job_page.css('.vacancy h2').inner_html.strip
     self.description = job_page.css('.vacancy').inner_html
-    self.description.gsub(/<table(.*)?<\/table>/m, '').gsub(/<h2(.*)?<\/h2>/m,'')
+    self.format_description
     job_page.css('.vacancytable tr').each do |row|
       row_title = row.css('th').inner_html.to_s.strip
       row_value = row.css('td').inner_html.to_s.strip

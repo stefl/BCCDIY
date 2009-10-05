@@ -17,6 +17,11 @@
       -@meta.each do |key|
         %meta{:name=>key[0], :content=>key[1]}
         
+    / Description and keywords
+    %meta{:name=>"description", :content=>"The community-powered Birmingham City Council site that makes it easy to report problems , view planning applications and more in your local area"}
+    %meta{:name=>"keywords", :content=>"Birmingham City Council DIY"}
+    %meta{:name=>"lang", :content=>"EN"}
+    
     / GeoURL
     %meta{:name=>"ICBM", :content=>"52.47500,-1.88500"}
     %meta{:name=>"geo.position", :content=>"52.47500;-1.88500"}
@@ -74,6 +79,7 @@
         #jump
           %p
             = link_to "Jump to page contents", "#page_contents", :accesskey=>"s", :title=>"Jump to page contents. Access key S" 
+            |
             = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
         #my_near_me
           - if logged_in?

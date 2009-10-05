@@ -11,7 +11,8 @@ class BaseController < ApplicationController
   def broken_link
     #response.headers['Cache-Control'] = 'public, max-age=300' unless logged_in?
     #flash[:notice] = "Sorry - Looks like that's a broken link"
-    @original_url = request.request_uri.to_s.gsub("bccdiy.com","birmingham.gov.uk")
+    @original_url = request.url.to_s.gsub("bccdiy.com","birmingham.gov.uk")
+    
   end
   
   def contact

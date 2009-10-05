@@ -438,7 +438,7 @@ pre { overflow: auto; }
 
 a { color: #06c; }
 
-a:visited { color: #68c; }
+a:visited { color: #05b; }
 
 a:hover { color: red; }
 
@@ -457,11 +457,11 @@ a:hover { color: red; }
 .vcard .fn { font-weight: bold; }
 .vcard .country-name { display: none; }
 
-#the_event { background-color: #eee; padding: 1em; font-weight: bold; }
+#the_event { background-color: #fee; padding: 1em; font-weight: bold; }
 
 #top_bar { margin-bottom: 1.5em; background-color: #fff; display: inline; float: left; margin-right: 0; width: 950px; }
 * html #top_bar { overflow-x: hidden; }
-#top_bar a { color: #666; }
+#top_bar a { color: #335; }
 #top_bar #jump { background-color: #fff; display: block; position: absolute; left: -1000px; }
 #top_bar #my_near_me { display: inline; float: left; margin-right: 10px; width: 470px; }
 * html #top_bar #my_near_me { overflow-x: hidden; }
@@ -487,8 +487,8 @@ a:hover { color: red; }
 #header #intro_header h1#logo a:hover, #header #intro_header h1#logo a:focus { color: red; }
 #header #intro_header #intro { display: inline; float: left; margin-right: 0; width: 590px; }
 * html #header #intro_header #intro { overflow-x: hidden; }
-#header #intro_header #intro h2 { color: #999; line-height: 1em; font-size: 133%; }
-#header #intro_header #intro h2 a { color: #666; }
+#header #intro_header #intro h2 { color: #444; line-height: 1em; font-size: 133%; }
+#header #intro_header #intro h2 a { color: #000; text-decoration: underline; }
 #header #intro_header #intro h2 a:hover, #header #intro_header #intro h2 a:focus { color: red; }
 #header #quickly_find_something { display: inline; float: left; margin-right: 0; width: 630px; text-align: right; }
 * html #header #quickly_find_something { overflow-x: hidden; }
@@ -561,9 +561,9 @@ a:hover { color: red; }
 #quickly_find_something, #quickly_find_near_you { font-size: 150%; }
 #quickly_find_something input, #quickly_find_near_you input { padding: 0.25em; font-size: 100%; }
 
-#page_title { width: 11em; color: #999; }
+#page_title { width: 11em; color: #666; }
 
-#ward_name { width: 4em; color: #999; }
+#ward_name { width: 4em; color: #666; }
 
 #page_title, #ward_name { border: 2px solid #666; }
 

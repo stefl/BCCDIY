@@ -102,7 +102,7 @@ class PagesController < ResourceController::Base
   
   private
     def object
-      @object ||= end_of_association_chain.find_by_slug(param)
+      @object ||= end_of_association_chain.cached(:find_by_slug, :with => param)
     end
     
     def own_page

@@ -17,6 +17,11 @@ class BaseController < ApplicationController
   
   def contact
     @page_title = "Contacting the Council"
+    respond_to do |wants|
+      wants.html{ render }
+      wants.xml{render :xml=>"Any ideas?".to_xml}
+      wants.json{render :json=>"Any ideas?".to_json}
+    end
   end
   def news
     @page_title = "News"

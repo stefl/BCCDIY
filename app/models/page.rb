@@ -9,6 +9,9 @@ class Page < ActiveRecord::Base
   acts_as_tree :order => "title"
   acts_as_versioned
   acts_as_cached
+  
+  before_save :expire_the_cache
+  
   belongs_to :user
   #acts_as_paranoid
   

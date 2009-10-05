@@ -21,7 +21,7 @@ module OpenlyLocal
       cached_resource :ttl => 7.days
   end
   
-  class Council::Dataset
+  class Council::Dataset < ActiveResource::Base
     
   end
   

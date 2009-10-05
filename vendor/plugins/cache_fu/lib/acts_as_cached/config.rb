@@ -16,7 +16,13 @@ module ActsAsCached
       when Hash   then config.update(options[RAILS_ENV]) 
       when String then config[:disabled] = true 
       end
-
+      
+      if ENV['MEMCACHE_SERVERS']
+        config[:disabled] = false
+        config[:servers] = ENV['MEMCACHE_SERVERS'].split(',')
+        config[:namespace] = ENV['MEMCACHE_NAMESPACE']
+      end
+      
       config.symbolize_keys!
 
       setup_benchmarking! if config[:benchmarking] && !config[:disabled]
@@ -51,6 +57,7 @@ module ActsAsCached
         Object.const_set :CACHE, memcache_client(config)
         Object.const_set :SESSION_CACHE, memcache_client(config) if config[:session_servers]
       end
+      
 
       CACHE.servers = Array(config.delete(:servers))
       SESSION_CACHE.servers = Array(config[:session_servers]) if config[:session_servers]

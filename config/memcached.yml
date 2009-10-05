@@ -24,11 +24,3 @@ development:
 # turn off caching
 test: 
   disabled: true
-
-production:
-  memory: 256
-  benchmarking: false
-  servers:
-    - 192.185.254.121:11211
-    - 192.185.254.138:11211
-    - 192.185.254.160:11211

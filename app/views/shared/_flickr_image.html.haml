@@ -1,5 +1,5 @@
 .flickr_image
-  = h flickr_image.description.gsub('alt=""', 'alt="' + flickr_image.title + "on Flickr" + '"')
+  = sanitize flickr_image.description.gsub('alt=""', 'alt="' + flickr_image.title + "on Flickr" + '"')
   
   %p
     &#147;

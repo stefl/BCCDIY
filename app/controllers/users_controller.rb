@@ -117,7 +117,7 @@ protected
   def find_user
     @user = if admin?
       User.find_by_login params[:id]
-    elsif params[:id] == current_user.id
+    elsif params[:id] == current_user.object_id
       current_user
     else
       User.find_by_login params[:id]
@@ -125,7 +125,7 @@ protected
   end
 
   def authorized?
-    admin? || params[:id].blank? || params[:id] == current_user.id.to_s
+    admin? || params[:id].blank? || params[:id] == current_user.object_id.to_s
   end
 
   def render_or_redirect_for_captcha_failure

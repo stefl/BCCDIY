@@ -1,7 +1,7 @@
 %p.vevent
   %span.summary
     
-    = link_to "Meeting of the #{OpenlyLocal::CommitteeRemote.find(meeting.committee_id).title}", meeting_path(meeting.id)
+    = link_to "Meeting of the #{OpenlyLocal::Committee.find(meeting.committee_id).title}", meeting_path(meeting.id)
     
   on 
   %abbr.dtstart{:title=>meeting.date_held}

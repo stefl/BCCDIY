@@ -1,28 +1,45 @@
 
 module OpenlyLocal
   
-  class MemberRemote < ActiveResource::Base
+  class Member < ActiveResource::Base
     self.site = "http://openlylocal.com/"
     self.element_name = "member"
-  end
-
-  class WardRemote < ActiveResource::Base
-      self.site = "http://openlylocal.com/"
-      self.element_name = "ward"
-      
+    cached_resource :ttl => 7.days
     
   end
 
-  class CouncilRemote < ActiveResource::Base
+  class Ward < ActiveResource::Base
+      self.site = "http://openlylocal.com/"
+      self.element_name = "ward"
+      cached_resource :ttl => 7.days
+    
+  end
+  
+  class Council < ActiveResource::Base
       self.site = "http://openlylocal.com/"
       self.element_name = "council"
-      
+      cached_resource :ttl => 7.days
+  end
+  
+  class Council::Dataset
+    
+  end
+  
+
+  class Meeting < ActiveResource::Base
+    self.site = "http://openlylocal.com/"
+    self.element_name = "meeting"
+    cached_resource :ttl => 7.days
   end
 
-  class CommitteeRemote < ActiveResource::Base
+  class Member::ForthcomingMeeting < Meeting
+    
+  end
+
+  class Committee < ActiveResource::Base
     self.site = "http://openlylocal.com/"
     self.element_name = "committee"
-
+    cached_resource :ttl => 7.days
     def ward
       begin
         Ward.find_by_openly_local_ward_id(self.ward_id) unless self.ward_id.blank?
@@ -32,11 +49,14 @@ module OpenlyLocal
     
   end
   
-  class MeetingRemote < ActiveResource::Base
+  
+  class Meeting < ActiveResource::Base
     self.site = "http://openlylocal.com/"
     self.element_name = "meeting"
-
+    cached_resource :ttl => 7.days
     
   end
+
+  
 
 end

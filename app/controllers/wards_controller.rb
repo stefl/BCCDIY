@@ -97,7 +97,7 @@ class WardsController < ResourceController::Base
     
     source = "http://www.fixmystreet.com/rss/reports/Birmingham/" + @ward.name.gsub(' ', '+') # url or local file
         
-    @openly_local_ward = OpenlyLocal::WardRemote.find(@ward.openly_local_ward_id)        
+    @openly_local_ward = OpenlyLocal::Ward.find(@ward.openly_local_ward_id)        
     
         
     fix_my_street_feed = DailyFeed.find_by_url(source, :conditions=>["created_at > ?", Date.yesterday])

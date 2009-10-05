@@ -1,0 +1,33 @@
+Cached Resource
+===============
+
+Transparently caches ActiveResource data in a memcached instance by extending cache_fu.
+
+Requires cache_fu
+http://errtheblog.com/posts/57-kickin-ass-w-cachefu
+
+Configuring the connection to memcache is done through the cache_fu plugin.
+
+
+Example
+=======
+
+This is all you need:
+
+  class MyClass < ActiveResource::Base
+    self.site = MY_SITE
+    cached_resource
+  end
+
+
+Now every time you run a find it will hit the cache first then do the rest query.  When retrieving collections, individual objects in the collection will be cached separately.
+
+The cached_resource call also takes normal cache_fu options:
+
+  cached_resource :ttl => 15.minutes  
+
+
+Doug McInnes <doug.mcinnes@latimes.com>
+Subba Rao
+
+Copyright (c) 2008 Los Angeles Times

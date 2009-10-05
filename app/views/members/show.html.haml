@@ -15,7 +15,7 @@
   - unless @member.ward.blank?
     %p.ward
       Council member for
-      = link_to @member.ward.name, ward_path(@member.ward)
+      = link_to @member.ward.name, ward_path(@member.ward.local_ward)
   
   %p.email
     = link_to @member.email, "mailto:"+@member.email

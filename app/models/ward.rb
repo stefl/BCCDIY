@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Ward < ActiveRecord::Base
-  acts_as_solr :fields=>["name"]
+  #acts_as_solr :fields=>["name"]
   belongs_to :constituency
 
   has_permalink :name
@@ -18,7 +18,13 @@ class Ward < ActiveRecord::Base
   end
  
   def self.get_by_postcode postcode
-    
+    postcode = postcode.downcase
+    # cache the previous results of the lookup
+    previous_result = PostcodeToWard.find_by_postcode(postcode)
+    debugger
+    unless previous_result.blank?
+      return previous_result.ward
+    else
       lookup_url = "http://www.neighbourhood.statistics.gov.uk/dissemination/LeadAreaSearch.do?a=7&c=#{CGI::escape postcode }&d=14&r=0&i=1001&m=0&enc=1&areaSearchText=#{CGI::escape postcode}&areaSearchType=14&extendedList=false&searchAreas="
 
       result = ''
@@ -42,10 +48,18 @@ class Ward < ActiveRecord::Base
       end
     
       unless result.blank?
-        return Ward.find_by_permalink(result.parameterize)
+        #write the results to the lookup cache
+        
+        the_ward = Ward.find_by_permalink(result.parameterize)
+        
+        p = PostcodeToWard.new(:postcode=>postcode, :ward=>the_ward)
+        p.save
+        
+        return the_ward
       else
         return nil
       end
+    end
   end
 end
 

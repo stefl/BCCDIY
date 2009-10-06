@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091003185125) do
+ActiveRecord::Schema.define(:version => 20091006160550) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -157,6 +157,13 @@ ActiveRecord::Schema.define(:version => 20091003185125) do
     t.string   "comment_url"
     t.date     "date_received"
     t.integer  "ward_id"
+  end
+
+  create_table "postcode_to_wards", :force => true do |t|
+    t.string   "postcode"
+    t.integer  "ward_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "restyles", :force => true do |t|

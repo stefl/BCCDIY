@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :postcode_to_wards
+
   map.resources :restyles, :collection=>{:revert => :put}, :member => {:apply => :put}
 
   map.resources :jobs

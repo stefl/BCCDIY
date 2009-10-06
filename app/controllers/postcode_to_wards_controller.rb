@@ -1,0 +1,2 @@
+class PostcodeToWardsController < ApplicationController
+end

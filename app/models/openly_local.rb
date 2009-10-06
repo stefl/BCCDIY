@@ -13,7 +13,7 @@ module OpenlyLocal
       self.element_name = "ward"
       cached_resource :ttl => 7.days
       def local_ward
-        Ward.find_by_openly_local_ward_id(self.ward_id) unless self.ward_id.blank?
+        Ward.find_by_openly_local_ward_id(self.id) unless self.id.blank?
       end
   end
   

@@ -6,7 +6,7 @@ require 'open-uri'
 
 class WardsController < ResourceController::Base
   belongs_to :constituency
-  skip_before_filter :verify_authenticity_token :only=>[:go]
+  skip_before_filter :verify_authenticity_token, :only=>[:go]
   
   def go
     ward = Ward.find_by_name(params[:ward][:name])

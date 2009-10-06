@@ -10,7 +10,10 @@
       %ul
         = render :partial=>"members/member_long", :collection=>Ward.find(cookies[:ward_id]).openly_local_ward.members
 
-
+  - else
+    %h3
+      = link_to "Find your local councillor", constituencies_path
+      
   %h3
     = link_to "Write to a councillor", "http://www.writetothem.com/"
 

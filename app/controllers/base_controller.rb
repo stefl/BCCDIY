@@ -96,7 +96,9 @@ class BaseController < ApplicationController
     
     #ScrapeJob.jobs_scrape
 
-    
+    unless params[:expire].blank?
+      expire_fragment('home_page')
+    end
     
     events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :conditions=>["created_at > ?", Date.yesterday])
     if events_feed.blank?

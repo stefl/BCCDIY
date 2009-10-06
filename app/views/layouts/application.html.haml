@@ -96,20 +96,19 @@
             |
             = link_to "Jump to navigation", "#main_navigation", :accesskey=>"n", :title=>"Jump to main navigation. Access key N"
         #my_near_me
-          - if logged_in?
-            - if cookies[:postcode]
-              %p
-                My location: 
-                - if cookies[:ward_id]
-                  - ward = Ward.find_by_id(cookies[:ward_id])
-                  - unless ward.blank?
-                    = link_to ward.name, ward_path(ward)
-              
-                based on postcode: 
-                = cookies[:postcode][0..2]
-                XXX
-                |
-                = link_to "Change", "/constituencies#postcode"
+          - if cookies[:postcode]
+            %p
+              My location: 
+              - if cookies[:ward_id]
+                - ward = Ward.find_by_id(cookies[:ward_id])
+                - unless ward.blank?
+                  = link_to ward.name, ward_path(ward)
+            
+              based on postcode: 
+              = cookies[:postcode][0..2]
+              XXX
+              |
+              = link_to "Change", "/constituencies#postcode"
           &nbsp;
       
         #user_menu 

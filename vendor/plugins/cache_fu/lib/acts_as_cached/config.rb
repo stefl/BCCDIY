@@ -47,7 +47,7 @@ module ActsAsCached
     end
 
     def setup_memcache(config)
-      config[:namespace] << "-#{RAILS_ENV}"
+      #config[:namespace] << "-#{RAILS_ENV}"
 
       # if someone (e.g., interlock) already set up memcached, then
       # we need to stop here

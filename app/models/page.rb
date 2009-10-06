@@ -10,7 +10,7 @@ class Page < ActiveRecord::Base
   acts_as_versioned
   acts_as_cached
   
-  #before_save :expire_the_cache
+  before_save :expire_cache
   
   belongs_to :user
   #acts_as_paranoid
@@ -464,5 +464,10 @@ class Page < ActiveRecord::Base
     pages.size
   end
   
+  protected
+  
+  def expire_the_cache
+    
+  end
   
 end #class

@@ -1,3 +1,4 @@
+
 - if @ignore_main_menu
   %h3
     = link_to 'Browse all pages', '/pages/home'
@@ -5,40 +6,42 @@
     (We'll have a proper menu here on Friday)
   
 - if @page && @page != Page.root_page
-  %p.quiet
-    We're going to reorganise this menu to be more sensible:
-  -unless @page.parent.blank?
-    -unless @page.parent.children.empty?
-      %ul#siblingmenu
-        - for page in @page.parent.children
-          - unless page.alias
-            - item_class = ''
-            - item_class = 'active' if page==@page
-            %li{:class=>item_class}
-              %span{:id=>'menu_item_' + page.id.to_s}
-                - begin
-                  = link_to h(page.title), page_path(page)
-                - rescue
-                  - if page == @page
-                    -unless @page.children.empty?
-                      %ul#submenu
-                        - for page in @page.children
-                          - unless page.alias
-                            %li
-                              - begin
-                                = link_to h(page.title), page_path(page)
-                              - rescue
+  - cache('page_nav_' + @page.id.to_s) do
+    %p.quiet
+      We're going to reorganise this menu to be more sensible:
+    -unless @page.parent.blank?
+      -unless @page.parent.children.empty?
+        %ul#siblingmenu
+          - for page in @page.parent.children
+            - unless page.alias
+              - item_class = ''
+              - item_class = 'active' if page==@page
+              %li{:class=>item_class}
+                %span{:id=>'menu_item_' + page.id.to_s}
+                  - begin
+                    = link_to h(page.title), page_path(page)
+                  - rescue
+                    - if page == @page
+                      -unless @page.children.empty?
+                        %ul#submenu
+                          - for page in @page.children
+                            - unless page.alias
+                              %li
+                                - begin
+                                  = link_to h(page.title), page_path(page)
+                                - rescue
 
 
 - else
   - unless @ignore_main_menu
-    %p.quiet
-      We're going to reorganise this menu to be more sensible:
-    %ul#mainmenu
-      - for page in Page.root_page.children
-        - unless page.alias
-          %li
-            - begin
-              = link_to h(page.title), page_path(page)
-            - rescue
+    - cache('root_page_nav') do
+      %p.quiet
+        We're going to reorganise this menu to be more sensible:
+      %ul#mainmenu
+        - for page in Page.root_page.children
+          - unless page.alias
+            %li
+              - begin
+                = link_to h(page.title), page_path(page)
+              - rescue
   

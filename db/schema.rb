@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091006160550) do
+ActiveRecord::Schema.define(:version => 20091006195813) do
 
   create_table "brain_busters", :force => true do |t|
     t.string "question"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20091006160550) do
   end
 
   add_index "pages", ["favorite"], :name => "index_pages_on_favorite"
+  add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
   add_index "pages", ["title"], :name => "index_pages_on_title"
 

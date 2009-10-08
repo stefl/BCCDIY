@@ -105,7 +105,7 @@ class BaseController < ApplicationController
       Delayed::Job.enqueue DailyFeed.create(:url=>"http://allbrum.co.uk/today.rss")
       @events_today = ''
     else
-      @events_today = events_feed.items
+      @events_today = events_feed.items.reverse
     end
     
     begin

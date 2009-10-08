@@ -1,8 +1,5 @@
 task :cron => :environment do
-  puts "Scraping jobs"
-  ScrapeJob.jobs_scrape
-  puts "Updating planning applications..."
-  PlanningApplication.last_month
+
   puts "Updating event feed"
   Delayed::Job.enqueue DailyFeed.create(:url=>"http://allbrum.co.uk/today.rss")
   puts "Updating flickr feed"
@@ -10,5 +7,11 @@ task :cron => :environment do
   Delayed::Job.enqueue DailyFeed.create(:url=>flickr_url)
   puts "Updating news"
   Delayed::Job.enqueue DailyFeed.create(:url=>"http://birminghamnewsroom.com/?feed=rss2")
+  
+  puts "Scraping jobs"
+  ScrapeJob.jobs_scrape
+  puts "Updating planning applications..."
+  PlanningApplication.update
+  
   puts "done."
 end

@@ -15,6 +15,14 @@ class PlanningApplication < ActiveRecord::Base
       self.create_from_list results
     end
   end
+  
+  def update
+    results = self.search_all
+    
+    unless results.blank?
+      self.create_from_list results
+    end
+  end
 
   USERAGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.1) Gecko/20060111 Firefox/1.5.0.1'
   PANEL = 'eplanning.birmingham.gov.uk'

@@ -60,7 +60,7 @@ class BaseController < ApplicationController
     @rss_title = "Birmingham City Council Events"
     @rss_url = "http://bccdiy.com/events.rss"
     events_feed = DailyFeed.find_by_url("http://allbrum.co.uk/today.rss", :order=>"created_at desc", :limit=>1)
-    @events = events_feed.items
+    @events = events_feed.items.reverse 
 
     respond_to do |wants|
       wants.html{ render } 

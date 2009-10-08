@@ -11,7 +11,7 @@ task :cron => :environment do
   puts "Scraping jobs"
   ScrapeJob.jobs_scrape
   puts "Updating planning applications..."
-  PlanningApplication.update
+  Delayed::Job.enqueue ScrapeJob.create(:model=>"Planning")
   
   puts "done."
 end

@@ -16,7 +16,7 @@ class PlanningApplication < ActiveRecord::Base
     end
   end
   
-  def update
+  def self.update_listing
     results = self.search_all
     
     unless results.blank?
@@ -76,8 +76,11 @@ class PlanningApplication < ActiveRecord::Base
         address = item.css("SITE_ADDRESS")[0].content
         postcode = address.split("\n").reverse[0]
         id = item.css("PK")[0].content
+        proposal = ""
+        proposal = item.css("PROPOSAL")[0].content unless item.css("PROPOSAL")[0].blank?
+        
         app = PlanningApplication.new(
-        :description => item.css("PROPOSAL")[0].content,
+        :description => proposal,
         :council_reference=> council_reference,
         :council_id=> id,
         :date_received=> item.css("DATE_RECEIVED")[0].content,

@@ -21,6 +21,12 @@ class ScrapeJob < ActiveRecord::Base
              Delayed::Job.enqueue Job.create(:url=>url)
            end
         end
+      when "Planning"
+        begin
+          PlanningApplication.update_listing
+        rescue
+          return nil
+        end
       when "FeaturedEvents"
         
         event_page = Nokogiri::HTML(open(url))
